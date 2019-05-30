@@ -1,0 +1,5 @@
+
+def pyGetMediaEngine(pyIRtcEngine e):
+	tmp = pyIMediaEngine()
+	tmp.c_IMediaEngine = getMediaEngine(e.c_IRtcEngine)
+	return tmp
