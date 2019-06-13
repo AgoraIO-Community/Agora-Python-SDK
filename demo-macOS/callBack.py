@@ -12,6 +12,9 @@ class CallBackData:
         self.remoteUid = -1
         self.rawDataCounter = 0
         self.joinChannelSuccess = False
+        self.remoteUserWindowSet = False
+        self.remoteUserEnableVideo = True
+        self.localWindowSet = False
 
 EventHandlerData = CallBackData()
 if not os.path.exists("./rawData"):
@@ -29,7 +32,10 @@ class EventHandler:
         rxKBitRate, rxAudioKBitRate, txAudioKBitRate, rxVideoKBitRate,
         txVideoKBitRate, lastmileDelay, userCount, cpuAppUsage,
         cpuTotalUsage):
+        print ("leave channel")
         EventHandlerData.joinChannelSuccess = False
+        EventHandlerData.localWindowSet = False
+        EventHandlerData.remoteUserWindowSet = False
         EventHandlerData.localUid = -1
         EventHandlerData.remoteUid = -1
 
@@ -58,6 +64,8 @@ class EventHandler:
     @staticmethod
     def onUserOffline(uid, reason):
         print ("a remote user offline, uid=%d, reason=%d"%(uid, reason))
+        EventHandlerData.remoteUid = -1
+        EventHandlerData.remoteUserWindowSet = False
 
     @staticmethod
     def onFirstLocalAudioFrame(elapsed):
