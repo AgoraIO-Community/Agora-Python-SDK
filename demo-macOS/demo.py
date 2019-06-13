@@ -2,15 +2,16 @@ import IAgoraRtcEngine
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QTextCursor
-from PyQt5.QtWidgets import QFileDialog, QMessageBox, QTableWidgetItem
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
 import MainWindow
 import sys
 from PyQt5 import QtOpenGL
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QThread, pyqtSignal
 from callBack import EventHandlerData
+import time
 
-appId = b""
+appId = b"466c2ed3224c4e42996f7e08d2bb7193"
 
 Engine = IAgoraRtcEngine.pycreateAgoraRtcEngine()
 ctx = IAgoraRtcEngine.pyRtcEngineContext()
@@ -18,28 +19,44 @@ ctx.eventHandler = IAgoraRtcEngine.pyEventHandler()
 ctx.appId = appId
 Engine.initialize(ctx)
 EngineParam = IAgoraRtcEngine.pyRtcEngineParameters()
+localWinId = -1
+remoteWinId = -1
+
+class callBackListener(QThread):
+    def __init__(self):
+        super(callBackListener, self).__init__()
+
+    def run(self):
+        while (True):
+            if EventHandlerData.localWindowSet == False:
+                if EventHandlerData.localUid != -1:
+                    LocalCanvas = IAgoraRtcEngine.pyVideoCanvas()
+                    LocalCanvas.construct_2(localWinId,
+                                            IAgoraRtcEngine.pyRENDER_MODE_TYPE.RENDER_MODE_HIDDEN,
+                                            EventHandlerData.localUid)
+                    Engine.setupLocalVideo(LocalCanvas)
+                    EventHandlerData.localWindowSet = True
+
+            if EventHandlerData.remoteUserWindowSet == False:
+                if EventHandlerData.remoteUid != -1:
+                    RemoteCanvas = IAgoraRtcEngine.pyVideoCanvas()
+                    RemoteCanvas.construct_2(remoteWinId, IAgoraRtcEngine.pyRENDER_MODE_TYPE.RENDER_MODE_HIDDEN,
+                                             EventHandlerData.remoteUid)
+                    Engine.setupRemoteVideo(RemoteCanvas)
+                    EventHandlerData.remoteUserWindowSet = True
 
 class joinChannelThread(QThread):
     def __init__(self):
         super(joinChannelThread, self).__init__()
-        self.localWinId = -1
-        self.remoteWinId = -1
         self.channel = ""
+
     def run(self):
         Engine.joinChannel(appId, self.channel, b"", 0)
-        while (EventHandlerData.localUid == -1): pass
-        LocalCanvas = IAgoraRtcEngine.pyVideoCanvas()
-        LocalCanvas.construct_2(self.localWinId,
-                                IAgoraRtcEngine.pyRENDER_MODE_TYPE.RENDER_MODE_HIDDEN, EventHandlerData.localUid)
-        Engine.setupLocalVideo(LocalCanvas)
         Engine.enableVideo()
         EngineParam.construct_3(Engine)
         EngineParam.enableLocalVideo(True)
         EngineParam.muteLocalVideoStream(False)
-        while (EventHandlerData.remoteUid == -1): pass
-        RemoteCanvas = IAgoraRtcEngine.pyVideoCanvas()
-        RemoteCanvas.construct_2(self.remoteWinId, IAgoraRtcEngine.pyRENDER_MODE_TYPE.RENDER_MODE_HIDDEN, EventHandlerData.remoteUid)
-        Engine.setupRemoteVideo(RemoteCanvas)
+
 
 class leaveChannelThread(QThread):
     def __init__(self):
@@ -72,15 +89,32 @@ class MyWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
         self.leaveButton.clicked.connect(self.leaveChannel)
         self.enableButton.clicked.connect(self.enableLocalVideo)
         self.disableButton.clicked.connect(self.disableLocalVideo)
+        self.callBackListener = callBackListener()
+        self.callBackListener.start()
 
     def joinChannel(self):
         if EventHandlerData.joinChannelSuccess == False:
             self.joinThread = joinChannelThread()
-            self.joinThread.channel = bytes(self.channelEdit.toPlainText(), 'ascii')
-            if self.joinThread.channel == b'':
+            if self.checkChannelName() == False:
+                QMessageBox.information(self, "Message",
+                                        "The channel name contains illegal character.",
+                                        QMessageBox.Yes)
                 return
-            self.joinThread.localWinId = self.window1.effectiveWinId().__int__()
-            self.joinThread.remoteWinId = self.window2.effectiveWinId().__int__()
+            if len(self.channelEdit.toPlainText()) == 0:
+                QMessageBox.information(self, "Message",
+                                        "Please input the channel name.",
+                                        QMessageBox.Yes)
+                return
+            if len(self.channelEdit.toPlainText()) > 64:
+                QMessageBox.information(self, "Message",
+                                        "The length of the channel name must be less than 64.",
+                                        QMessageBox.Yes)
+                return
+            self.joinThread.channel = bytes(self.channelEdit.toPlainText(), 'ascii')
+
+            global localWinId, remoteWinId
+            localWinId = self.window1.effectiveWinId().__int__()
+            remoteWinId = self.window2.effectiveWinId().__int__()
             self.joinThread.start()
 
     def leaveChannel(self):
@@ -98,6 +132,23 @@ class MyWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
             self.disableThread = disableLocalVideoThread()
             self.disableThread.start()
 
+    def checkChannelName(self):
+        str = self.channelEdit.toPlainText()
+        for char in str:
+            if ord(char) >= ord('a') and ord(char) <= ord('z'):
+                continue
+            elif ord(char) >= ord('A') and ord(char) <= ord('Z'):
+                continue
+            elif ord(char) >= ord('0') and ord(char) <= ord('9'):
+                continue
+            elif char in ["!","#","$","%","&","(",")","+","-",":",
+                          ";","<","=",".",">","?","@","[","]","^",
+                          "_"," {","}","|","~",","] or ord(char) == 32:
+                continue
+            else:
+                return False
+        return True
+
 class window1(QtOpenGL.QGLWidget):
     def __init__(self):
         QtOpenGL.QGLWidget.__init__(self)
@@ -105,9 +156,7 @@ class window2(QtOpenGL.QGLWidget):
     def __init__(self):
         QtOpenGL.QGLWidget.__init__(self)
 
-
 if __name__ == '__main__':
-
     app = QApplication(sys.argv)
     window = MyWindow()
     window.show()
