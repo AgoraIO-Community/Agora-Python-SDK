@@ -150,7 +150,7 @@ class MyWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
                 continue
             elif char in ["!","#","$","%","&","(",")","+","-",":",
                           ";","<","=",".",">","?","@","[","]","^",
-                          "_"," {","}","|","~",","] or ord(char) == 32:
+                          "_","{","}","|","~",","] or ord(char) == 32:
                 continue
             else:
                 return False
