@@ -15,16 +15,17 @@ class cythonGenerator:
         self.headName = headName.split('/')[-1]
         self.nameSpace = []                          # namespace stack
         self.classDepth = 0                          # the size of class stack
-        self.waitPyx = ''                            # Nested class or struct waiting to write to .pyx
-        self.waitPxd = ''                            # Nested class or struct waiting to write to .pxd
+        self.waitPyx = ''                            # Nested class or struct or enum waiting to write to .pyx
+        self.waitPxd = ''                            # Nested class or struct or enum waiting to write to .pxd
         self.typedefMap = {}                         # map a typedef name to its type
         self.nowCursor = None
         self.constructCode = {}                      # map a class name to its constructors
         self.constructDict = {}                      # map a class name to the number of its constructor
         self.abstractMap = {}                        # map a class name to whether it is abstract or not
         self.construct = False                       # is now traversing constructor or not
-        self.inClassEnum = False
+        self.inClassEnum = False                     # is now traversing nested enum or not
         self.waitPxdChanged = False
+
         '''callbackdefine'''
         self.callBackDefine = False
 
@@ -33,10 +34,10 @@ class cythonGenerator:
         assert mode in ["add", "new"]
         if fileName == None: self.file = self.headName
         else: self.file = fileName
-        if mode == "add":
+        if mode == "add":                                        # add to the target file
             self.f_pxd = open('%s.pxd' % self.file, 'a')
             self.f_pyx = open('%s_pyx.pyx' % self.file, 'a')
-        else:
+        else:                                                    # create a new target file
             self.f_pxd = open('%s.pxd'%self.file, 'w')
             self.f_pyx = open('%s_pyx.pyx'%self.file, 'w')
             self.writePyx('# distutils: language=c++\nimport cython\nfrom libc.stdlib cimport free\n')
@@ -82,7 +83,7 @@ class cythonGenerator:
 
 
         if cursor.spelling in['AutoPtr', 'ensureGILstate']: return
-        #print cursor.spelling, cursor.kind, cursor.type.kind, cursor.location.line
+        print cursor.spelling, cursor.kind, cursor.type.kind, cursor.location.line
 
         '''global variable definition'''
         if cursor.kind == CursorKind.VAR_DECL and len(self.className) == 0\
@@ -93,7 +94,7 @@ class cythonGenerator:
                     default = list(cursor.get_tokens())[i+1].spelling
                     if default == '-': default += list(cursor.get_tokens())[i+2].spelling
                     break
-            if (default != None):
+            if default != None:
                 self.writePyx("%s = %s\n" % (cursor.spelling, default))
             else:
                 self.writePyx("%s\n" % (cursor.spelling))
@@ -108,9 +109,11 @@ class cythonGenerator:
 
         '''translate C++ struct to python class'''
         if cursor.kind == CursorKind.STRUCT_DECL:
+
             if self.public == False: return
             self.classType.append('struct')
             self.classDefinition()
+
             if len(list(cursor.get_children())) == 0:
                 self.writePxd('\t'*(self.classDepth+1) + 'pass\n')
 
@@ -131,7 +134,6 @@ class cythonGenerator:
             elif cursor.type.kind == TypeKind.UINT: type = 'unsigned int'
             elif cursor.type.kind == TypeKind.USHORT: type = 'unsigned short'
             elif cursor.type.kind == TypeKind.LONGLONG: type = 'long long'
-            #elif cursor.type.kind == TypeKind.BOOL: type = 'bint'
             elif cursor.type.kind == TypeKind.POINTER:
                 if len(list(cursor.get_children())) > 0:
                     if len(list(cursor.get_children())[0].spelling.split()) > 1:
@@ -218,7 +220,6 @@ class cythonGenerator:
                 self.abstractMap[self.className[-1]] = True
             if cursor.spelling[:8] != 'operator':
                 type = self.getType([_.spelling for _ in list(cursor.get_tokens())], ['const','::', 'virtual'], cursor.spelling)
-                #if type == 'bool': type = 'bint'
                 if '*' in type.split(): ReturnPointer = True
                 else: ReturnPointer = False
                 self.writePxd('\t' *(self.classDepth+1) + type + ' ' + cursor.spelling + '(')
@@ -285,8 +286,7 @@ class cythonGenerator:
             self.writePxd(self.getExtern())
             tokens = ' :: '.join(cursor.result_type.spelling.split('::')).split()
             tokens.append('#')
-            type = self.getType(tokens, ['const','::', 'virtual'], '#')
-            type = self.transformType(type)
+            type = self.transformType(self.getType(tokens, ['const','::', 'virtual'], '#'))
             self.writePxd('\t' + type + ' ' + cursor.spelling + '(')
             self.writePyx('def py'+cursor.spelling+'(')
             if '*' in type.split(): ReturnPointer = True
@@ -331,12 +331,12 @@ class cythonGenerator:
             del self.nameSpace[-1]
         elif cursor.kind == CursorKind.CLASS_DECL and len(list(cursor.get_children())) > 0:
             self.returnClean()
-        elif cursor.kind in [CursorKind.CLASS_TEMPLATE, CursorKind.STRUCT_DECL]:
+        elif cursor.kind == CursorKind.STRUCT_DECL:
             self.returnClean()
         elif self.public and cursor.kind == CursorKind.CONSTRUCTOR:
             self.construct = False
 
-    '''searching return from class or struct declaration'''
+    ''' return from class or struct declaration'''
     def returnClean(self):
         if not self.abstractMap[self.className[-1]]:
             if self.constructCode[self.className[-1]] != '':
@@ -347,6 +347,8 @@ class cythonGenerator:
         del self.className[-1], self.classType[-1], self.nameSpace[-1]
         self.writePyx('')
         self.writePxd('')
+        if len(self.className) == 0:
+            self.public = True
 
     '''write parameters of a C++ method or a function'''
     def getParam(self, tmpCode):
@@ -383,7 +385,6 @@ class cythonGenerator:
                     self.writePxd("" + type + '& x%d' % paramCount)
                 elif c.type.kind in [TypeKind.TYPEDEF, TypeKind.UNEXPOSED]:
                     Pointer = False
-                    #type = list(c.get_children())[0].spelling
                     type = self.getType([_.spelling for _ in list(c.get_tokens())], ['::', 'const'], c.spelling)
                     self.writePxd(type + ' x%d' % paramCount)
                     if type in self.typedefMap.keys(): type = self.typedefMap[type]
@@ -444,15 +445,6 @@ class cythonGenerator:
                     self.writePyx(type + ' x%d' % paramCount)
                     tmpCode += 'x%d' % paramCount
                     self.writePxd(type + ' x%d' % paramCount)
-                '''
-                if c.type.kind not in [TypeKind.ENUM, TypeKind.RECORD, TypeKind.LVALUEREFERENCE, TypeKind.TYPEDEF, TypeKind.POINTER, TypeKind.CONSTANTARRAY]\
-                    and len(list(c.get_children())) != 0:
-                    default = str(list(list(c.get_children())[0].get_tokens())[0].spelling)
-                    self.writePxd(' = ' + default)
-                    if default == 'false': default = '0'
-                    if default == 'true': default = '1'
-                    self.writePyx(' = ' + default)
-                '''
         return tmpCode + ')'
 
     def classDefinition(self, template=None):
@@ -495,7 +487,6 @@ class cythonGenerator:
         return ' '.join(tokens[begin:end])
 
     def transformType(self, type):
-        #if type == 'bool': type = 'bint'
         if type == 'ushort': type = 'unsigned short'
         elif type == 'uint': type = 'unsigned int'
         elif type == 'longlong': type = " long long "
@@ -540,7 +531,6 @@ class cythonGenerator:
 
     def writeAlloc(self):
         self.writePyx('\tdef __cinit__(self):\n')
-        #self.writePyx('\t' * 2 + 'pass\n')
         self.writePyx('\t'*2 + 'self.c_%s = new %s()\n' % (self.className[-1], self.className[-1]))
         self.writePyx('\tdef destruct(self):\n\t\tfree(self.c_%s)\n' % self.className[-1])
         self.writePyx('\tdef __dealloc__(self):\n\t\tpass\n')
@@ -550,10 +540,10 @@ if __name__ == '__main__':
     Config.set_library_path('.')
     Config.set_library_file('libclang.dll')
     parse = argparse.ArgumentParser()
-    parse.add_argument('--head_path', default='include/IAgoraMediaEngine.h', type=str, help='path for the head file')
+    parse.add_argument('--head_path', default='include/IAgoraRtcEngine.h', type=str, help='path for the head file')
     parse.add_argument('--extern_pxd', default='', type=str, help='external pxd code')
     parse.add_argument('--extern_pyx', default='', type=str, help='external pyx code')
-    parse.add_argument('--callback_wrapper', default='VideoFrameObserverWrapper.h', type=str, help='external pyx code')
+    parse.add_argument('--callback_wrapper', default='EventHandlerWrapper.h', type=str, help='external pyx code')
     parse.add_argument('--target_file_name', default='IAgoraRtcEngine', type=str, help='name for the target file. If empty, the target file name will be the same with the head file name')
     parse.add_argument('--mode', default='new', type=str, help='[new, add] add to the target file or create a new target file')
     #VideoFrameObserverWrapper EventHandlerWrapper
@@ -562,5 +552,7 @@ if __name__ == '__main__':
     args.callback_wrapper = ''.join(args.callback_wrapper.split('.')[:-1])
     cython = cythonGenerator(args.head_path)
     cython.generate(args, args.mode, args.target_file_name)
+
+
 
 
