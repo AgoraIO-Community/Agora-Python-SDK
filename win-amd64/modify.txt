@@ -1,0 +1,17 @@
+	def registerEventHandler(self,pyEventHandler x1):
+		return self.c_IRtcEngine.registerEventHandler(convert(x1.c_EventHandler))
+	def unregisterEventHandler(self,pyEventHandler x1):
+		return self.c_IRtcEngine.unregisterEventHandler(convert(x1.c_EventHandler))
+
+	@property
+	def eventHandler(self):
+		tmp = pyEventHandler()
+		tmp.c_EventHandler = convertBack(self.c_RtcEngineContext.eventHandler)
+		return tmp
+	@eventHandler.setter
+	def eventHandler(self,pyEventHandler eventHandler):
+		self.c_RtcEngineContext.eventHandler=convert(eventHandler.c_EventHandler)
+
+	def registerVideoFrameObserver(self,pyVideoFrameObserver x1):
+		return self.c_IMediaEngine.registerVideoFrameObserver(convert2(x1.c_VideoFrameObserver))
+
