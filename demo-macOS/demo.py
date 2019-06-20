@@ -9,7 +9,6 @@ from PyQt5 import QtOpenGL
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QThread, pyqtSignal
 from callBack import EventHandlerData
-import time
 
 appId = b""
 
