@@ -29,4 +29,4 @@ Run:
 ```bash
 python setup.py build_ext --compiler=msvc 
 ```
-This will generate Python extension `.pyd`. Don't forget to put `.dll` files to the same path of `.pyd` file when using the generated Python API.
+This will generate Python extension `.pyd`. Don't forget to put `agora_rtc_sdk.dll` to the same path of `.pyd` file when using the generated Python API.
