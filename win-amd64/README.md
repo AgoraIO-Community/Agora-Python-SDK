@@ -6,7 +6,7 @@ Wrap Agora C++ API v2.4.1 to Python API on Win-amd64 platform.
 - Microsoft Visual C++ >= 11.0
 
 ## Download
-Download Clang 3.7 from [here](http://releases.llvm.org/download.html) and put `libclang.dll` to the root directory.
+Download Clang 3.7 from [here](http://releases.llvm.org/download.html) and put `libclang.dll` to the root directory. Download Agora windows(x64) v2.4.1 from [here](https://docs.agora.io/cn/Agora%20Platform/downloads) and put the `agora_rtc_sdk.lib` in `./lib`.
 
 ## Install Python Packages
 ```bash
