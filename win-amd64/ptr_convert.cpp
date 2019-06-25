@@ -5,26 +5,14 @@
 #include "EventHandlerWrapper.h"
 #include "VideoFrameObserverWrapper.h"
 
-void* py2voidptr(PyObject *o)
-{
-    void* a = o;
-    return a;
-}
-
-void* int2voidptr(unsigned int e){
+void* uint2voidptr(unsigned int e){
     return (void*)e;
 }
 
-unsigned int voidptr2int(void* a){
+unsigned int voidptr2uint(void* a){
     return (unsigned int)a;
 }
 
-PyObject* voidptr2py(void* a)
-{
-    PyObject *o = (PyObject *) a;
-    Py_XINCREF(o);
-    return o;
-}
 
 void** py2voidptrptr(PyObject *o)
 {
