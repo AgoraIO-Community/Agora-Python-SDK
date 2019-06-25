@@ -29,9 +29,9 @@ public:
     virtual bool onRenderVideoFrame(unsigned int uid, VideoFrame& videoFrame){
         ensureGILstate GILScope;
         PyObject* pRet = PyObject_CallMethod(pClass, "onRenderVideoFrame",
-			"(I, i, i, i, i, i, I, I, I, i, L, i)", uid, videoFrame.width, videoFrame.height, videoFrame.yStride,
-			videoFrame.uStride, videoFrame.vStride, (unsigned int)videoFrame.yBuffer,
-			(unsigned int)videoFrame.uBuffer, (unsigned int)videoFrame.vBuffer,
+			"(I, i, i, i, i, i, K, K, K, i, L, i)", uid, videoFrame.width, videoFrame.height, videoFrame.yStride,
+			videoFrame.uStride, videoFrame.vStride, (unsigned long long)videoFrame.yBuffer,
+			(unsigned long long)videoFrame.uBuffer, (unsigned long long)videoFrame.vBuffer,
 			videoFrame.rotation, videoFrame.renderTimeMs, videoFrame.avsync_type);
 		if (!pRet) {
 			std::cout << "Cant find function onRenderVideoFrame in VideoFrameObserver" << std::endl;

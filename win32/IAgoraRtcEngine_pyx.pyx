@@ -15,7 +15,7 @@ cdef class pyIString:
 	def length(self):
 		return self.c_IString.length()
 	def release(self):
-		return self.c_IString.release()
+		self.c_IString.release()
 from IAgoraRtcEngine cimport AString
 cdef class pyAString:
 	cdef AString *c_AString
@@ -218,12 +218,12 @@ class pyERROR_CODE_TYPE:
 	ERR_VCM_ENCODER_SET_ERROR = 1603
 class pyLOG_FILTER_TYPE:
 	LOG_FILTER_OFF = 0
-	LOG_FILTER_DEBUG = 0x080f
-	LOG_FILTER_INFO = 0x000f
-	LOG_FILTER_WARN = 0x000e
-	LOG_FILTER_ERROR = 0x000c
-	LOG_FILTER_CRITICAL = 0x0008
-	LOG_FILTER_MASK = 0x80f
+	LOG_FILTER_DEBUG = 2063
+	LOG_FILTER_INFO = 15
+	LOG_FILTER_WARN = 14
+	LOG_FILTER_ERROR = 12
+	LOG_FILTER_CRITICAL = 8
+	LOG_FILTER_MASK = 2063
 from IAgoraRtcEngine cimport ISignalingEngine
 cdef class pyISignalingEngine:
 	cdef ISignalingEngine *c_ISignalingEngine
@@ -252,7 +252,7 @@ from IAgoraRtcEngine cimport IAgoraService
 cdef class pyIAgoraService:
 	cdef IAgoraService *c_IAgoraService
 	def release(self):
-		return self.c_IAgoraService.release()
+		self.c_IAgoraService.release()
 	def initialize(self,pyAgoraServiceContext x1):
 		return self.c_IAgoraService.initialize(cython.operator.dereference(x1.c_AgoraServiceContext))
 	def getVersion(self,int x1):
@@ -400,7 +400,7 @@ class pyVIDEO_PROFILE_TYPE:
 	VIDEO_PROFILE_PORTRAIT_1440P_2 = 1067
 	VIDEO_PROFILE_PORTRAIT_4K = 1070
 	VIDEO_PROFILE_PORTRAIT_4K_3 = 1072
-	VIDEO_PROFILE_DEFAULT = VIDEO_PROFILE_LANDSCAPE_360P
+	VIDEO_PROFILE_DEFAULT = 30
 class pyAUDIO_PROFILE_TYPE:
 	AUDIO_PROFILE_DEFAULT = 0
 	AUDIO_PROFILE_SPEECH_STANDARD = 1
@@ -1322,10 +1322,10 @@ cdef class pyVideoCanvas:
 	cdef VideoCanvas *c_VideoCanvas
 	@property
 	def view(self):
-		return voidptr2int(self.c_VideoCanvas.view)
+		return voidptr2uint(self.c_VideoCanvas.view)
 	@view.setter
 	def view(self, unsigned int view):
-		self.c_VideoCanvas.view=int2voidptr(view)
+		self.c_VideoCanvas.view=uint2voidptr(view)
 	@property
 	def renderMode(self):
 		return self.c_VideoCanvas.renderMode
@@ -1340,10 +1340,10 @@ cdef class pyVideoCanvas:
 		self.c_VideoCanvas.uid=uid
 	@property
 	def priv(self):
-		return voidptr2py(self.c_VideoCanvas.priv)
+		return voidptr2uint(self.c_VideoCanvas.priv)
 	@priv.setter
-	def priv(self, priv):
-		self.c_VideoCanvas.priv=py2voidptr(priv)
+	def priv(self, unsigned int priv):
+		self.c_VideoCanvas.priv=uint2voidptr(priv)
 	def __cinit__(self):
 		self.c_VideoCanvas = new VideoCanvas()
 	def destruct(self):
@@ -1352,8 +1352,8 @@ cdef class pyVideoCanvas:
 		pass
 	def construct_1(self):
 		self.c_VideoCanvas = new VideoCanvas()
-	def construct_2(self, x1,unsigned int x2,unsigned int x3):
-		self.c_VideoCanvas = new VideoCanvas(int2voidptr(x1),x2,x3)
+	def construct_2(self,unsigned int x1,int x2,unsigned int x3):
+		self.c_VideoCanvas = new VideoCanvas(uint2voidptr(x1),x2,x3)
 from IAgoraRtcEngine cimport IPacketObserver
 cdef class pyIPacketObserver:
 	cdef IPacketObserver *c_IPacketObserver
@@ -1390,123 +1390,123 @@ from IAgoraRtcEngine cimport IRtcEngineEventHandler
 cdef class pyIRtcEngineEventHandler:
 	cdef IRtcEngineEventHandler *c_IRtcEngineEventHandler
 	def onWarning(self,int x1,char*x2):
-		return self.c_IRtcEngineEventHandler.onWarning(x1,x2)
+		self.c_IRtcEngineEventHandler.onWarning(x1,x2)
 	def onError(self,int x1,char*x2):
-		return self.c_IRtcEngineEventHandler.onError(x1,x2)
+		self.c_IRtcEngineEventHandler.onError(x1,x2)
 	def onJoinChannelSuccess(self,char*x1,unsigned int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onJoinChannelSuccess(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onJoinChannelSuccess(x1,x2,x3)
 	def onRejoinChannelSuccess(self,char*x1,unsigned int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onRejoinChannelSuccess(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onRejoinChannelSuccess(x1,x2,x3)
 	def onLeaveChannel(self,pyRtcStats x1):
-		return self.c_IRtcEngineEventHandler.onLeaveChannel(cython.operator.dereference(x1.c_RtcStats))
+		self.c_IRtcEngineEventHandler.onLeaveChannel(cython.operator.dereference(x1.c_RtcStats))
 	def onClientRoleChanged(self,CLIENT_ROLE_TYPE x1,CLIENT_ROLE_TYPE x2):
-		return self.c_IRtcEngineEventHandler.onClientRoleChanged(x1,x2)
+		self.c_IRtcEngineEventHandler.onClientRoleChanged(x1,x2)
 	def onUserJoined(self,unsigned int x1,int x2):
-		return self.c_IRtcEngineEventHandler.onUserJoined(x1,x2)
+		self.c_IRtcEngineEventHandler.onUserJoined(x1,x2)
 	def onUserOffline(self,unsigned int x1,USER_OFFLINE_REASON_TYPE x2):
-		return self.c_IRtcEngineEventHandler.onUserOffline(x1,x2)
+		self.c_IRtcEngineEventHandler.onUserOffline(x1,x2)
 	def onLastmileQuality(self,int x1):
-		return self.c_IRtcEngineEventHandler.onLastmileQuality(x1)
+		self.c_IRtcEngineEventHandler.onLastmileQuality(x1)
 	def onConnectionInterrupted(self):
-		return self.c_IRtcEngineEventHandler.onConnectionInterrupted()
+		self.c_IRtcEngineEventHandler.onConnectionInterrupted()
 	def onConnectionLost(self):
-		return self.c_IRtcEngineEventHandler.onConnectionLost()
+		self.c_IRtcEngineEventHandler.onConnectionLost()
 	def onConnectionBanned(self):
-		return self.c_IRtcEngineEventHandler.onConnectionBanned()
+		self.c_IRtcEngineEventHandler.onConnectionBanned()
 	def onApiCallExecuted(self,int x1,char*x2,char*x3):
-		return self.c_IRtcEngineEventHandler.onApiCallExecuted(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onApiCallExecuted(x1,x2,x3)
 	def onRequestToken(self):
-		return self.c_IRtcEngineEventHandler.onRequestToken()
+		self.c_IRtcEngineEventHandler.onRequestToken()
 	def onTokenPrivilegeWillExpire(self,char*x1):
-		return self.c_IRtcEngineEventHandler.onTokenPrivilegeWillExpire(x1)
+		self.c_IRtcEngineEventHandler.onTokenPrivilegeWillExpire(x1)
 	def onAudioQuality(self,unsigned int x1,int x2,unsigned short x3,unsigned short x4):
-		return self.c_IRtcEngineEventHandler.onAudioQuality(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onAudioQuality(x1,x2,x3,x4)
 	def onRtcStats(self,pyRtcStats x1):
-		return self.c_IRtcEngineEventHandler.onRtcStats(cython.operator.dereference(x1.c_RtcStats))
+		self.c_IRtcEngineEventHandler.onRtcStats(cython.operator.dereference(x1.c_RtcStats))
 	def onNetworkQuality(self,unsigned int x1,int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onNetworkQuality(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onNetworkQuality(x1,x2,x3)
 	def onLocalVideoStats(self,pyLocalVideoStats x1):
-		return self.c_IRtcEngineEventHandler.onLocalVideoStats(cython.operator.dereference(x1.c_LocalVideoStats))
+		self.c_IRtcEngineEventHandler.onLocalVideoStats(cython.operator.dereference(x1.c_LocalVideoStats))
 	def onRemoteVideoStats(self,pyRemoteVideoStats x1):
-		return self.c_IRtcEngineEventHandler.onRemoteVideoStats(cython.operator.dereference(x1.c_RemoteVideoStats))
+		self.c_IRtcEngineEventHandler.onRemoteVideoStats(cython.operator.dereference(x1.c_RemoteVideoStats))
 	def onRemoteAudioStats(self,pyRemoteAudioStats x1):
-		return self.c_IRtcEngineEventHandler.onRemoteAudioStats(cython.operator.dereference(x1.c_RemoteAudioStats))
+		self.c_IRtcEngineEventHandler.onRemoteAudioStats(cython.operator.dereference(x1.c_RemoteAudioStats))
 	def onAudioVolumeIndication(self,pyAudioVolumeInfo x1,unsigned int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onAudioVolumeIndication(x1.c_AudioVolumeInfo,x2,x3)
+		self.c_IRtcEngineEventHandler.onAudioVolumeIndication(x1.c_AudioVolumeInfo,x2,x3)
 	def onActiveSpeaker(self,unsigned int x1):
-		return self.c_IRtcEngineEventHandler.onActiveSpeaker(x1)
+		self.c_IRtcEngineEventHandler.onActiveSpeaker(x1)
 	def onVideoStopped(self):
-		return self.c_IRtcEngineEventHandler.onVideoStopped()
+		self.c_IRtcEngineEventHandler.onVideoStopped()
 	def onFirstLocalVideoFrame(self,int x1,int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onFirstLocalVideoFrame(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onFirstLocalVideoFrame(x1,x2,x3)
 	def onFirstRemoteVideoDecoded(self,unsigned int x1,int x2,int x3,int x4):
-		return self.c_IRtcEngineEventHandler.onFirstRemoteVideoDecoded(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onFirstRemoteVideoDecoded(x1,x2,x3,x4)
 	def onFirstRemoteVideoFrame(self,unsigned int x1,int x2,int x3,int x4):
-		return self.c_IRtcEngineEventHandler.onFirstRemoteVideoFrame(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onFirstRemoteVideoFrame(x1,x2,x3,x4)
 	def onUserMuteAudio(self,unsigned int x1,bool x2):
-		return self.c_IRtcEngineEventHandler.onUserMuteAudio(x1,x2)
+		self.c_IRtcEngineEventHandler.onUserMuteAudio(x1,x2)
 	def onUserMuteVideo(self,unsigned int x1,bool x2):
-		return self.c_IRtcEngineEventHandler.onUserMuteVideo(x1,x2)
+		self.c_IRtcEngineEventHandler.onUserMuteVideo(x1,x2)
 	def onUserEnableVideo(self,unsigned int x1,bool x2):
-		return self.c_IRtcEngineEventHandler.onUserEnableVideo(x1,x2)
+		self.c_IRtcEngineEventHandler.onUserEnableVideo(x1,x2)
 	def onAudioDeviceStateChanged(self,char*x1,int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onAudioDeviceStateChanged(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onAudioDeviceStateChanged(x1,x2,x3)
 	def onAudioDeviceVolumeChanged(self,MEDIA_DEVICE_TYPE x1,int x2,bool x3):
-		return self.c_IRtcEngineEventHandler.onAudioDeviceVolumeChanged(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onAudioDeviceVolumeChanged(x1,x2,x3)
 	def onCameraReady(self):
-		return self.c_IRtcEngineEventHandler.onCameraReady()
+		self.c_IRtcEngineEventHandler.onCameraReady()
 	def onCameraFocusAreaChanged(self,int x1,int x2,int x3,int x4):
-		return self.c_IRtcEngineEventHandler.onCameraFocusAreaChanged(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onCameraFocusAreaChanged(x1,x2,x3,x4)
 	def onCameraExposureAreaChanged(self,int x1,int x2,int x3,int x4):
-		return self.c_IRtcEngineEventHandler.onCameraExposureAreaChanged(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onCameraExposureAreaChanged(x1,x2,x3,x4)
 	def onAudioMixingFinished(self):
-		return self.c_IRtcEngineEventHandler.onAudioMixingFinished()
+		self.c_IRtcEngineEventHandler.onAudioMixingFinished()
 	def onRemoteAudioMixingBegin(self):
-		return self.c_IRtcEngineEventHandler.onRemoteAudioMixingBegin()
+		self.c_IRtcEngineEventHandler.onRemoteAudioMixingBegin()
 	def onRemoteAudioMixingEnd(self):
-		return self.c_IRtcEngineEventHandler.onRemoteAudioMixingEnd()
+		self.c_IRtcEngineEventHandler.onRemoteAudioMixingEnd()
 	def onAudioEffectFinished(self,int x1):
-		return self.c_IRtcEngineEventHandler.onAudioEffectFinished(x1)
+		self.c_IRtcEngineEventHandler.onAudioEffectFinished(x1)
 	def onVideoDeviceStateChanged(self,char*x1,int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onVideoDeviceStateChanged(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onVideoDeviceStateChanged(x1,x2,x3)
 	def onVideoSizeChanged(self,unsigned int x1,int x2,int x3,int x4):
-		return self.c_IRtcEngineEventHandler.onVideoSizeChanged(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onVideoSizeChanged(x1,x2,x3,x4)
 	def onRemoteVideoStateChanged(self,unsigned int x1,REMOTE_VIDEO_STATE x2):
-		return self.c_IRtcEngineEventHandler.onRemoteVideoStateChanged(x1,x2)
+		self.c_IRtcEngineEventHandler.onRemoteVideoStateChanged(x1,x2)
 	def onUserEnableLocalVideo(self,unsigned int x1,bool x2):
-		return self.c_IRtcEngineEventHandler.onUserEnableLocalVideo(x1,x2)
+		self.c_IRtcEngineEventHandler.onUserEnableLocalVideo(x1,x2)
 	def onStreamMessage(self,unsigned int x1,int x2,char*x3,int x4):
-		return self.c_IRtcEngineEventHandler.onStreamMessage(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onStreamMessage(x1,x2,x3,x4)
 	def onStreamMessageError(self,unsigned int x1,int x2,int x3,int x4,int x5):
-		return self.c_IRtcEngineEventHandler.onStreamMessageError(x1,x2,x3,x4,x5)
+		self.c_IRtcEngineEventHandler.onStreamMessageError(x1,x2,x3,x4,x5)
 	def onMediaEngineLoadSuccess(self):
-		return self.c_IRtcEngineEventHandler.onMediaEngineLoadSuccess()
+		self.c_IRtcEngineEventHandler.onMediaEngineLoadSuccess()
 	def onMediaEngineStartCallSuccess(self):
-		return self.c_IRtcEngineEventHandler.onMediaEngineStartCallSuccess()
+		self.c_IRtcEngineEventHandler.onMediaEngineStartCallSuccess()
 	def onFirstLocalAudioFrame(self,int x1):
-		return self.c_IRtcEngineEventHandler.onFirstLocalAudioFrame(x1)
+		self.c_IRtcEngineEventHandler.onFirstLocalAudioFrame(x1)
 	def onFirstRemoteAudioFrame(self,unsigned int x1,int x2):
-		return self.c_IRtcEngineEventHandler.onFirstRemoteAudioFrame(x1,x2)
+		self.c_IRtcEngineEventHandler.onFirstRemoteAudioFrame(x1,x2)
 	def onStreamPublished(self,char*x1,int x2):
-		return self.c_IRtcEngineEventHandler.onStreamPublished(x1,x2)
+		self.c_IRtcEngineEventHandler.onStreamPublished(x1,x2)
 	def onStreamUnpublished(self,char*x1):
-		return self.c_IRtcEngineEventHandler.onStreamUnpublished(x1)
+		self.c_IRtcEngineEventHandler.onStreamUnpublished(x1)
 	def onTranscodingUpdated(self):
-		return self.c_IRtcEngineEventHandler.onTranscodingUpdated()
+		self.c_IRtcEngineEventHandler.onTranscodingUpdated()
 	def onStreamInjectedStatus(self,char*x1,unsigned int x2,int x3):
-		return self.c_IRtcEngineEventHandler.onStreamInjectedStatus(x1,x2,x3)
+		self.c_IRtcEngineEventHandler.onStreamInjectedStatus(x1,x2,x3)
 	def onLocalPublishFallbackToAudioOnly(self,bool x1):
-		return self.c_IRtcEngineEventHandler.onLocalPublishFallbackToAudioOnly(x1)
+		self.c_IRtcEngineEventHandler.onLocalPublishFallbackToAudioOnly(x1)
 	def onRemoteSubscribeFallbackToAudioOnly(self,unsigned int x1,bool x2):
-		return self.c_IRtcEngineEventHandler.onRemoteSubscribeFallbackToAudioOnly(x1,x2)
+		self.c_IRtcEngineEventHandler.onRemoteSubscribeFallbackToAudioOnly(x1,x2)
 	def onRemoteAudioTransportStats(self,unsigned int x1,unsigned short x2,unsigned short x3,unsigned short x4):
-		return self.c_IRtcEngineEventHandler.onRemoteAudioTransportStats(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onRemoteAudioTransportStats(x1,x2,x3,x4)
 	def onRemoteVideoTransportStats(self,unsigned int x1,unsigned short x2,unsigned short x3,unsigned short x4):
-		return self.c_IRtcEngineEventHandler.onRemoteVideoTransportStats(x1,x2,x3,x4)
+		self.c_IRtcEngineEventHandler.onRemoteVideoTransportStats(x1,x2,x3,x4)
 	def onMicrophoneEnabled(self,bool x1):
-		return self.c_IRtcEngineEventHandler.onMicrophoneEnabled(x1)
+		self.c_IRtcEngineEventHandler.onMicrophoneEnabled(x1)
 	def onConnectionStateChanged(self,CONNECTION_STATE_TYPE x1,CONNECTION_CHANGED_REASON_TYPE x2):
-		return self.c_IRtcEngineEventHandler.onConnectionStateChanged(x1,x2)
+		self.c_IRtcEngineEventHandler.onConnectionStateChanged(x1,x2)
 	def __cinit__(self):
 		self.c_IRtcEngineEventHandler = new IRtcEngineEventHandler()
 	def destruct(self):
@@ -1525,7 +1525,7 @@ cdef class pyIVideoDeviceCollection:
 	def setDevice(self,char*x1):
 		return self.c_IVideoDeviceCollection.setDevice(x1)
 	def release(self):
-		return self.c_IVideoDeviceCollection.release()
+		self.c_IVideoDeviceCollection.release()
 from IAgoraRtcEngine cimport IVideoDeviceManager
 cdef class pyIVideoDeviceManager:
 	cdef IVideoDeviceManager *c_IVideoDeviceManager
@@ -1533,8 +1533,8 @@ cdef class pyIVideoDeviceManager:
 		tmp = pyIVideoDeviceCollection()
 		tmp.c_IVideoDeviceCollection=(self.c_IVideoDeviceManager.enumerateVideoDevices())
 		return tmp
-	def startDeviceTest(self, x1):
-		return self.c_IVideoDeviceManager.startDeviceTest(py2voidptr(x1))
+	def startDeviceTest(self,unsigned int x1):
+		return self.c_IVideoDeviceManager.startDeviceTest(uint2voidptr(x1))
 	def stopDeviceTest(self):
 		return self.c_IVideoDeviceManager.stopDeviceTest()
 	def setDevice(self,char*x1):
@@ -1542,7 +1542,7 @@ cdef class pyIVideoDeviceManager:
 	def getDevice(self,char*x1):
 		return self.c_IVideoDeviceManager.getDevice(x1)
 	def release(self):
-		return self.c_IVideoDeviceManager.release()
+		self.c_IVideoDeviceManager.release()
 from IAgoraRtcEngine cimport IAudioDeviceCollection
 cdef class pyIAudioDeviceCollection:
 	cdef IAudioDeviceCollection *c_IAudioDeviceCollection
@@ -1561,7 +1561,7 @@ cdef class pyIAudioDeviceCollection:
 	def isApplicationMute(self,bool x1):
 		return self.c_IAudioDeviceCollection.isApplicationMute(x1)
 	def release(self):
-		return self.c_IAudioDeviceCollection.release()
+		self.c_IAudioDeviceCollection.release()
 from IAgoraRtcEngine cimport IAudioDeviceManager
 cdef class pyIAudioDeviceManager:
 	cdef IAudioDeviceManager *c_IAudioDeviceManager
@@ -1610,7 +1610,7 @@ cdef class pyIAudioDeviceManager:
 	def getRecordingDeviceInfo(self,char*x1,char*x2):
 		return self.c_IAudioDeviceManager.getRecordingDeviceInfo(x1,x2)
 	def release(self):
-		return self.c_IAudioDeviceManager.release()
+		self.c_IAudioDeviceManager.release()
 from IAgoraRtcEngine cimport RtcEngineContext
 cdef class pyRtcEngineContext:
 	cdef RtcEngineContext *c_RtcEngineContext
@@ -1642,7 +1642,7 @@ cdef class pyIRtcEngine:
 	def initialize(self,pyRtcEngineContext x1):
 		return self.c_IRtcEngine.initialize(cython.operator.dereference(x1.c_RtcEngineContext))
 	def release(self,bool x1):
-		return self.c_IRtcEngine.release(x1)
+		self.c_IRtcEngine.release(x1)
 	def setChannelProfile(self,CHANNEL_PROFILE_TYPE x1):
 		return self.c_IRtcEngine.setChannelProfile(x1)
 	def setClientRole(self,CLIENT_ROLE_TYPE x1):
@@ -1683,8 +1683,8 @@ cdef class pyIRtcEngine:
 		return self.c_IRtcEngine.disableAudio()
 	def setAudioProfile(self,AUDIO_PROFILE_TYPE x1,AUDIO_SCENARIO_TYPE x2):
 		return self.c_IRtcEngine.setAudioProfile(x1,x2)
-	def startScreenCapture(self, x1,int x2,pyRect x3,int x4):
-		return self.c_IRtcEngine.startScreenCapture(py2voidptr(x1),x2,x3.c_Rect,x4)
+	def startScreenCapture(self,unsigned int x1,int x2,pyRect x3,int x4):
+		return self.c_IRtcEngine.startScreenCapture(uint2voidptr(x1),x2,x3.c_Rect,x4)
 	def stopScreenCapture(self):
 		return self.c_IRtcEngine.stopScreenCapture()
 	def updateScreenCaptureRegion(self,pyRect x1):
@@ -1743,7 +1743,7 @@ from IAgoraRtcEngine cimport IRtcEngineParameter
 cdef class pyIRtcEngineParameter:
 	cdef IRtcEngineParameter *c_IRtcEngineParameter
 	def release(self):
-		return self.c_IRtcEngineParameter.release()
+		self.c_IRtcEngineParameter.release()
 	def setBool(self,char*x1,bool x2):
 		return self.c_IRtcEngineParameter.setBool(x1,x2)
 	def setInt(self,char*x1,int x2):
@@ -1966,83 +1966,83 @@ from IAgoraRtcEngine cimport EventHandler
 cdef class pyEventHandler:
 	cdef EventHandler *c_EventHandler
 	def onJoinChannelSuccess(self,char*x1,unsigned int x2,int x3):
-		return self.c_EventHandler.onJoinChannelSuccess(x1,x2,x3)
+		self.c_EventHandler.onJoinChannelSuccess(x1,x2,x3)
 	def onRejoinChannelSuccess(self,char*x1,unsigned int x2,int x3):
-		return self.c_EventHandler.onRejoinChannelSuccess(x1,x2,x3)
+		self.c_EventHandler.onRejoinChannelSuccess(x1,x2,x3)
 	def onLeaveChannel(self,pyRtcStats x1):
-		return self.c_EventHandler.onLeaveChannel(cython.operator.dereference(x1.c_RtcStats))
+		self.c_EventHandler.onLeaveChannel(cython.operator.dereference(x1.c_RtcStats))
 	def onUserJoined(self,unsigned int x1,int x2):
-		return self.c_EventHandler.onUserJoined(x1,x2)
+		self.c_EventHandler.onUserJoined(x1,x2)
 	def onClientRoleChanged(self,CLIENT_ROLE_TYPE x1,CLIENT_ROLE_TYPE x2):
-		return self.c_EventHandler.onClientRoleChanged(x1,x2)
+		self.c_EventHandler.onClientRoleChanged(x1,x2)
 	def onUserOffline(self,unsigned int x1,USER_OFFLINE_REASON_TYPE x2):
-		return self.c_EventHandler.onUserOffline(x1,x2)
+		self.c_EventHandler.onUserOffline(x1,x2)
 	def onLastmileQuality(self,int x1):
-		return self.c_EventHandler.onLastmileQuality(x1)
+		self.c_EventHandler.onLastmileQuality(x1)
 	def onConnectionInterrupted(self):
-		return self.c_EventHandler.onConnectionInterrupted()
+		self.c_EventHandler.onConnectionInterrupted()
 	def onConnectionLost(self):
-		return self.c_EventHandler.onConnectionLost()
+		self.c_EventHandler.onConnectionLost()
 	def onApiCallExecuted(self,int x1,char*x2,char*x3):
-		return self.c_EventHandler.onApiCallExecuted(x1,x2,x3)
+		self.c_EventHandler.onApiCallExecuted(x1,x2,x3)
 	def onRequestToken(self):
-		return self.c_EventHandler.onRequestToken()
+		self.c_EventHandler.onRequestToken()
 	def onTokenPrivilegeWillExpire(self,char*x1):
-		return self.c_EventHandler.onTokenPrivilegeWillExpire(x1)
+		self.c_EventHandler.onTokenPrivilegeWillExpire(x1)
 	def onAudioQuality(self,unsigned int x1,int x2,unsigned short x3,unsigned short x4):
-		return self.c_EventHandler.onAudioQuality(x1,x2,x3,x4)
+		self.c_EventHandler.onAudioQuality(x1,x2,x3,x4)
 	def onRtcStats(self,pyRtcStats x1):
-		return self.c_EventHandler.onRtcStats(cython.operator.dereference(x1.c_RtcStats))
+		self.c_EventHandler.onRtcStats(cython.operator.dereference(x1.c_RtcStats))
 	def onNetworkQuality(self,unsigned int x1,int x2,int x3):
-		return self.c_EventHandler.onNetworkQuality(x1,x2,x3)
+		self.c_EventHandler.onNetworkQuality(x1,x2,x3)
 	def onLocalVideoStats(self,pyLocalVideoStats x1):
-		return self.c_EventHandler.onLocalVideoStats(cython.operator.dereference(x1.c_LocalVideoStats))
+		self.c_EventHandler.onLocalVideoStats(cython.operator.dereference(x1.c_LocalVideoStats))
 	def onRemoteVideoStats(self,pyRemoteVideoStats x1):
-		return self.c_EventHandler.onRemoteVideoStats(cython.operator.dereference(x1.c_RemoteVideoStats))
+		self.c_EventHandler.onRemoteVideoStats(cython.operator.dereference(x1.c_RemoteVideoStats))
 	def onRemoteAudioStats(self,pyRemoteAudioStats x1):
-		return self.c_EventHandler.onRemoteAudioStats(cython.operator.dereference(x1.c_RemoteAudioStats))
+		self.c_EventHandler.onRemoteAudioStats(cython.operator.dereference(x1.c_RemoteAudioStats))
 	def onAudioVolumeIndication(self,pyAudioVolumeInfo x1,unsigned int x2,int x3):
-		return self.c_EventHandler.onAudioVolumeIndication(x1.c_AudioVolumeInfo,x2,x3)
+		self.c_EventHandler.onAudioVolumeIndication(x1.c_AudioVolumeInfo,x2,x3)
 	def onActiveSpeaker(self,unsigned int x1):
-		return self.c_EventHandler.onActiveSpeaker(x1)
+		self.c_EventHandler.onActiveSpeaker(x1)
 	def onVideoStopped(self):
-		return self.c_EventHandler.onVideoStopped()
+		self.c_EventHandler.onVideoStopped()
 	def onFirstLocalVideoFrame(self,int x1,int x2,int x3):
-		return self.c_EventHandler.onFirstLocalVideoFrame(x1,x2,x3)
+		self.c_EventHandler.onFirstLocalVideoFrame(x1,x2,x3)
 	def onFirstRemoteVideoDecoded(self,unsigned int x1,int x2,int x3,int x4):
-		return self.c_EventHandler.onFirstRemoteVideoDecoded(x1,x2,x3,x4)
+		self.c_EventHandler.onFirstRemoteVideoDecoded(x1,x2,x3,x4)
 	def onFirstRemoteVideoFrame(self,unsigned int x1,int x2,int x3,int x4):
-		return self.c_EventHandler.onFirstRemoteVideoFrame(x1,x2,x3,x4)
+		self.c_EventHandler.onFirstRemoteVideoFrame(x1,x2,x3,x4)
 	def onUserMuteAudio(self,unsigned int x1,bool x2):
-		return self.c_EventHandler.onUserMuteAudio(x1,x2)
+		self.c_EventHandler.onUserMuteAudio(x1,x2)
 	def onUserMuteVideo(self,unsigned int x1,bool x2):
-		return self.c_EventHandler.onUserMuteVideo(x1,x2)
+		self.c_EventHandler.onUserMuteVideo(x1,x2)
 	def onUserEnableVideo(self,unsigned int x1,bool x2):
-		return self.c_EventHandler.onUserEnableVideo(x1,x2)
+		self.c_EventHandler.onUserEnableVideo(x1,x2)
 	def onAudioDeviceStateChanged(self,char*x1,int x2,int x3):
-		return self.c_EventHandler.onAudioDeviceStateChanged(x1,x2,x3)
+		self.c_EventHandler.onAudioDeviceStateChanged(x1,x2,x3)
 	def onCameraReady(self):
-		return self.c_EventHandler.onCameraReady()
+		self.c_EventHandler.onCameraReady()
 	def onVideoDeviceStateChanged(self,char*x1,int x2,int x3):
-		return self.c_EventHandler.onVideoDeviceStateChanged(x1,x2,x3)
+		self.c_EventHandler.onVideoDeviceStateChanged(x1,x2,x3)
 	def onStreamMessage(self,unsigned int x1,int x2,char*x3,int x4):
-		return self.c_EventHandler.onStreamMessage(x1,x2,x3,x4)
+		self.c_EventHandler.onStreamMessage(x1,x2,x3,x4)
 	def onConnectionStateChanged(self,CONNECTION_STATE_TYPE x1,CONNECTION_CHANGED_REASON_TYPE x2):
-		return self.c_EventHandler.onConnectionStateChanged(x1,x2)
+		self.c_EventHandler.onConnectionStateChanged(x1,x2)
 	def onFirstLocalAudioFrame(self,int x1):
-		return self.c_EventHandler.onFirstLocalAudioFrame(x1)
+		self.c_EventHandler.onFirstLocalAudioFrame(x1)
 	def onMicrophoneEnabled(self,bool x1):
-		return self.c_EventHandler.onMicrophoneEnabled(x1)
+		self.c_EventHandler.onMicrophoneEnabled(x1)
 	def onRemoteVideoStateChanged(self,unsigned int x1,REMOTE_VIDEO_STATE x2):
-		return self.c_EventHandler.onRemoteVideoStateChanged(x1,x2)
+		self.c_EventHandler.onRemoteVideoStateChanged(x1,x2)
 	def onUserEnableLocalVideo(self,unsigned int x1,bool x2):
-		return self.c_EventHandler.onUserEnableLocalVideo(x1,x2)
+		self.c_EventHandler.onUserEnableLocalVideo(x1,x2)
 	def onFirstRemoteAudioFrame(self,unsigned int x1,int x2):
-		return self.c_EventHandler.onFirstRemoteAudioFrame(x1,x2)
+		self.c_EventHandler.onFirstRemoteAudioFrame(x1,x2)
 	def onRemoteAudioTransportStats(self,unsigned int x1,unsigned short x2,unsigned short x3,unsigned short x4):
-		return self.c_EventHandler.onRemoteAudioTransportStats(x1,x2,x3,x4)
+		self.c_EventHandler.onRemoteAudioTransportStats(x1,x2,x3,x4)
 	def onRemoteVideoTransportStats(self,unsigned int x1,unsigned short x2,unsigned short x3,unsigned short x4):
-		return self.c_EventHandler.onRemoteVideoTransportStats(x1,x2,x3,x4)
+		self.c_EventHandler.onRemoteVideoTransportStats(x1,x2,x3,x4)
 	def __cinit__(self):
 		self.c_EventHandler = new EventHandler()
 	def destruct(self):
@@ -2102,10 +2102,10 @@ cdef class pyAudioFrame:
 		self.c_AudioFrame.samplesPerSec=samplesPerSec
 	@property
 	def buffer(self):
-		return voidptr2py(self.c_AudioFrame.buffer)
+		return voidptr2uint(self.c_AudioFrame.buffer)
 	@buffer.setter
-	def buffer(self, buffer):
-		self.c_AudioFrame.buffer=py2voidptr(buffer)
+	def buffer(self, unsigned int buffer):
+		self.c_AudioFrame.buffer=uint2voidptr(buffer)
 	@property
 	def renderTimeMs(self):
 		return self.c_AudioFrame.renderTimeMs
@@ -2174,22 +2174,22 @@ cdef class pyVideoFrame:
 		self.c_VideoFrame.vStride=vStride
 	@property
 	def yBuffer(self):
-		return voidptr2py(self.c_VideoFrame.yBuffer)
+		return voidptr2uint(self.c_VideoFrame.yBuffer)
 	@yBuffer.setter
-	def yBuffer(self, yBuffer):
-		self.c_VideoFrame.yBuffer=py2voidptr(yBuffer)
+	def yBuffer(self, unsigned int yBuffer):
+		self.c_VideoFrame.yBuffer=uint2voidptr(yBuffer)
 	@property
 	def uBuffer(self):
-		return voidptr2py(self.c_VideoFrame.uBuffer)
+		return voidptr2uint(self.c_VideoFrame.uBuffer)
 	@uBuffer.setter
-	def uBuffer(self, uBuffer):
-		self.c_VideoFrame.uBuffer=py2voidptr(uBuffer)
+	def uBuffer(self, unsigned int uBuffer):
+		self.c_VideoFrame.uBuffer=uint2voidptr(uBuffer)
 	@property
 	def vBuffer(self):
-		return voidptr2py(self.c_VideoFrame.vBuffer)
+		return voidptr2uint(self.c_VideoFrame.vBuffer)
 	@vBuffer.setter
-	def vBuffer(self, vBuffer):
-		self.c_VideoFrame.vBuffer=py2voidptr(vBuffer)
+	def vBuffer(self, unsigned int vBuffer):
+		self.c_VideoFrame.vBuffer=uint2voidptr(vBuffer)
 	@property
 	def rotation(self):
 		return self.c_VideoFrame.rotation
@@ -2218,7 +2218,7 @@ from IAgoraRtcEngine cimport IVideoFrame
 cdef class pyIVideoFrame:
 	cdef IVideoFrame *c_IVideoFrame
 	def release(self):
-		return self.c_IVideoFrame.release()
+		self.c_IVideoFrame.release()
 	def buffer(self,PLANE_TYPE x1):
 		return cython.operator.dereference(self.c_IVideoFrame.buffer(x1))
 	def convertFrame(self,VIDEO_TYPE x1,int x2,unsigned char x3):
@@ -2264,9 +2264,9 @@ from IAgoraRtcEngine cimport IExternalVideoRenderCallback
 cdef class pyIExternalVideoRenderCallback:
 	cdef IExternalVideoRenderCallback *c_IExternalVideoRenderCallback
 	def onViewSizeChanged(self,int x1,int x2):
-		return self.c_IExternalVideoRenderCallback.onViewSizeChanged(x1,x2)
+		self.c_IExternalVideoRenderCallback.onViewSizeChanged(x1,x2)
 	def onViewDestroyed(self):
-		return self.c_IExternalVideoRenderCallback.onViewDestroyed()
+		self.c_IExternalVideoRenderCallback.onViewDestroyed()
 from IAgoraRtcEngine cimport ExternalVideoRenerContext
 cdef class pyExternalVideoRenerContext:
 	cdef ExternalVideoRenerContext *c_ExternalVideoRenerContext
@@ -2280,10 +2280,10 @@ cdef class pyExternalVideoRenerContext:
 		self.c_ExternalVideoRenerContext.renderCallback=renderCallback.c_IExternalVideoRenderCallback
 	@property
 	def view(self):
-		return voidptr2py(self.c_ExternalVideoRenerContext.view)
+		return voidptr2uint(self.c_ExternalVideoRenerContext.view)
 	@view.setter
-	def view(self, view):
-		self.c_ExternalVideoRenerContext.view=py2voidptr(view)
+	def view(self, unsigned int view):
+		self.c_ExternalVideoRenerContext.view=uint2voidptr(view)
 	@property
 	def renderMode(self):
 		return self.c_ExternalVideoRenerContext.renderMode
@@ -2330,7 +2330,7 @@ from IAgoraRtcEngine cimport IExternalVideoRender
 cdef class pyIExternalVideoRender:
 	cdef IExternalVideoRender *c_IExternalVideoRender
 	def release(self):
-		return self.c_IExternalVideoRender.release()
+		self.c_IExternalVideoRender.release()
 	def initialize(self):
 		return self.c_IExternalVideoRender.initialize()
 	def deliverFrame(self,pyIVideoFrame x1,int x2,bool x3):
@@ -2359,10 +2359,10 @@ cdef class pyExternalVideoFrame:
 		self.c_ExternalVideoFrame.format=format
 	@property
 	def buffer(self):
-		return voidptr2py(self.c_ExternalVideoFrame.buffer)
+		return voidptr2uint(self.c_ExternalVideoFrame.buffer)
 	@buffer.setter
-	def buffer(self, buffer):
-		self.c_ExternalVideoFrame.buffer=py2voidptr(buffer)
+	def buffer(self, unsigned int buffer):
+		self.c_ExternalVideoFrame.buffer=uint2voidptr(buffer)
 	@property
 	def stride(self):
 		return self.c_ExternalVideoFrame.stride
@@ -2428,7 +2428,7 @@ from IAgoraRtcEngine cimport IMediaEngine
 cdef class pyIMediaEngine:
 	cdef IMediaEngine *c_IMediaEngine
 	def release(self):
-		return self.c_IMediaEngine.release()
+		self.c_IMediaEngine.release()
 	def registerAudioFrameObserver(self,pyIAudioFrameObserver x1):
 		return self.c_IMediaEngine.registerAudioFrameObserver(x1.c_IAudioFrameObserver)
 	def registerVideoFrameObserver(self,pyVideoFrameObserver x1):
