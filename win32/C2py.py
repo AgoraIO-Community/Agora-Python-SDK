@@ -1,7 +1,7 @@
 import os
 import clang.cindex
 from clang.cindex import Config
-from clang.cindex import Cursor
+from clang.cindex import Cursor, AccessSpecifier
 import argparse
 from clang.cindex import CursorKind, TypeKind
 
@@ -9,7 +9,6 @@ class cythonGenerator:
     def __init__(self, headName):
         index = clang.cindex.Index.create()
         self.tu = index.parse("%s.h" % headName, args=['-std=c++11'])
-        self.public = True
         self.className = []                          # class name stack
         self.classType = []                          # class type stack: 'class','template','struct'
         self.headName = headName.split('/')[-1]
@@ -43,10 +42,9 @@ class cythonGenerator:
             self.writePyx('# distutils: language=c++\nimport cython\nfrom libc.stdlib cimport free\n')
             self.writePyx('cimport %s\nfrom libcpp cimport bool\n'%self.headName)
             self.writePxd('cdef extern from \"ptr_convert.cpp\":\n')
-            self.writePxd('\tvoid* py2voidptr(object)\n\tvoid* int2voidptr(unsigned int)\n')
-            self.writePxd('\tunsigned int voidptr2int(void* a)\n')
+            self.writePxd('\tvoid* uint2voidptr(unsigned int)\n')
+            self.writePxd('\tunsigned int voidptr2uint(void* a)\n')
             self.writePxd('\tvoid** py2voidptrptr(object)\n')
-            self.writePxd('\tobject voidptr2py (void*)\n')
             self.writePxd('\tIRtcEngineEventHandler* convert(EventHandler* e)\n')
             self.writePxd('\tEventHandler* convertBack(IRtcEngineEventHandler* e)\n')
             self.writePxd('\tIVideoFrameObserver* convert2(VideoFrameObserver* e)\n')
@@ -58,8 +56,8 @@ class cythonGenerator:
         '''callbackdefine'''
         self.callBackDefine = True
         if args.callback_wrapper != "":
-            self.callBackFile = args.callback_wrapper + '.h'
-            tu_callBack = index.parse("%s.h" % args.callback_wrapper, args=['-std=c++11'])
+            self.callBackFile = args.callback_wrapper
+            tu_callBack = index.parse(args.callback_wrapper, args=['-std=c++11'])
             self.DFS(tu_callBack.cursor)
 
         if (args.extern_pxd != ""):
@@ -83,7 +81,7 @@ class cythonGenerator:
 
 
         if cursor.spelling in['AutoPtr', 'ensureGILstate']: return
-        print cursor.spelling, cursor.kind, cursor.type.kind, cursor.location.line
+        #print cursor.spelling, cursor.kind, cursor.type.kind, cursor.location.line
 
         '''global variable definition'''
         if cursor.kind == CursorKind.VAR_DECL and len(self.className) == 0\
@@ -103,29 +101,20 @@ class cythonGenerator:
             self.nameSpace.append(cursor.spelling)
 
         '''C++ class definition'''
-        if cursor.kind == CursorKind.CLASS_DECL and len(list(cursor.get_children())) > 0:
+        if cursor.kind == CursorKind.CLASS_DECL and cursor.is_definition():
             self.classType.append('class')
             self.classDefinition()
 
         '''translate C++ struct to python class'''
         if cursor.kind == CursorKind.STRUCT_DECL:
-
-            if self.public == False: return
+            if self.checkAccess(cursor) == False: return
             self.classType.append('struct')
             self.classDefinition()
-
             if len(list(cursor.get_children())) == 0:
                 self.writePxd('\t'*(self.classDepth+1) + 'pass\n')
 
-        '''public or private declaration'''
-        if cursor.kind == CursorKind.CXX_ACCESS_SPEC_DECL:
-            if list(cursor.get_tokens())[0].spelling == 'public':
-                self.public = True
-            elif list(cursor.get_tokens())[0].spelling in ['private', 'protected']:
-                self.public = False
-
         '''non-static data member in a struct, union, or C++ class'''
-        if self.public and cursor.kind == CursorKind.FIELD_DECL:
+        if self.checkAccess(cursor) and cursor.kind == CursorKind.FIELD_DECL:
             Pointer = False
             if cursor.type.kind in [TypeKind.TYPEDEF, TypeKind.UNEXPOSED]:
                 type = list(cursor.get_children())[0].spelling
@@ -157,11 +146,12 @@ class cythonGenerator:
                     self.writePyx('\t'*2+'tmp.c_%s = &self.c_%s.%s\n'%(type, self.className[-1], cursor.spelling))
                 self.writePyx('\t'*2 + 'return tmp\n')
             else:
-                if type in self.typedefMap.keys(): type = self.typedefMap[type]
+                if type in self.typedefMap.keys():
+                    type = self.typedefMap[type]
                 if '*' in type.split(): Pointer, type = True, type.split()[0]
                 if Pointer:
                     if type == 'void':
-                        self.writePyx('\t'*2+'return voidptr2py(self.c_%s.%s)\n'%(self.className[-1],cursor.spelling))
+                        self.writePyx('\t'*2+'return voidptr2uint(self.c_%s.%s)\n'%(self.className[-1],cursor.spelling))
                     else:
                         self.writePyx('\t'*2+'return cython.operator.dereference(self.c_%s.%s)\n'%(self.className[-1], cursor.spelling))
                 else:
@@ -174,13 +164,14 @@ class cythonGenerator:
                 else:
                     self.writePyx('\t'*2+'self.c_%s.%s=cython.operator.dereference(%s.c_%s)\n'%(self.className[-1], cursor.spelling, cursor.spelling, type))
             else:
-                if type in self.typedefMap.keys(): type = self.typedefMap[type]
+                if type in self.typedefMap.keys():
+                    type = self.typedefMap[type]
                 if '*' in type.split(): Pointer, type = True, type.split()[0]
                 if 'void' in type.split(): type = ''
                 if Pointer:
                     if type == '':
-                        self.writePyx('\t' + 'def %s(self, %s):\n' % (cursor.spelling, cursor.spelling))
-                        self.writePyx('\t'*2 + 'self.c_%s.%s=py2voidptr(%s)\n' % (self.className[-1], cursor.spelling, cursor.spelling))
+                        self.writePyx('\t' + 'def %s(self, unsigned int %s):\n' % (cursor.spelling, cursor.spelling))
+                        self.writePyx('\t'*2 + 'self.c_%s.%s=uint2voidptr(%s)\n' % (self.className[-1], cursor.spelling, cursor.spelling))
                     elif type in ['unsigned char', 'char']:
                         self.writePyx('\t' + 'def %s(self, %s):\n' % (cursor.spelling, cursor.spelling))
                         self.writePyx('\t'*2 + 'self.c_%s.%s=%s\n' % (self.className[-1], cursor.spelling, cursor.spelling))
@@ -195,13 +186,13 @@ class cythonGenerator:
         if cursor.kind == CursorKind.TYPEDEF_DECL:
             if (len(list(cursor.get_children())) == 0 or list(cursor.get_children())[0].kind != CursorKind.STRUCT_DECL):
                 if self.classDepth == 0: self.writePxd(self.getExtern())
+                type = cursor.underlying_typedef_type.spelling
                 self.writePxd('\t'*(self.classDepth+1) + 'ctypedef ')
-                type = self.getType([_.spelling for _ in list(cursor.get_tokens())], ['typedef','::'], cursor.spelling).split()
-                self.writePxd(' '.join(type) + ' ' + cursor.spelling + '\n')
-                self.typedefMap[cursor.spelling] = ' '.join(type)
+                self.writePxd(type + ' ' + cursor.spelling + '\n')
+                self.typedefMap[cursor.spelling] = type
             else: return
         '''Constructor'''
-        if self.public and cursor.kind == CursorKind.CONSTRUCTOR:
+        if self.checkAccess(cursor) and cursor.kind == CursorKind.CONSTRUCTOR:
             self.construct = True
             if self.classDepth == 1 and self.constructCode[self.className[-1]] == '':
                 self.writeAlloc()
@@ -214,7 +205,7 @@ class cythonGenerator:
             self.writePyx('):\n'+tmpCode+'\n')
 
         '''C++ method'''
-        if self.public and cursor.kind == CursorKind.CXX_METHOD:
+        if self.checkAccess(cursor) and cursor.kind == CursorKind.CXX_METHOD:
             tokens = [_.spelling for _ in list(cursor.get_tokens())]
             if tokens[-2] == '0' and tokens[-3] == '=':
                 self.abstractMap[self.className[-1]] = True
@@ -234,18 +225,19 @@ class cythonGenerator:
                         tmpCode += '\t'*2+'tmp.c_%s = &self.c_%s.%s('%(type,self.className[-1],cursor.spelling)
                 elif list(cursor.get_tokens())[0].spelling != 'void':
                     type = list(cursor.get_tokens())[0].spelling
-                    if type in self.typedefMap.keys(): type = self.typedefMap[type]
+                    if type in self.typedefMap.keys():
+                        type = self.typedefMap[type]
                     if '*' in type.split(): ReturnPointer, type = True, type.split()[0]
                     if ReturnPointer:
                         if type == 'void':
-                            tmpCode = '\t'*2+'return voidptr2py(self.c_%s.%s('%(self.className[-1], cursor.spelling)
+                            tmpCode = '\t'*2+'return voidptr2uint(self.c_%s.%s('%(self.className[-1], cursor.spelling)
                         else:
                             tmpCode = '\t'*2+'return cython.operator.dereference(self.c_%s.%s('%(self.className[-1], cursor.spelling)
                     else:
                         tmpCode = '\t'*2 + 'return self.c_%s.%s(' % (self.className[-1], cursor.spelling)
                 else:
                     if ReturnPointer:
-                        tmpCode = '\t' * 2 + 'return voidptr2py(self.c_%s.%s(' % (self.className[-1], cursor.spelling)
+                        tmpCode = '\t' * 2 + 'return voidptr2uint(self.c_%s.%s(' % (self.className[-1], cursor.spelling)
                     else:
                         tmpCode = '\t'*2+ 'self.c_%s.%s(' % (self.className[-1], cursor.spelling)
                 tmpCode = self.getParam(tmpCode)
@@ -265,20 +257,9 @@ class cythonGenerator:
                 self.waitPxdChanged = True
                 self.writePxd('\t' * (self.classDepth + 1) + 'enum %s:\n' % cursor.spelling)
             self.writePyx('class py%s:\n'%(cursor.spelling))
-            for i, c in enumerate(cursor.get_children()):
-                self.writePyx('\t'  + c.spelling + ' = ')
-                self.writePxd('\t'*(self.classDepth+2) + c.spelling + ' = ')
-                if len(list(c.get_tokens())) > 2:
-                    self.writePyx(list(c.get_tokens())[2].spelling)
-                    self.writePxd(list(c.get_tokens())[2].spelling)
-                    if list(c.get_tokens())[2].spelling == '-':
-                        self.writePyx(list(c.get_tokens())[3].spelling)
-                        self.writePxd(list(c.get_tokens())[3].spelling)
-                else:
-                    self.writePyx(str(i))
-                    self.writePxd(str(i))
-                self.writePyx('\n')
-                self.writePxd('\n')
+            for c in cursor.get_children():
+                self.writePyx('\t%s = %s\n' % (c.spelling, str(c.enum_value)))
+                self.writePxd('\t'*(self.classDepth+2) + '%s = %s\n' % (c.spelling, str(c.enum_value)))
             self.inClassEnum = False
             return
         '''C++ function'''
@@ -300,7 +281,8 @@ class cythonGenerator:
                 else:
                     tmpCode += '\t' + 'tmp.c_%s = &%s(' % (type,  cursor.spelling)
             elif len(tokens) > 0 and tokens[0] != 'void':
-                if type in self.typedefMap.keys(): type = self.typedefMap[type]
+                if type in self.typedefMap.keys():
+                    type = self.typedefMap[type]
                 if '*' in type.split(): ReturnPointer, type = True, type.split()[0]
                 if ReturnPointer:
                     if type == 'char':
@@ -311,7 +293,7 @@ class cythonGenerator:
                     tmpCode = '\t' + 'return %s(' % (cursor.spelling)
             else:
                 if ReturnPointer:
-                    tmpCode = '\t' + 'return voidptr2py(%s(' % (cursor.spelling)
+                    tmpCode = '\t' + 'return voidptr2uint(%s(' % (cursor.spelling)
                 else:
                     tmpCode = '\t' + '%s(' % (cursor.spelling)
             tmpCode = self.getParam(tmpCode)
@@ -329,11 +311,11 @@ class cythonGenerator:
         '''Depth-first search return'''
         if cursor.kind == CursorKind.NAMESPACE:
             del self.nameSpace[-1]
-        elif cursor.kind == CursorKind.CLASS_DECL and len(list(cursor.get_children())) > 0:
+        elif cursor.kind == CursorKind.CLASS_DECL and cursor.is_definition():
             self.returnClean()
         elif cursor.kind == CursorKind.STRUCT_DECL:
             self.returnClean()
-        elif self.public and cursor.kind == CursorKind.CONSTRUCTOR:
+        elif self.checkAccess(cursor) and cursor.kind == CursorKind.CONSTRUCTOR:
             self.construct = False
 
     ''' return from class or struct declaration'''
@@ -347,8 +329,6 @@ class cythonGenerator:
         del self.className[-1], self.classType[-1], self.nameSpace[-1]
         self.writePyx('')
         self.writePxd('')
-        if len(self.className) == 0:
-            self.public = True
 
     '''write parameters of a C++ method or a function'''
     def getParam(self, tmpCode):
@@ -384,17 +364,20 @@ class cythonGenerator:
                         tmpCode += 'x%d' % paramCount
                     self.writePxd("" + type + '& x%d' % paramCount)
                 elif c.type.kind in [TypeKind.TYPEDEF, TypeKind.UNEXPOSED]:
-                    Pointer = False
+                    Pointer, void = False, False
                     type = self.getType([_.spelling for _ in list(c.get_tokens())], ['::', 'const'], c.spelling)
                     self.writePxd(type + ' x%d' % paramCount)
-                    if type in self.typedefMap.keys(): type = self.typedefMap[type]
+                    if type in self.typedefMap.keys():
+                        type = self.typedefMap[type]
                     if '*' in type.split():
                         Pointer, type = True, type.split()[0]
-                    if 'void' in type.split(): type = ''
+                    if 'void' in type.split():
+                        type = 'unsigned int'
+                        void = True
                     self.writePyx(type + ' x%d' % paramCount)
                     if Pointer:
-                        if type == '':
-                            tmpCode += 'py2voidptr(x%d)' % (paramCount)
+                        if void:
+                            tmpCode += 'uint2voidptr(x%d)' % (paramCount)
                         else: tmpCode += '&x%d' % (paramCount)
                     else: tmpCode += 'x%d' % (paramCount)
                 elif c.type.kind == TypeKind.POINTER:
@@ -415,8 +398,8 @@ class cythonGenerator:
                             self.writePxd(type + ' *x%d' % paramCount)
                         elif type == 'void':
                             self.writePxd(type + ' *x%d' % paramCount)
-                            self.writePyx(' x%d' % paramCount)
-                            tmpCode += 'py2voidptr(x%d)' % paramCount
+                            self.writePyx('unsigned int x%d' % paramCount)
+                            tmpCode += 'uint2voidptr(x%d)' % paramCount
                         elif type == 'void *':
                             self.writePxd(type + ' *x%d' % paramCount)
                             self.writePyx(' x%d' % paramCount)
@@ -535,6 +518,11 @@ class cythonGenerator:
         self.writePyx('\tdef destruct(self):\n\t\tfree(self.c_%s)\n' % self.className[-1])
         self.writePyx('\tdef __dealloc__(self):\n\t\tpass\n')
 
+    def checkAccess(self, cursor):
+        if cursor.access_specifier in [AccessSpecifier.PROTECTED, AccessSpecifier.PRIVATE]:
+            return False
+        return True
+
 
 if __name__ == '__main__':
     Config.set_library_path('.')
@@ -549,10 +537,6 @@ if __name__ == '__main__':
     #VideoFrameObserverWrapper EventHandlerWrapper
     args = parse.parse_args()
     args.head_path = ''.join(args.head_path.split('.')[:-1])
-    args.callback_wrapper = ''.join(args.callback_wrapper.split('.')[:-1])
     cython = cythonGenerator(args.head_path)
     cython.generate(args, args.mode, args.target_file_name)
-
-
-
 
