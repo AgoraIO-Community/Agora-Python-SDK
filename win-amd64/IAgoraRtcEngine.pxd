@@ -1,9 +1,7 @@
 cdef extern from "ptr_convert.cpp":
-	void* py2voidptr(object)
-	void* int2voidptr(unsigned int)
-	unsigned int voidptr2int(void* a)
+	void* uint2voidptr(unsigned long long)
+	unsigned long long voidptr2uint(void* a)
 	void** py2voidptrptr(object)
-	object voidptr2py (void*)
 	IRtcEngineEventHandler* convert(EventHandler* e)
 	EventHandler* convertBack(IRtcEngineEventHandler* e)
 	IVideoFrameObserver* convert2(VideoFrameObserver* e)
@@ -12,16 +10,16 @@ from libcpp cimport bool
 cdef extern from "include/AgoraBase.h"namespace "agora::util":
 	cdef cppclass IString:
 		bool empty()
-		char * c_str()
-		char * data()
-		size_t length()
+		char* c_str()
+		char* data()
+		int length()
 		void release()
 cdef extern from "include/AgoraBase.h"namespace "agora::util":
 	cdef cppclass AString:
 		AString() except +
 		AString(IString*x1) except +
-		IString * get()
-		IString * release()
+		IString* get()
+		IString* release()
 		void reset(IString*x1)
 cdef extern from "include/AgoraBase.h"namespace "agora":
 	cdef enum INTERFACE_ID_TYPE:
@@ -221,12 +219,12 @@ cdef extern from "include/AgoraBase.h"namespace "agora":
 cdef extern from "include/AgoraBase.h"namespace "agora":
 	cdef enum LOG_FILTER_TYPE:
 		LOG_FILTER_OFF = 0
-		LOG_FILTER_DEBUG = 0x080f
-		LOG_FILTER_INFO = 0x000f
-		LOG_FILTER_WARN = 0x000e
-		LOG_FILTER_ERROR = 0x000c
-		LOG_FILTER_CRITICAL = 0x0008
-		LOG_FILTER_MASK = 0x80f
+		LOG_FILTER_DEBUG = 2063
+		LOG_FILTER_INFO = 15
+		LOG_FILTER_WARN = 14
+		LOG_FILTER_ERROR = 12
+		LOG_FILTER_CRITICAL = 8
+		LOG_FILTER_MASK = 2063
 cdef extern from "include/IAgoraService.h"namespace "agora::rtm":
 	cdef cppclass IRtmService:
 		bool addition
@@ -237,14 +235,14 @@ cdef extern from "include/IAgoraService.h"namespace "agora::base":
 	cdef cppclass IAgoraService:
 		void release()
 		int initialize(AgoraServiceContext& x1)
-		char * getVersion(int *x1)
-		IRtmService * createRtmService()
+		char* getVersion(int *x1)
+		IRtmService* createRtmService()
 cdef extern from "include/IAgoraService.h":
-	char * getAgoraSdkVersion(int *x1)
+	char* getAgoraSdkVersion(int *x1)
 cdef extern from "include/IAgoraService.h":
-	char * getAgoraSdkErrorDescription(int x1)
+	char* getAgoraSdkErrorDescription(int x1)
 cdef extern from "include/IAgoraService.h":
-	IAgoraService * createAgoraService()
+	IAgoraService* createAgoraService()
 cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 	ctypedef unsigned int uid_t
 cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
@@ -421,7 +419,7 @@ cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 		VIDEO_PROFILE_PORTRAIT_1440P_2 = 1067
 		VIDEO_PROFILE_PORTRAIT_4K = 1070
 		VIDEO_PROFILE_PORTRAIT_4K_3 = 1072
-		VIDEO_PROFILE_DEFAULT = VIDEO_PROFILE_LANDSCAPE_360P
+		VIDEO_PROFILE_DEFAULT = 30
 cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 	cdef enum AUDIO_PROFILE_TYPE:
 		AUDIO_PROFILE_DEFAULT = 0
@@ -970,7 +968,7 @@ cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 		void release()
 cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 	cdef cppclass IVideoDeviceManager:
-		IVideoDeviceCollection * enumerateVideoDevices()
+		IVideoDeviceCollection* enumerateVideoDevices()
 		int startDeviceTest(view_t x1)
 		int stopDeviceTest()
 		int setDevice(char *x1)
@@ -988,8 +986,8 @@ cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 		void release()
 cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 	cdef cppclass IAudioDeviceManager:
-		IAudioDeviceCollection * enumeratePlaybackDevices()
-		IAudioDeviceCollection * enumerateRecordingDevices()
+		IAudioDeviceCollection* enumeratePlaybackDevices()
+		IAudioDeviceCollection* enumerateRecordingDevices()
 		int setPlaybackDevice(char *x1)
 		int setRecordingDevice(char *x1)
 		int startPlaybackDeviceTest(char *x1)
@@ -1142,12 +1140,12 @@ cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 		int getCallId(AString& x1)
 		int rate(char *x1,int x2,char *x3)
 		int complain(char *x1,char *x2)
-		char * getVersion(int *x1)
+		char* getVersion(int *x1)
 		int enableLastmileTest()
 		int disableLastmileTest()
 		int startLastmileProbeTest(LastmileProbeConfig& x1)
 		int stopLastmileProbeTest()
-		char * getErrorDescription(int x1)
+		char* getErrorDescription(int x1)
 		int setEncryptionSecret(char *x1)
 		int setEncryptionMode(char *x1)
 		int registerPacketObserver(IPacketObserver*x1)
@@ -1277,7 +1275,7 @@ cdef extern from "include/IAgoraRtcEngine.h"namespace "agora::rtc":
 		int enableLoopbackRecording(bool x1,char *x2)
 		int setInEarMonitoringVolume(int x1)
 cdef extern from "include/IAgoraRtcEngine.h":
-	IRtcEngine * createAgoraRtcEngine()
+	IRtcEngine* createAgoraRtcEngine()
 cdef extern from "EventHandlerWrapper.h":
 	cdef cppclass EventHandler:
 		EventHandler() except +
@@ -1420,7 +1418,7 @@ cdef extern from "include/IAgoraMediaEngine.h"namespace "agora::media":
 			VIDEO_TYPE_BGRA = 15
 			VIDEO_TYPE_RGBA = 16
 		void release()
-		unsigned char * buffer(PLANE_TYPE x1)
+		unsigned char* buffer(PLANE_TYPE x1)
 		int convertFrame(VIDEO_TYPE x1,int x2,unsigned char *x3)
 		int allocated_size(PLANE_TYPE x1)
 		int stride(PLANE_TYPE x1)
@@ -1475,7 +1473,7 @@ cdef extern from "include/IAgoraMediaEngine.h"namespace "agora::media":
 		int deliverFrame(IVideoFrame& x1,int x2,bool x3)
 cdef extern from "include/IAgoraMediaEngine.h"namespace "agora::media":
 	cdef cppclass IExternalVideoRenderFactory:
-		IExternalVideoRender * createRenderInstance(ExternalVideoRenerContext& x1)
+		IExternalVideoRender* createRenderInstance(ExternalVideoRenerContext& x1)
 cdef extern from "include/IAgoraMediaEngine.h"namespace "agora::media":
 	cdef cppclass ExternalVideoFrame:
 		enum VIDEO_BUFFER_TYPE:

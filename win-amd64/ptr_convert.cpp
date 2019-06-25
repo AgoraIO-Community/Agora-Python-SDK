@@ -5,12 +5,12 @@
 #include "EventHandlerWrapper.h"
 #include "VideoFrameObserverWrapper.h"
 
-void* uint2voidptr(unsigned int e){
+void* uint2voidptr(unsigned long long e){
     return (void*)e;
 }
 
-unsigned int voidptr2uint(void* a){
-    return (unsigned int)a;
+unsigned long long voidptr2uint(void* a){
+    return (unsigned long long)a;
 }
 
 
