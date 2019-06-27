@@ -135,7 +135,7 @@ class cythonGenerator:
             else:
                 if type in self.typedefMap.keys():
                     type = self.typedefMap[type]
-                if '*' in type.split(): Pointer, type = True, type.split()[0]
+                if '*' in type.split(): Pointer, type = True, ' '.join(type.split()[:-1])
                 if Pointer:
                     if type == 'void':
                         self.writePyx('\t'*2+'return voidptr2uint(self.c_%s.%s)\n'%(self.className[-1],cursor.spelling))
