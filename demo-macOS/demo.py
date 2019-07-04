@@ -80,8 +80,8 @@ class MyWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self)
         MainWindow.Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.window1 = window1()
-        self.window2 = window2()
+        self.window1 = GLwindow()
+        self.window2 = GLwindow()
         self.gridLayout.addWidget(self.window1)
         self.gridLayout_2.addWidget(self.window2)
         self.joinButton.clicked.connect(self.joinChannel)
@@ -148,10 +148,7 @@ class MyWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
                 return False
         return True
 
-class window1(QtOpenGL.QGLWidget):
-    def __init__(self):
-        QtOpenGL.QGLWidget.__init__(self)
-class window2(QtOpenGL.QGLWidget):
+class GLwindow(QtOpenGL.QGLWidget):
     def __init__(self):
         QtOpenGL.QGLWidget.__init__(self)
 
