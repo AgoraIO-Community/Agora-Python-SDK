@@ -15,7 +15,6 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 
 - [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Agora-Android-Tutorial-1to1)
 - [Agora-iOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
-- [Agora-macOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Agora-macOS-Tutorial-Swift-1to1)
 
 ## 环境准备
 
