@@ -1,4 +1,6 @@
 # Agora 1-to-1 Python Demo on Win32
+*[中文](README.zh.md) | English*
+
 This is a simple python demo for Agora 1-to-1 video call on Win32 platform.
 
 ## Requirements
