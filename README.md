@@ -1,5 +1,5 @@
 # Agora Python SDK
-*[中文](README.zh.md) | English*
+*[中文](Readme.zh.md) | English*
 
 Use Agora RTC SDK with Python! 
 ## Usage
