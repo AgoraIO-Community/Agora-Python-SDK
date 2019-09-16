@@ -1,4 +1,6 @@
 # Agora Python SDK
+*[中文](README.zh.md) | English*
+
 Use Agora RTC SDK with Python! 
 ## Usage
 - For Windows user, please navigate to [demo-win32](https://github.com/AgoraIO-Community/Agora-Python-SDK/tree/master/demo-win32) or [demo-win-amd64](https://github.com/AgoraIO-Community/Agora-Python-SDK/tree/master/demo-win-amd64) to download the `.pyd` file and the `.dll` file.
