@@ -1,2 +1,0 @@
-cdef extern from "ptr_convert.cpp":
-	IMediaEngine* getMediaEngine(IRtcEngine*)
