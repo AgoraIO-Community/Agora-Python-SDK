@@ -197,7 +197,7 @@ enum API_TYPE_DEVICE_MANAGER {
 enum ERROR_CODE {
     ERROR_OK = 0,
     ERROR_INVALID_API_TYPE = -100,
-    ERROR_INVALID_PARAMETER = -101,
+    ERROR_INVALID_PARAM = -101,
     ERROR_PARSE_PARAMETER = -102,
     ERROR_NO_CURRENT_PARAMETER = -103,
     ERROR_NOT_SUPPORT_API = -4,
@@ -3536,8 +3536,6 @@ updateScreenCaptureParameters(IRtcEngineBridge_ptr apiBridge, struct ScreenCaptu
 extern enum ERROR_CODE
 updateScreenCaptureRegion(IRtcEngineBridge_ptr apiBridge, struct Rectangle* regionRect);
 
-extern enum ERROR_CODE
-updateScreenCaptureRegion(IRtcEngineBridge_ptr apiBridge, struct Rect* rect);
 #endif
 
 extern enum ERROR_CODE

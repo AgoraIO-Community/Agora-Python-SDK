@@ -17,7 +17,7 @@ namespace agora
 		typedef void(__stdcall *FUNC_OnRequestToken)();
 		typedef void(__stdcall *FUNC_OnUserJoined)(rtc::uid_t uid, int elapsed);
 		typedef void(__stdcall *FUNC_OnUserOffline)(rtc::uid_t uid, int offLineReason);
-		typedef void(__stdcall *FUNC_OnAudioVolumeIndication)(const char *volumeInfo, int speakerNumber, int totalVolume);
+		typedef void(__stdcall *FUNC_OnAudioVolumeIndication)(rtc::uid_t *uid, unsigned int *volume, unsigned int *vad, const char **channelId, int speakerNumber, int totalVolume);
 		typedef void(__stdcall *FUNC_OnUserMuteAudio)(rtc::uid_t uid, bool muted);
 		typedef void(__stdcall *FUNC_OnWarning)(int warn, const char *msg);
 		typedef void(__stdcall *FUNC_OnError)(int error, const char *msg);

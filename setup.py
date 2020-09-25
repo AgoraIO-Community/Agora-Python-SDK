@@ -12,7 +12,7 @@ if platform.system() == 'Darwin':
     extra_compile_args = ['-std=c++14', '-stdlib=libc++']
 elif platform.system() == 'Windows':
     libraries = ['agora_rtc_sdk']
-    library_dirs['.']
+    library_dirs = ['.']
     extra_compile_args = ['/std:c++14', '-DNOMINMAX']
 
 agorartc_module = Extension('_agorartc',
