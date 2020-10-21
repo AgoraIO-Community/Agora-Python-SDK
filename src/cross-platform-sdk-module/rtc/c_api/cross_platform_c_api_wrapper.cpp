@@ -21,6 +21,24 @@ extern "C" {
 #define AudioRecordingDeviceManagerBridge_ptr static_cast<agora::common::AudioRecordingDeviceManager*>(apiBridge)
 #define VideoDeviceManagerBridge_ptr static_cast<agora::common::VideoDeviceManager*>(apiBridge)
 
+
+#define CHECK_PTR_VOID(apiBridge) \
+    if (!apiBridge)               \
+        return;\
+
+#define CHECK_PTR_OBJ(apiBridge) \
+    if (!apiBridge)              \
+        return NULL;\
+
+#define CHECK_PTR_INT(apiBridge) \
+    if (!apiBridge)              \
+        return ERROR_CODE::ERROR_NO_ENGINE;\
+
+#define CHECK_PTR_BOOL(apiBridge)\
+    if (!apiBridge)  \
+        return FALSE;
+
+
 IRtcEngineBridge_ptr
 createRtcBridge()
 {
@@ -29,6 +47,7 @@ createRtcBridge()
 
 void release(IRtcEngineBridge_ptr apiBridge, BOOL sync)
 {
+    CHECK_PTR_VOID(apiBridge)
     RtcEngineBridge_ptr->release(sync);
     apiBridge = NULL;
 }
@@ -36,11 +55,13 @@ void release(IRtcEngineBridge_ptr apiBridge, BOOL sync)
 IRtcChannelBridge_ptr
 createChannel(IRtcEngineBridge_ptr apiBridge, const char* channelId)
 {
+    CHECK_PTR_OBJ(apiBridge)
     return RtcEngineBridge_ptr->createChannel(channelId);
 }
 
 void releaseChannel(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_VOID(apiBridge)
     RtcChannelBridge_ptr->release();
     apiBridge = NULL;
 }
@@ -48,12 +69,14 @@ void releaseChannel(IRtcChannelBridge_ptr apiBridge)
 IAudioPlaybackDeviceManager_ptr
 createAudioPlaybackDeviceManager(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_OBJ(apiBridge)
     agora::common::ERROR_CODE error_code;
     return RtcEngineBridge_ptr->createAudioDeviceManager(agora::common::DEVICE_TYPE::PLAYBACK_DEVICE, error_code);
 }
 
 void releaseAudioPlaybackDeviceManager(IAudioPlaybackDeviceManager_ptr apiBridge)
 {
+    CHECK_PTR_VOID(apiBridge)
     AudioPlaybackDeviceManagerBridge_ptr->release();
     apiBridge = NULL;
 }
@@ -61,12 +84,14 @@ void releaseAudioPlaybackDeviceManager(IAudioPlaybackDeviceManager_ptr apiBridge
 IAudioRecordingDeviceManager_ptr
 createAudioRecordingDeviceManager(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_OBJ(apiBridge)
     agora::common::ERROR_CODE error_code;
     return RtcEngineBridge_ptr->createAudioDeviceManager(agora::common::DEVICE_TYPE::RECORDING_DEVICE, error_code);
 }
 
 void releaseAudioRecordingDeviceManager(IAudioRecordingDeviceManager_ptr apiBridge)
 {
+    CHECK_PTR_VOID(apiBridge)
     AudioRecordingDeviceManagerBridge_ptr->release();
     apiBridge = NULL;
 }
@@ -74,12 +99,14 @@ void releaseAudioRecordingDeviceManager(IAudioRecordingDeviceManager_ptr apiBrid
 IVideoDeviceManager_ptr
 createVideoDeviceManager(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_OBJ(apiBridge)
     agora::common::ERROR_CODE error_code;
     return RtcEngineBridge_ptr->createVideoDeviceManager(error_code);
 }
 
 void releaseVideoDeviceManager(IVideoDeviceManager_ptr apiBridge)
 {
+    CHECK_PTR_VOID(apiBridge)
     VideoDeviceManagerBridge_ptr->release();
     apiBridge = NULL;
 }
@@ -87,12 +114,14 @@ void releaseVideoDeviceManager(IVideoDeviceManager_ptr apiBridge)
 enum ERROR_CODE
 initialize(IRtcEngineBridge_ptr apiBridge, const char* appId, void* context, enum AREA_CODE areaCode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->initialize(appId, context, areaCode));
 }
 
-extern void
-add_C_EventHandler(IRtcChannelBridge_ptr apiBridge, struct RtcEventHandler* handler)
+void
+add_C_EventHandler(IRtcEngineBridge_ptr apiBridge, struct RtcEventHandler* handler)
 {
+    CHECK_PTR_VOID(apiBridge)
     agora::common::CEngineEventHandler _engineEventHandler;
     _engineEventHandler.onJoinChannelSuccess = handler->onJoinChannelSuccess;
     _engineEventHandler.onReJoinChannelSuccess = handler->onReJoinChannelSuccess;
@@ -168,54 +197,62 @@ add_C_EventHandler(IRtcChannelBridge_ptr apiBridge, struct RtcEventHandler* hand
     _engineEventHandler.onChannelMediaRelayStateChanged = handler->onChannelMediaRelayStateChanged;
     _engineEventHandler.onChannelMediaRelayEvent = handler->onChannelMediaRelayEvent;
     _engineEventHandler.onFacePositionChanged = handler->onFacePositionChanged;
+    _engineEventHandler.onTestEnd = handler->onTestEnd;
     RtcEngineBridge_ptr->add_C_EventHandler(&_engineEventHandler);
 }
 
-extern void
-remove_C_EventHandler(IRtcChannelBridge_ptr apiBridge)
+void
+remove_C_EventHandler(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_VOID(apiBridge)
     RtcEngineBridge_ptr->remove_C_EventHandler();
 }
 
 enum ERROR_CODE
 setChannelProfile(IRtcEngineBridge_ptr apiBridge, enum CHANNEL_PROFILE_TYPE channel_profile_type)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setChannelProfile(agora::rtc::CHANNEL_PROFILE_TYPE(channel_profile_type)));
 }
 
 enum ERROR_CODE
 setClientRole(IRtcEngineBridge_ptr apiBridge, enum CLIENT_ROLE_TYPE role)
-{
+{   CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setClientRole(agora::rtc::CLIENT_ROLE_TYPE(role)));
 }
 
 enum ERROR_CODE
 joinChannel(IRtcEngineBridge_ptr apiBridge, const char* token, const char* channelId, const char* info, uid_t uid)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->joinChannel(token, channelId, info, uid));
 }
 
 enum ERROR_CODE
 switchChannel(IRtcEngineBridge_ptr apiBridge, const char* token, const char* channelId)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->switchChannel(token, channelId));
 }
 
 enum ERROR_CODE
 leaveChannel(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->leaveChannel());
 }
 
 enum ERROR_CODE
 renewToken(IRtcEngineBridge_ptr apiBridge, const char* token)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->renewToken(token));
 }
 
 enum ERROR_CODE
 registerLocalUserAccount(IRtcEngineBridge_ptr apiBridge, const char* appId, const char* userAccount)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->registerLocalUserAccount(appId, userAccount));
 }
 
@@ -224,12 +261,14 @@ joinChannelWithUserAccount(IRtcEngineBridge_ptr apiBridge, const char* token,
     const char* channelId,
     const char* userAccount)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->joinChannelWithUserAccount(token, channelId, userAccount));
 }
 
 enum ERROR_CODE
 getUserInfoByUserAccount(IRtcEngineBridge_ptr apiBridge, const char* userAccount, struct UserInfo* userInfo)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::UserInfo info;
     ERROR_CODE error_code = ERROR_CODE(RtcEngineBridge_ptr->getUserInfoByUserAccount(userAccount, &info));
     (*userInfo).uid = info.uid;
@@ -241,6 +280,7 @@ getUserInfoByUserAccount(IRtcEngineBridge_ptr apiBridge, const char* userAccount
 enum ERROR_CODE
 getUserInfoByUid(IRtcEngineBridge_ptr apiBridge, uid_t uid, struct UserInfo* userInfo)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::UserInfo info;
     ERROR_CODE error_code = ERROR_CODE(RtcEngineBridge_ptr->getUserInfoByUid(uid, &info));
     (*userInfo).uid = info.uid;
@@ -252,42 +292,49 @@ getUserInfoByUid(IRtcEngineBridge_ptr apiBridge, uid_t uid, struct UserInfo* use
 enum ERROR_CODE
 startEchoTest(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->startEchoTest());
 }
 
 enum ERROR_CODE
 startEchoTest2(IRtcEngineBridge_ptr apiBridge, int intervalInSeconds)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->startEchoTest(intervalInSeconds));
 }
 
 enum ERROR_CODE
 stopEchoTest(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopEchoTest());
 }
 
 enum ERROR_CODE
 enableVideo(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableVideo());
 }
 
 enum ERROR_CODE
 disableVideo(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->disableVideo());
 }
 
 enum ERROR_CODE
 setVideoProfile(IRtcEngineBridge_ptr apiBridge, enum VIDEO_PROFILE_TYPE profile, BOOL swapWidthAndHeight)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setVideoProfile(agora::rtc::VIDEO_PROFILE_TYPE(profile), swapWidthAndHeight));
 }
 
 enum ERROR_CODE
 setVideoEncoderConfiguration(IRtcEngineBridge_ptr apiBridge, const struct VideoEncoderConfiguration config)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::VideoEncoderConfiguration videoEncoderConfiguration;
     videoEncoderConfiguration.dimensions = agora::rtc::VideoDimensions(config.dimensions.width, config.dimensions.height);
     videoEncoderConfiguration.frameRate = agora::rtc::FRAME_RATE(config.frameRate);
@@ -303,6 +350,7 @@ setVideoEncoderConfiguration(IRtcEngineBridge_ptr apiBridge, const struct VideoE
 enum ERROR_CODE
 setCameraCapturerConfiguration(IRtcEngineBridge_ptr apiBridge, const struct CameraCapturerConfiguration config)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::CameraCapturerConfiguration cameraCapturerConfiguration;
     cameraCapturerConfiguration.preference = agora::rtc::CAPTURER_OUTPUT_PREFERENCE(config.preference);
 #if defined(__ANDROID__) || (defined(__APPLE__) && TARGET_OS_IOS)
@@ -314,6 +362,7 @@ setCameraCapturerConfiguration(IRtcEngineBridge_ptr apiBridge, const struct Came
 enum ERROR_CODE
 setupLocalVideo(IRtcEngineBridge_ptr apiBridge, const struct VideoCanvas canvas)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::VideoCanvas videoCanvas;
     videoCanvas.view = canvas.view;
     videoCanvas.renderMode = canvas.renderMode;
@@ -327,6 +376,7 @@ setupLocalVideo(IRtcEngineBridge_ptr apiBridge, const struct VideoCanvas canvas)
 enum ERROR_CODE
 setupRemoteVideo(IRtcEngineBridge_ptr apiBridge, const struct VideoCanvas canvas)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::VideoCanvas videoCanvas;
     videoCanvas.view = canvas.view;
     videoCanvas.renderMode = canvas.renderMode;
@@ -340,36 +390,42 @@ setupRemoteVideo(IRtcEngineBridge_ptr apiBridge, const struct VideoCanvas canvas
 enum ERROR_CODE
 startPreview(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->startPreview());
 }
 
 enum ERROR_CODE
 setRemoteUserPriority(IRtcEngineBridge_ptr apiBridge, uid_t uid, enum PRIORITY_TYPE userPriority)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRemoteUserPriority(uid, agora::rtc::PRIORITY_TYPE(userPriority)));
 }
 
 enum ERROR_CODE
 stopPreview(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopPreview());
 }
 
 enum ERROR_CODE
 enableAudio(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableAudio());
 }
 
 enum ERROR_CODE
 enableLocalAudio(IRtcEngineBridge_ptr apiBridge, BOOL enabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableLocalAudio(enabled));
 }
 
 enum ERROR_CODE
 disableAudio(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->disableAudio());
 }
 
@@ -377,84 +433,98 @@ enum ERROR_CODE
 setAudioProfile(IRtcEngineBridge_ptr apiBridge, enum AUDIO_PROFILE_TYPE profile,
     enum AUDIO_SCENARIO_TYPE scenario)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setAudioProfile(agora::rtc::AUDIO_PROFILE_TYPE(profile), agora::rtc::AUDIO_SCENARIO_TYPE(scenario)));
 }
 
 enum ERROR_CODE
 muteLocalAudioStream(IRtcEngineBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->muteLocalAudioStream(mute));
 }
 
 enum ERROR_CODE
 muteAllRemoteAudioStreams(IRtcEngineBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->muteAllRemoteAudioStreams(mute));
 }
 
 enum ERROR_CODE
 setDefaultMuteAllRemoteVideoStreams(IRtcEngineBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setDefaultMuteAllRemoteVideoStreams(mute));
 }
 
 enum ERROR_CODE
 adjustUserPlaybackSignalVolume(IRtcEngineBridge_ptr apiBridge, uid_t uid, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->adjustUserPlaybackSignalVolume(uid, volume));
 }
 
 enum ERROR_CODE
 muteRemoteAudioStream(IRtcEngineBridge_ptr apiBridge, uid_t userId, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->muteRemoteAudioStream(userId, mute));
 }
 
 enum ERROR_CODE
 muteLocalVideoStream(IRtcEngineBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->muteLocalVideoStream(mute));
 }
 
 enum ERROR_CODE
 enableLocalVideo(IRtcEngineBridge_ptr apiBridge, BOOL enabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableLocalVideo(enabled));
 }
 
 enum ERROR_CODE
 muteAllRemoteVideoStreams(IRtcEngineBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->muteAllRemoteVideoStreams(mute));
 }
 
 enum ERROR_CODE
 setDefaultMuteAllRemoteAudioStreams(IRtcEngineBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setDefaultMuteAllRemoteAudioStreams(mute));
 }
 
 enum ERROR_CODE
 muteRemoteVideoStream(IRtcEngineBridge_ptr apiBridge, uid_t userId, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->muteRemoteVideoStream(userId, mute));
 }
 
 enum ERROR_CODE
 setRemoteVideoStreamType(IRtcEngineBridge_ptr apiBridge, uid_t userId, enum REMOTE_VIDEO_STREAM_TYPE streamType)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRemoteVideoStreamType(userId, agora::rtc::REMOTE_VIDEO_STREAM_TYPE(streamType)));
 }
 
 enum ERROR_CODE
 setRemoteDefaultVideoStreamType(IRtcEngineBridge_ptr apiBridge, enum REMOTE_VIDEO_STREAM_TYPE streamType)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRemoteDefaultVideoStreamType(agora::rtc::REMOTE_VIDEO_STREAM_TYPE(streamType)));
 }
 
 enum ERROR_CODE
 enableAudioVolumeIndication(IRtcEngineBridge_ptr apiBridge, int interval, int smooth, BOOL report_vad)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableAudioVolumeIndication(interval, smooth, report_vad));
 }
 
@@ -462,6 +532,7 @@ enum ERROR_CODE
 startAudioRecording(IRtcEngineBridge_ptr apiBridge, const char* filePath,
     enum AUDIO_RECORDING_QUALITY_TYPE quality)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->startAudioRecording(filePath, agora::rtc::AUDIO_RECORDING_QUALITY_TYPE(quality)));
 }
 
@@ -470,12 +541,14 @@ startAudioRecording2(IRtcEngineBridge_ptr apiBridge, const char* filePath,
     int sampleRate,
     enum AUDIO_RECORDING_QUALITY_TYPE quality)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->startAudioRecording(filePath, sampleRate, agora::rtc::AUDIO_RECORDING_QUALITY_TYPE(quality)));
 }
 
 enum ERROR_CODE
 stopAudioRecording(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopAudioRecording());
 }
 
@@ -490,30 +563,35 @@ enableFaceDetection(IRtcEngineBridge_ptr apiBridge, BOOL enable)
 enum ERROR_CODE
 setRemoteVoicePosition(IRtcEngineBridge_ptr apiBridge, uid_t uid, double pan, double gain)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRemoteVoicePosition(uid, pan, gain));
 }
 
 enum ERROR_CODE
 setLogFile(IRtcEngineBridge_ptr apiBridge, const char* file)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLogFile(file));
 }
 
 enum ERROR_CODE
 setLogFilter(IRtcEngineBridge_ptr apiBridge, unsigned int filter)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLogFilter(filter));
 }
 
 enum ERROR_CODE
 setLogFileSize(IRtcEngineBridge_ptr apiBridge, unsigned int fileSizeInKBytes)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLogFileSize(fileSizeInKBytes));
 }
 
 enum ERROR_CODE
 setLocalRenderMode(IRtcEngineBridge_ptr apiBridge, enum RENDER_MODE_TYPE renderMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalRenderMode(agora::rtc::RENDER_MODE_TYPE(renderMode)));
 }
 
@@ -521,12 +599,14 @@ enum ERROR_CODE
 setLocalRenderMode2(IRtcEngineBridge_ptr apiBridge, enum RENDER_MODE_TYPE renderMode,
     enum VIDEO_MIRROR_MODE_TYPE mirrorMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalRenderMode(agora::rtc::RENDER_MODE_TYPE(renderMode), agora::rtc::VIDEO_MIRROR_MODE_TYPE(mirrorMode)));
 }
 
 enum ERROR_CODE
 setRemoteRenderMode(IRtcEngineBridge_ptr apiBridge, uid_t userId, enum RENDER_MODE_TYPE renderMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRemoteRenderMode(userId, agora::rtc::RENDER_MODE_TYPE(renderMode)));
 }
 
@@ -535,54 +615,63 @@ setRemoteRenderMode2(IRtcEngineBridge_ptr apiBridge, uid_t userId,
     enum RENDER_MODE_TYPE renderMode,
     enum VIDEO_MIRROR_MODE_TYPE mirrorMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRemoteRenderMode(userId, agora::rtc::RENDER_MODE_TYPE(renderMode), agora::rtc::VIDEO_MIRROR_MODE_TYPE(mirrorMode)));
 }
 
 enum ERROR_CODE
 setLocalVideoMirrorMode(IRtcEngineBridge_ptr apiBridge, enum VIDEO_MIRROR_MODE_TYPE mirrorMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalVideoMirrorMode(agora::rtc::VIDEO_MIRROR_MODE_TYPE(mirrorMode)));
 }
 
 enum ERROR_CODE
 enableDualStreamMode(IRtcEngineBridge_ptr apiBridge, BOOL enabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableDualStreamMode(enabled));
 }
 
 enum ERROR_CODE
 adjustRecordingSignalVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->adjustRecordingSignalVolume(volume));
 }
 
 enum ERROR_CODE
 adjustPlaybackSignalVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->adjustPlaybackSignalVolume(volume));
 }
 
 enum ERROR_CODE
 enableWebSdkInteroperability(IRtcEngineBridge_ptr apiBridge, BOOL enabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableWebSdkInteroperability(enabled));
 }
 
 enum ERROR_CODE
 setVideoQualityParameters(IRtcEngineBridge_ptr apiBridge, BOOL preferFrameRateOverImageQuality)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setVideoQualityParameters(preferFrameRateOverImageQuality));
 }
 
 enum ERROR_CODE
 setLocalPublishFallbackOption(IRtcEngineBridge_ptr apiBridge, enum STREAM_FALLBACK_OPTIONS option)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalPublishFallbackOption(agora::rtc::STREAM_FALLBACK_OPTIONS(option)));
 }
 
 enum ERROR_CODE
 setRemoteSubscribeFallbackOption(IRtcEngineBridge_ptr apiBridge, enum STREAM_FALLBACK_OPTIONS option)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRemoteSubscribeFallbackOption(agora::rtc::STREAM_FALLBACK_OPTIONS(option)));
 }
 
@@ -590,41 +679,48 @@ setRemoteSubscribeFallbackOption(IRtcEngineBridge_ptr apiBridge, enum STREAM_FAL
 enum ERROR_CODE
 switchCamera(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->switchCamera());
 }
 
 enum ERROR_CODE
 switchCamera2(IRtcEngineBridge_ptr apiBridge, enum CAMERA_DIRECTION direction)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->switchCamera(agora::rtc::CAMERA_DIRECTION(direction)));
 }
 
 enum ERROR_CODE
 setDefaultAudioRouteToSpeakerphone(IRtcEngineBridge_ptr apiBridge, BOOL defaultToSpeaker)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setDefaultAudioRouteToSpeakerphone(defaultToSpeaker));
 }
 
 enum ERROR_CODE
 setEnableSpeakerphone(IRtcEngineBridge_ptr apiBridge, BOOL speakerOn)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setEnableSpeakerphone(speakerOn));
 }
 
 enum ERROR_CODE
 enableInEarMonitoring(IRtcEngineBridge_ptr apiBridge, BOOL enabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableInEarMonitoring(enabled));
 }
 
 enum ERROR_CODE
 setInEarMonitoringVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setInEarMonitoringVolume(volume));
 }
 
 BOOL isSpeakerphoneEnabled(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_BOOL(apiBridge)
     return RtcEngineBridge_ptr->isSpeakerphoneEnabled();
 }
 #endif
@@ -633,6 +729,7 @@ BOOL isSpeakerphoneEnabled(IRtcEngineBridge_ptr apiBridge)
 enum ERROR_CODE
 setAudioSessionOperationRestriction(IRtcEngineBridge_ptr apiBridge, enum AUDIO_SESSION_OPERATION_RESTRICTION restriction)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setAudioSessionOperationRestriction(agora::rtc::AUDIO_SESSION_OPERATION_RESTRICTION(restriction)));
 }
 #endif
@@ -641,6 +738,7 @@ setAudioSessionOperationRestriction(IRtcEngineBridge_ptr apiBridge, enum AUDIO_S
 enum ERROR_CODE
 enableLoopbackRecording(IRtcEngineBridge_ptr apiBridge, BOOL enabled, const char* deviceName)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableLoopbackRecording(enabled, deviceName));
 }
 
@@ -650,6 +748,7 @@ startScreenCaptureByDisplayId(IRtcEngineBridge_ptr apiBridge, unsigned int displ
     const struct Rectangle* regionRect,
     const struct ScreenCaptureParameters* captureParams)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::Rectangle region;
     region.height = regionRect->height;
     region.width = regionRect->width;
@@ -688,6 +787,7 @@ startScreenCaptureByScreenRect(IRtcEngineBridge_ptr apiBridge, const struct Rect
     const struct Rectangle* regionRect,
     const struct ScreenCaptureParameters* captureParams)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::Rectangle screen;
     screen.height = screenRect->height;
     screen.width = screenRect->width;
@@ -729,6 +829,7 @@ startScreenCaptureByWindowId(IRtcEngineBridge_ptr apiBridge, view_t windowId,
     const struct Rectangle* regionRect,
     const struct ScreenCaptureParameters* captureParams)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::Rectangle region;
     region.height = regionRect->height;
     region.width = regionRect->width;
@@ -762,12 +863,14 @@ startScreenCaptureByWindowId(IRtcEngineBridge_ptr apiBridge, view_t windowId,
 enum ERROR_CODE
 setScreenCaptureContentHint(IRtcEngineBridge_ptr apiBridge, enum VideoContentHint contentHint)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setScreenCaptureContentHint(agora::rtc::VideoContentHint(contentHint)));
 }
 
 enum ERROR_CODE
 updateScreenCaptureParameters(IRtcEngineBridge_ptr apiBridge, struct ScreenCaptureParameters* captureParams)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::ScreenCaptureParameters screenCaptureParameters;
     screenCaptureParameters.bitrate = captureParams->bitrate;
     screenCaptureParameters.frameRate = captureParams->frameRate;
@@ -795,6 +898,7 @@ updateScreenCaptureParameters(IRtcEngineBridge_ptr apiBridge, struct ScreenCaptu
 enum ERROR_CODE
 updateScreenCaptureRegion(IRtcEngineBridge_ptr apiBridge, struct Rectangle* regionRect)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::Rectangle region;
     region.height = regionRect->height;
     region.width = regionRect->width;
@@ -806,6 +910,7 @@ updateScreenCaptureRegion(IRtcEngineBridge_ptr apiBridge, struct Rectangle* regi
 enum ERROR_CODE
 updateScreenCaptureRegion(IRtcEngineBridge_ptr apiBridge, struct Rect* rect)
 {
+    CHECK_PTR_INT(apiBridge)
     Rect mRect;
     mRect.bottom = rect->bottom;
     mRect.left = rect->left;
@@ -818,6 +923,7 @@ updateScreenCaptureRegion(IRtcEngineBridge_ptr apiBridge, struct Rect* rect)
 enum ERROR_CODE
 stopScreenCapture(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopScreenCapture());
 }
 #endif
@@ -825,6 +931,7 @@ stopScreenCapture(IRtcEngineBridge_ptr apiBridge)
 const char*
 getCallId(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_OBJ(apiBridge)
     agora::util::AString sCallId;
     RtcEngineBridge_ptr->getCallId(sCallId);
     return sCallId->data();
@@ -833,36 +940,42 @@ getCallId(IRtcEngineBridge_ptr apiBridge)
 enum ERROR_CODE
 rate(IRtcEngineBridge_ptr apiBridge, const char* callId, int rating, const char* description)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->rate(callId, rating, description));
 }
 
 enum ERROR_CODE
 complain(IRtcEngineBridge_ptr apiBridge, const char* callId, const char* description)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->complain(callId, description));
 }
 
 const char*
 getVersion(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_OBJ(apiBridge)
     return RtcEngineBridge_ptr->getVersion();
 }
 
 enum ERROR_CODE
 enableLastmileTest(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableLastmileTest());
 }
 
 enum ERROR_CODE
 disableLastmileTest(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->disableLastmileTest());
 }
 
 enum ERROR_CODE
 startLastmileProbeTest(IRtcEngineBridge_ptr apiBridge, const struct LastmileProbeConfig config)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::LastmileProbeConfig lastmileProbeConfig;
     lastmileProbeConfig.probeUplink = config.probeUplink;
     lastmileProbeConfig.probeDownlink = config.probeDownlink;
@@ -874,24 +987,28 @@ startLastmileProbeTest(IRtcEngineBridge_ptr apiBridge, const struct LastmileProb
 enum ERROR_CODE
 stopLastmileProbeTest(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopLastmileProbeTest());
 }
 
 const char*
 getErrorDescription(IRtcEngineBridge_ptr apiBridge, int code)
 {
+    CHECK_PTR_OBJ(apiBridge)
     return RtcEngineBridge_ptr->getErrorDescription(code);
 }
 
 enum ERROR_CODE
 setEncryptionSecret(IRtcEngineBridge_ptr apiBridge, const char* secret)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setEncryptionSecret(secret));
 }
 
 enum ERROR_CODE
 setEncryptionMode(IRtcEngineBridge_ptr apiBridge, const char* encryptionMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setEncryptionMode(encryptionMode));
 }
 
@@ -901,30 +1018,35 @@ setEncryptionMode(IRtcEngineBridge_ptr apiBridge, const char* encryptionMode)
 enum ERROR_CODE
 createDataStream(IRtcEngineBridge_ptr apiBridge, int* streamId, BOOL reliable, BOOL ordered)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->createDataStream(streamId, reliable, ordered));
 }
 
 enum ERROR_CODE
 sendStreamMessage(IRtcEngineBridge_ptr apiBridge, int streamId, const char* data, long long length)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->sendStreamMessage(streamId, data, (size_t)length));
 }
 
 enum ERROR_CODE
 addPublishStreamUrl(IRtcEngineBridge_ptr apiBridge, const char* url, BOOL transcodingEnabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->addPublishStreamUrl(url, transcodingEnabled));
 }
 
 enum ERROR_CODE
 removePublishStreamUrl(IRtcEngineBridge_ptr apiBridge, const char* url)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->removePublishStreamUrl(url));
 }
 
 enum ERROR_CODE
 setLiveTranscoding(IRtcEngineBridge_ptr apiBridge, const struct LiveTranscoding* transcoding)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::LiveTranscoding liveTranscoding;
     liveTranscoding.width = transcoding->width;
     liveTranscoding.height = transcoding->height;
@@ -999,6 +1121,7 @@ setLiveTranscoding(IRtcEngineBridge_ptr apiBridge, const struct LiveTranscoding*
 enum ERROR_CODE
 addVideoWatermark(IRtcEngineBridge_ptr apiBridge, const struct RtcImage watermark)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::RtcImage rtcImage;
     rtcImage.height = watermark.height;
     rtcImage.width = watermark.width;
@@ -1011,6 +1134,7 @@ addVideoWatermark(IRtcEngineBridge_ptr apiBridge, const struct RtcImage watermar
 enum ERROR_CODE
 addVideoWatermark2(IRtcEngineBridge_ptr apiBridge, const char* watermarkUrl, const struct WatermarkOptions options)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::WatermarkOptions watermarkOptions;
 
     agora::rtc::Rectangle positionInLandscapeMode;
@@ -1034,12 +1158,14 @@ addVideoWatermark2(IRtcEngineBridge_ptr apiBridge, const char* watermarkUrl, con
 enum ERROR_CODE
 clearVideoWatermarks(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->clearVideoWatermarks());
 }
 
 enum ERROR_CODE
 setBeautyEffectOptions(IRtcEngineBridge_ptr apiBridge, BOOL enabled, struct BeautyOptions options)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::BeautyOptions beautyOptions;
     beautyOptions.lighteningContrastLevel = agora::rtc::BeautyOptions::LIGHTENING_CONTRAST_LEVEL(options.lighteningContrastLevel);
     beautyOptions.lighteningLevel = options.lighteningLevel;
@@ -1051,6 +1177,7 @@ setBeautyEffectOptions(IRtcEngineBridge_ptr apiBridge, BOOL enabled, struct Beau
 enum ERROR_CODE
 addInjectStreamUrl(IRtcEngineBridge_ptr apiBridge, const char* url, struct InjectStreamConfig config)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::InjectStreamConfig injectStreamConfig;
     injectStreamConfig.width = config.width;
     injectStreamConfig.height = config.height;
@@ -1066,6 +1193,7 @@ addInjectStreamUrl(IRtcEngineBridge_ptr apiBridge, const char* url, struct Injec
 enum ERROR_CODE
 startChannelMediaRelay(IRtcEngineBridge_ptr apiBridge, struct ChannelMediaRelayConfiguration configuration)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::ChannelMediaRelayConfiguration channelMediaRelayConfiguration;
     agora::rtc::ChannelMediaInfo srcMediaInfo;
     agora::rtc::ChannelMediaInfo* destMediaInfo = new agora::rtc::ChannelMediaInfo[configuration.destCount];
@@ -1091,6 +1219,7 @@ startChannelMediaRelay(IRtcEngineBridge_ptr apiBridge, struct ChannelMediaRelayC
 enum ERROR_CODE
 updateChannelMediaRelay(IRtcEngineBridge_ptr apiBridge, struct ChannelMediaRelayConfiguration configuration)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::ChannelMediaRelayConfiguration channelMediaRelayConfiguration;
     agora::rtc::ChannelMediaInfo srcMediaInfo;
     agora::rtc::ChannelMediaInfo* destMediaInfo = NULL;
@@ -1121,12 +1250,14 @@ updateChannelMediaRelay(IRtcEngineBridge_ptr apiBridge, struct ChannelMediaRelay
 enum ERROR_CODE
 stopChannelMediaRelay(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopChannelMediaRelay());
 }
 
 enum ERROR_CODE
 removeInjectStreamUrl(IRtcEngineBridge_ptr apiBridge, const char* url)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->removeInjectStreamUrl(url));
 }
 
@@ -1139,114 +1270,133 @@ getConnectionState(IRtcEngineBridge_ptr apiBridge)
 enum ERROR_CODE
 setParameters(IRtcEngineBridge_ptr apiBridge, const char* parameters)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setParameters(parameters));
 }
 
 enum ERROR_CODE
 setPlaybackDeviceVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setPlaybackDeviceVolume(volume));
 }
 
 enum ERROR_CODE
 startAudioMixing(IRtcEngineBridge_ptr apiBridge, const char* filePath, BOOL loopback, BOOL replace, int cycle)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->startAudioMixing(filePath, loopback, replace, cycle));
 }
 
 enum ERROR_CODE
 stopAudioMixing(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopAudioMixing());
 }
 
 enum ERROR_CODE
 pauseAudioMixing(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->pauseAudioMixing());
 }
 
 enum ERROR_CODE
 resumeAudioMixing(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->resumeAudioMixing());
 }
 
 enum ERROR_CODE
 setHighQualityAudioParameters(IRtcEngineBridge_ptr apiBridge, BOOL fullband, BOOL stereo, BOOL fullBitrate)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setHighQualityAudioParameters(fullband, stereo, fullBitrate));
 }
 
 enum ERROR_CODE
 adjustAudioMixingVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->adjustAudioMixingVolume(volume));
 }
 
 enum ERROR_CODE
 adjustAudioMixingPlayoutVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->adjustAudioMixingPlayoutVolume(volume));
 }
 
 enum ERROR_CODE
 getAudioMixingPlayoutVolume(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->getAudioMixingPlayoutVolume());
 }
 
 enum ERROR_CODE
 adjustAudioMixingPublishVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->adjustAudioMixingPublishVolume(volume));
 }
 
 enum ERROR_CODE
 getAudioMixingPublishVolume(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->getAudioMixingPublishVolume());
 }
 
 enum ERROR_CODE
 getAudioMixingDuration(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->getAudioMixingDuration());
 }
 
 enum ERROR_CODE
 getAudioMixingCurrentPosition(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->getAudioMixingCurrentPosition());
 }
 
 enum ERROR_CODE
 setAudioMixingPosition(IRtcEngineBridge_ptr apiBridge, int pos /*in ms*/)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setAudioMixingPosition(pos));
 }
 
 enum ERROR_CODE
 setAudioMixingPitch(IRtcEngineBridge_ptr apiBridge, int pitch)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setAudioMixingPitch(pitch));
 }
 
-extern int
+enum ERROR_CODE
 getEffectsVolume(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->getEffectsVolume());
 }
 
 enum ERROR_CODE
 setEffectsVolume(IRtcEngineBridge_ptr apiBridge, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setEffectsVolume(volume));
 }
 
 enum ERROR_CODE
 setVolumeOfEffect(IRtcEngineBridge_ptr apiBridge, int soundId, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setVolumeOfEffect(soundId, volume));
 }
 
@@ -1259,102 +1409,119 @@ playEffect(IRtcEngineBridge_ptr apiBridge, int soundId,
     int gain,
     BOOL publish)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->playEffect(soundId, filePath, loopCount, pitch, pan, gain, publish));
 }
 
 enum ERROR_CODE
 stopEffect(IRtcEngineBridge_ptr apiBridge, int soundId)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopEffect(soundId));
 }
 
 enum ERROR_CODE
 stopAllEffects(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->stopAllEffects());
 }
 
 enum ERROR_CODE
 preloadEffect(IRtcEngineBridge_ptr apiBridge, int soundId, const char* filePath)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->preloadEffect(soundId, filePath));
 }
 
 enum ERROR_CODE
 unloadEffect(IRtcEngineBridge_ptr apiBridge, int soundId)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->unloadEffect(soundId));
 }
 
 enum ERROR_CODE
 pauseEffect(IRtcEngineBridge_ptr apiBridge, int soundId)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->pauseEffect(soundId));
 }
 
 enum ERROR_CODE
 pauseAllEffects(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->pauseAllEffects());
 }
 
 enum ERROR_CODE
 resumeEffect(IRtcEngineBridge_ptr apiBridge, int soundId)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->resumeEffect(soundId));
 }
 
 enum ERROR_CODE
 resumeAllEffects(IRtcEngineBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->resumeAllEffects());
 }
 
 enum ERROR_CODE
 enableSoundPositionIndication(IRtcEngineBridge_ptr apiBridge, BOOL enabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->enableSoundPositionIndication(enabled));
 }
 
 enum ERROR_CODE
 setLocalVoicePitch(IRtcEngineBridge_ptr apiBridge, double pitch)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalVoicePitch(pitch));
 }
 
 enum ERROR_CODE
 setLocalVoiceEqualization(IRtcEngineBridge_ptr apiBridge, enum AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalVoiceEqualization(agora::rtc::AUDIO_EQUALIZATION_BAND_FREQUENCY(bandFrequency), bandGain));
 }
 
 enum ERROR_CODE
 setLocalVoiceReverb(IRtcEngineBridge_ptr apiBridge, enum AUDIO_REVERB_TYPE reverbKey, int value)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalVoiceReverb(agora::rtc::AUDIO_REVERB_TYPE(reverbKey), value));
 }
 
 enum ERROR_CODE
 setLocalVoiceChanger(IRtcEngineBridge_ptr apiBridge, enum VOICE_CHANGER_PRESET voiceChanger)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalVoiceChanger(agora::rtc::VOICE_CHANGER_PRESET(voiceChanger)));
 }
 
 enum ERROR_CODE
 setLocalVoiceReverbPreset(IRtcEngineBridge_ptr apiBridge, enum AUDIO_REVERB_PRESET reverbPreset)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setLocalVoiceReverbPreset(agora::rtc::AUDIO_REVERB_PRESET(reverbPreset)));
 }
 
 enum ERROR_CODE
 setExternalAudioSource(IRtcEngineBridge_ptr apiBridge, BOOL enabled, int sampleRate, int channels)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setExternalAudioSource(enabled, sampleRate, channels));
 }
 
 enum ERROR_CODE
 setExternalAudioSink(IRtcEngineBridge_ptr apiBridge, BOOL enabled, int sampleRate, int channels)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setExternalAudioSink(enabled, sampleRate, channels));
 }
 
@@ -1364,6 +1531,7 @@ setRecordingAudioFrameParameters(IRtcEngineBridge_ptr apiBridge, int sampleRate,
     enum RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setRecordingAudioFrameParameters(sampleRate, channel, agora::rtc::RAW_AUDIO_FRAME_OP_MODE_TYPE(mode), samplesPerCall));
 }
 
@@ -1373,12 +1541,14 @@ setPlaybackAudioFrameParameters(IRtcEngineBridge_ptr apiBridge, int sampleRate,
     enum RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setPlaybackAudioFrameParameters(sampleRate, channel, agora::rtc::RAW_AUDIO_FRAME_OP_MODE_TYPE(mode), samplesPerCall));
 }
 
 enum ERROR_CODE
 setMixedAudioFrameParameters(IRtcEngineBridge_ptr apiBridge, int sampleRate, int samplesPerCall)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setMixedAudioFrameParameters(sampleRate, samplesPerCall));
 }
 
@@ -1396,6 +1566,7 @@ pushAudioFrame(IRtcEngineBridge_ptr apiBridge, enum MEDIA_SOURCE_TYPE type,
     struct AudioFrame* frame,
     BOOL wrap)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::media::IAudioFrameObserver::AudioFrame audioFrame;
     audioFrame.type = agora::media::IAudioFrameObserver::AUDIO_FRAME_TYPE(frame->type);
     audioFrame.samples = frame->samples;
@@ -1411,6 +1582,7 @@ pushAudioFrame(IRtcEngineBridge_ptr apiBridge, enum MEDIA_SOURCE_TYPE type,
 enum ERROR_CODE
 pushAudioFrame2(IRtcEngineBridge_ptr apiBridge, struct AudioFrame* frame)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::media::IAudioFrameObserver::AudioFrame audioFrame;
     audioFrame.type = agora::media::IAudioFrameObserver::AUDIO_FRAME_TYPE(frame->type);
     audioFrame.samples = frame->samples;
@@ -1426,6 +1598,7 @@ pushAudioFrame2(IRtcEngineBridge_ptr apiBridge, struct AudioFrame* frame)
 enum ERROR_CODE
 pullAudioFrame(IRtcEngineBridge_ptr apiBridge, struct AudioFrame* frame)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::media::IAudioFrameObserver::AudioFrame audioFrame;
     audioFrame.type = agora::media::IAudioFrameObserver::AUDIO_FRAME_TYPE(frame->type);
     audioFrame.samples = frame->samples;
@@ -1450,12 +1623,14 @@ pullAudioFrame(IRtcEngineBridge_ptr apiBridge, struct AudioFrame* frame)
 enum ERROR_CODE
 setExternalVideoSource(IRtcEngineBridge_ptr apiBridge, BOOL enable, BOOL useTexture)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->setExternalVideoSource(enable, useTexture));
 }
 
 enum ERROR_CODE
 pushVideoFrame(IRtcEngineBridge_ptr apiBridge, struct ExternalVideoFrame* frame)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::media::ExternalVideoFrame externalVideoFrame;
     externalVideoFrame.type = agora::media::ExternalVideoFrame::VIDEO_BUFFER_TYPE(frame->type);
     externalVideoFrame.format = agora::media::ExternalVideoFrame::VIDEO_PIXEL_FORMAT(frame->format);
@@ -1473,7 +1648,7 @@ pushVideoFrame(IRtcEngineBridge_ptr apiBridge, struct ExternalVideoFrame* frame)
 
 enum ERROR_CODE enableEncryption(IRtcEngineBridge_ptr apiBridge, BOOL enabled, const EncryptionConfig config)
 {
-
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::EncryptionConfig _config;
     _config.encryptionMode = agora::rtc::ENCRYPTION_MODE(config.encryptionMode);
     _config.encryptionKey = config.encryptionKey;
@@ -1482,11 +1657,13 @@ enum ERROR_CODE enableEncryption(IRtcEngineBridge_ptr apiBridge, BOOL enabled, c
 
 enum ERROR_CODE sendCustomReportMessage(IRtcEngineBridge_ptr apiBridge, const char* id, const char* category, const char* event, const char* label, int value)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcEngineBridge_ptr->sendCustomReportMessage(id, category, event, label, value));
 }
 
 void channel_add_C_ChannelEventHandler(IRtcChannelBridge_ptr apiBridge, struct ChannelEventHandler* channelEventHandler)
 {
+    CHECK_PTR_VOID(apiBridge)
     agora::common::CChannelEngineEventHandler channelEngineEventHandler;
     channelEngineEventHandler.onWarning = channelEventHandler->onWarning;
     channelEngineEventHandler.onError = channelEventHandler->onError;
@@ -1517,11 +1694,13 @@ void channel_add_C_ChannelEventHandler(IRtcChannelBridge_ptr apiBridge, struct C
     channelEngineEventHandler.onRemoteSubscribeFallbackToAudioOnly = channelEventHandler->onRemoteSubscribeFallbackToAudioOnly;
     channelEngineEventHandler.onConnectionStateChanged = channelEventHandler->onConnectionStateChanged;
     channelEngineEventHandler.onLocalPublishFallbackToAudioOnly = channelEventHandler->onLocalPublishFallbackToAudioOnly;
+    channelEngineEventHandler.onTestEnd = channelEventHandler->onTestEnd;
     RtcChannelBridge_ptr->add_C_ChannelEventHandler(&channelEngineEventHandler);
 }
 
 void channel_remove_C_ChannelEventHandler(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_VOID(apiBridge)
     RtcChannelBridge_ptr->remove_C_ChannelEventHandler();
 }
 
@@ -1531,6 +1710,7 @@ channel_joinChannel(IRtcChannelBridge_ptr apiBridge, const char* token,
     uid_t uid,
     const struct ChannelMediaOptions options)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::ChannelMediaOptions mediaOptions;
     mediaOptions.autoSubscribeAudio = options.autoSubscribeAudio;
     mediaOptions.autoSubscribeVideo = options.autoSubscribeVideo;
@@ -1542,6 +1722,7 @@ channel_joinChannelWithUserAccount(IRtcChannelBridge_ptr apiBridge, const char* 
     const char* userAccount,
     const struct ChannelMediaOptions options)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::ChannelMediaOptions mediaOptions;
     mediaOptions.autoSubscribeAudio = options.autoSubscribeAudio;
     mediaOptions.autoSubscribeVideo = options.autoSubscribeVideo;
@@ -1551,30 +1732,35 @@ channel_joinChannelWithUserAccount(IRtcChannelBridge_ptr apiBridge, const char* 
 enum ERROR_CODE
 channel_leaveChannel(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->leaveChannel());
 }
 
 enum ERROR_CODE
 channel_publish(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->publish());
 }
 
 enum ERROR_CODE
 channel_unpublish(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->unpublish());
 }
 
 const char*
 channel_channelId(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_OBJ(apiBridge)
     return RtcChannelBridge_ptr->channelId();
 }
 
 const char*
 channel_getCallId(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_OBJ(apiBridge)
     agora::util::AString sCallId;
     RtcEngineBridge_ptr->getCallId(sCallId);
     return sCallId->data();
@@ -1583,18 +1769,21 @@ channel_getCallId(IRtcChannelBridge_ptr apiBridge)
 enum ERROR_CODE
 channel_renewToken(IRtcChannelBridge_ptr apiBridge, const char* token)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->renewToken(token));
 }
 
 enum ERROR_CODE
 channel_setEncryptionSecret(IRtcChannelBridge_ptr apiBridge, const char* secret)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setEncryptionSecret(secret));
 }
 
 enum ERROR_CODE
 channel_setEncryptionMode(IRtcChannelBridge_ptr apiBridge, const char* encryptionMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setEncryptionMode(encryptionMode));
 }
 
@@ -1604,6 +1793,7 @@ channel_setEncryptionMode(IRtcChannelBridge_ptr apiBridge, const char* encryptio
 enum ERROR_CODE
 channel_setClientRole(IRtcChannelBridge_ptr apiBridge, enum CLIENT_ROLE_TYPE role)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setClientRole(agora::rtc::CLIENT_ROLE_TYPE(role)));
 }
 
@@ -1611,12 +1801,14 @@ enum ERROR_CODE
 channel_setRemoteUserPriority(IRtcChannelBridge_ptr apiBridge, uid_t uid,
     enum PRIORITY_TYPE userPriority)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setRemoteUserPriority(uid, agora::rtc::PRIORITY_TYPE(userPriority)));
 }
 
 enum ERROR_CODE
 channel_setRemoteVoicePosition(IRtcChannelBridge_ptr apiBridge, uid_t uid, double pan, double gain)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setRemoteVoicePosition(uid, pan, gain));
 }
 
@@ -1625,48 +1817,56 @@ channel_setRemoteRenderMode(IRtcChannelBridge_ptr apiBridge, uid_t userId,
     enum RENDER_MODE_TYPE renderMode,
     enum VIDEO_MIRROR_MODE_TYPE mirrorMode)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setRemoteRenderMode(userId, agora::rtc::RENDER_MODE_TYPE(renderMode), agora::rtc::VIDEO_MIRROR_MODE_TYPE(mirrorMode)));
 }
 
 enum ERROR_CODE
 channel_setDefaultMuteAllRemoteAudioStreams(IRtcChannelBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setDefaultMuteAllRemoteAudioStreams(mute));
 }
 
 enum ERROR_CODE
 channel_setDefaultMuteAllRemoteVideoStreams(IRtcChannelBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setDefaultMuteAllRemoteVideoStreams(mute));
 }
 
 enum ERROR_CODE
 channel_muteAllRemoteAudioStreams(IRtcChannelBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->muteAllRemoteAudioStreams(mute));
 }
 
 enum ERROR_CODE
 channel_adjustUserPlaybackSignalVolume(IRtcChannelBridge_ptr apiBridge, uid_t userId, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->adjustUserPlaybackSignalVolume(userId, volume));
 }
 
 enum ERROR_CODE
 channel_muteRemoteAudioStream(IRtcChannelBridge_ptr apiBridge, uid_t userId, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->muteRemoteAudioStream(userId, mute));
 }
 
 enum ERROR_CODE
 channel_muteAllRemoteVideoStreams(IRtcChannelBridge_ptr apiBridge, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->muteAllRemoteVideoStreams(mute));
 }
 
 enum ERROR_CODE
 channel_muteRemoteVideoStream(IRtcChannelBridge_ptr apiBridge, uid_t userId, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->muteRemoteVideoStream(userId, mute));
 }
 
@@ -1674,30 +1874,35 @@ enum ERROR_CODE
 channel_setRemoteVideoStreamType(IRtcChannelBridge_ptr apiBridge, uid_t userId,
     enum REMOTE_VIDEO_STREAM_TYPE streamType)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setRemoteVideoStreamType(userId, agora::rtc::REMOTE_VIDEO_STREAM_TYPE(streamType)));
 }
 
 enum ERROR_CODE
 channel_setRemoteDefaultVideoStreamType(IRtcChannelBridge_ptr apiBridge, enum REMOTE_VIDEO_STREAM_TYPE streamType)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->setRemoteDefaultVideoStreamType(agora::rtc::REMOTE_VIDEO_STREAM_TYPE(streamType)));
 }
 
 enum ERROR_CODE
 channel_addPublishStreamUrl(IRtcChannelBridge_ptr apiBridge, const char* url, BOOL transcodingEnabled)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->addPublishStreamUrl(url, transcodingEnabled));
 }
 
 enum ERROR_CODE
 channel_removePublishStreamUrl(IRtcChannelBridge_ptr apiBridge, const char* url)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->removePublishStreamUrl(url));
 }
 
 enum ERROR_CODE
 channel_setLiveTranscoding(IRtcChannelBridge_ptr apiBridge, const struct LiveTranscoding* transcoding)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::LiveTranscoding liveTranscoding;
     liveTranscoding.width = transcoding->width;
     liveTranscoding.height = transcoding->height;
@@ -1772,6 +1977,7 @@ channel_setLiveTranscoding(IRtcChannelBridge_ptr apiBridge, const struct LiveTra
 enum ERROR_CODE
 channel_addInjectStreamUrl(IRtcChannelBridge_ptr apiBridge, const char* url, const struct InjectStreamConfig config)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::InjectStreamConfig injectStreamConfig;
     injectStreamConfig.width = config.width;
     injectStreamConfig.height = config.height;
@@ -1787,12 +1993,14 @@ channel_addInjectStreamUrl(IRtcChannelBridge_ptr apiBridge, const char* url, con
 enum ERROR_CODE
 channel_removeInjectStreamUrl(IRtcChannelBridge_ptr apiBridge, const char* url)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->removeInjectStreamUrl(url));
 }
 
 enum ERROR_CODE
 channel_startChannelMediaRelay(IRtcChannelBridge_ptr apiBridge, struct ChannelMediaRelayConfiguration configuration)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::ChannelMediaRelayConfiguration channelMediaRelayConfiguration;
     agora::rtc::ChannelMediaInfo srcMediaInfo;
     agora::rtc::ChannelMediaInfo* destMediaInfo = new agora::rtc::ChannelMediaInfo[configuration.destCount];
@@ -1817,6 +2025,7 @@ channel_startChannelMediaRelay(IRtcChannelBridge_ptr apiBridge, struct ChannelMe
 enum ERROR_CODE
 channel_updateChannelMediaRelay(IRtcChannelBridge_ptr apiBridge, struct ChannelMediaRelayConfiguration configuration)
 {
+    CHECK_PTR_INT(apiBridge)
     agora::rtc::ChannelMediaRelayConfiguration channelMediaRelayConfiguration;
     agora::rtc::ChannelMediaInfo srcMediaInfo;
     agora::rtc::ChannelMediaInfo* destMediaInfo = NULL;
@@ -1847,18 +2056,21 @@ channel_updateChannelMediaRelay(IRtcChannelBridge_ptr apiBridge, struct ChannelM
 enum ERROR_CODE
 channel_stopChannelMediaRelay(IRtcChannelBridge_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->stopChannelMediaRelay());
 }
 
 enum ERROR_CODE
 channel_createDataStream(IRtcChannelBridge_ptr apiBridge, int* streamId, BOOL reliable, BOOL ordered)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->createDataStream(streamId, reliable, ordered));
 }
 
 enum ERROR_CODE
 channel_sendStreamMessage(IRtcChannelBridge_ptr apiBridge, int streamId, const char* data, long long length)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(RtcChannelBridge_ptr->sendStreamMessage(streamId, data, length));
 }
 
@@ -1870,6 +2082,7 @@ channel_getConnectionState(IRtcChannelBridge_ptr apiBridge)
 
 int audio_device_getCount(void* apiBridge, enum DEVICE_TYPE type)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return AudioPlaybackDeviceManagerBridge_ptr->getCount();
@@ -1885,6 +2098,7 @@ int audio_device_getCount(void* apiBridge, enum DEVICE_TYPE type)
 enum ERROR_CODE
 audio_device_getDevice(void* apiBridge, enum DEVICE_TYPE type, int index, char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH])
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->getDevice(index, deviceName, deviceId));
@@ -1900,6 +2114,7 @@ audio_device_getDevice(void* apiBridge, enum DEVICE_TYPE type, int index, char d
 enum ERROR_CODE
 audio_device_getCurrentDevice(void* apiBridge, enum DEVICE_TYPE type, char deviceId[MAX_DEVICE_ID_LENGTH])
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->getCurrentDevice(deviceId));
@@ -1915,6 +2130,7 @@ audio_device_getCurrentDevice(void* apiBridge, enum DEVICE_TYPE type, char devic
 enum ERROR_CODE
 audio_device_getCurrentDeviceInfo(void* apiBridge, enum DEVICE_TYPE type, char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH])
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->getCurrentDeviceInfo(deviceId, deviceName));
@@ -1930,6 +2146,7 @@ audio_device_getCurrentDeviceInfo(void* apiBridge, enum DEVICE_TYPE type, char d
 enum ERROR_CODE
 audio_device_setDevice(void* apiBridge, enum DEVICE_TYPE type, const char deviceId[MAX_DEVICE_ID_LENGTH])
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->setDevice(deviceId));
@@ -1945,6 +2162,7 @@ audio_device_setDevice(void* apiBridge, enum DEVICE_TYPE type, const char device
 enum ERROR_CODE
 audio_device_setDeviceVolume(void* apiBridge, enum DEVICE_TYPE type, int volume)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->setDeviceVolume(volume));
@@ -1960,6 +2178,7 @@ audio_device_setDeviceVolume(void* apiBridge, enum DEVICE_TYPE type, int volume)
 enum ERROR_CODE
 audio_device_getDeviceVolume(void* apiBridge, enum DEVICE_TYPE type, int* volume)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->getDeviceVolume(volume));
@@ -1975,6 +2194,7 @@ audio_device_getDeviceVolume(void* apiBridge, enum DEVICE_TYPE type, int* volume
 enum ERROR_CODE
 audio_device_setDeviceMute(void* apiBridge, enum DEVICE_TYPE type, BOOL mute)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->setDeviceMute(mute));
@@ -1990,6 +2210,7 @@ audio_device_setDeviceMute(void* apiBridge, enum DEVICE_TYPE type, BOOL mute)
 enum ERROR_CODE
 audio_device_getDeviceMute(void* apiBridge, enum DEVICE_TYPE type, BOOL* mute)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE: {
         bool mutes;
@@ -2014,6 +2235,7 @@ audio_device_getDeviceMute(void* apiBridge, enum DEVICE_TYPE type, BOOL* mute)
 enum ERROR_CODE
 audio_device_startDeviceTest(void* apiBridge, enum DEVICE_TYPE type, const char* testAudioFilePath)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->startDeviceTest(testAudioFilePath));
@@ -2029,6 +2251,7 @@ audio_device_startDeviceTest(void* apiBridge, enum DEVICE_TYPE type, const char*
 enum ERROR_CODE
 audio_device_stopDeviceTest(void* apiBridge, enum DEVICE_TYPE type)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->stopDeviceTest());
@@ -2044,6 +2267,7 @@ audio_device_stopDeviceTest(void* apiBridge, enum DEVICE_TYPE type)
 enum ERROR_CODE
 audio_device_startAudioDeviceLoopbackTest(void* apiBridge, enum DEVICE_TYPE type, int indicationInterval)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->startAudioDeviceLoopbackTest(indicationInterval));
@@ -2059,6 +2283,7 @@ audio_device_startAudioDeviceLoopbackTest(void* apiBridge, enum DEVICE_TYPE type
 enum ERROR_CODE
 audio_device_stopAudioDeviceLoopbackTest(void* apiBridge, enum DEVICE_TYPE type)
 {
+    CHECK_PTR_INT(apiBridge)
     switch (type) {
     case DEVICE_TYPE::PLAYBACK_DEVICE:
         return ERROR_CODE(AudioPlaybackDeviceManagerBridge_ptr->stopAudioDeviceLoopbackTest());
@@ -2074,30 +2299,35 @@ audio_device_stopAudioDeviceLoopbackTest(void* apiBridge, enum DEVICE_TYPE type)
 enum ERROR_CODE
 startDeviceTest(IVideoDeviceManager_ptr apiBridge, view_t hwnd)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(VideoDeviceManagerBridge_ptr->startDeviceTest(hwnd));
 }
 
 enum ERROR_CODE
 stopDeviceTest(IVideoDeviceManager_ptr apiBridge)
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(VideoDeviceManagerBridge_ptr->stopDeviceTest());
 }
 
 enum ERROR_CODE
 setDevice(IVideoDeviceManager_ptr apiBridge, const char deviceId[MAX_DEVICE_ID_LENGTH])
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(VideoDeviceManagerBridge_ptr->setDevice(deviceId));
 }
 
 enum ERROR_CODE
 getDevice(IVideoDeviceManager_ptr apiBridge, int index, char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH])
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(VideoDeviceManagerBridge_ptr->getDevice(index, deviceName, deviceId));
 }
 
 enum ERROR_CODE
 getCurrentDevice(IVideoDeviceManager_ptr apiBridge, char deviceId[MAX_DEVICE_ID_LENGTH])
 {
+    CHECK_PTR_INT(apiBridge)
     return ERROR_CODE(VideoDeviceManagerBridge_ptr->getCurrentDevice(deviceId));
 }
 

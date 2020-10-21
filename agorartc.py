@@ -7021,6 +7021,38 @@ def createVideoCanvas(ptr):
 
 def createRtcEngineBridge():
     return _agorartc.createRtcEngineBridge()
+class VideoFrameObserver(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _agorartc.delete_VideoFrameObserver
+
+    def onCaptureVideoFrame(self, width, height, ybuffer, ubuffer, vbuffer):
+        return _agorartc.VideoFrameObserver_onCaptureVideoFrame(self, width, height, ybuffer, ubuffer, vbuffer)
+
+    def onRenderVideoFrame(self, uid, width, height, ybuffer, ubuffer, vbuffer):
+        return _agorartc.VideoFrameObserver_onRenderVideoFrame(self, uid, width, height, ybuffer, ubuffer, vbuffer)
+    privateData = property(_agorartc.VideoFrameObserver_privateData_get, _agorartc.VideoFrameObserver_privateData_set)
+
+    def __init__(self):
+        if self.__class__ == VideoFrameObserver:
+            _self = None
+        else:
+            _self = self
+        _agorartc.VideoFrameObserver_swiginit(self, _agorartc.new_VideoFrameObserver(_self, ))
+    def __disown__(self):
+        self.this.disown()
+        _agorartc.disown_VideoFrameObserver(self)
+        return weakref.proxy(self)
+
+# Register VideoFrameObserver in _agorartc:
+_agorartc.VideoFrameObserver_swigregister(VideoFrameObserver)
+
+
+def registerVideoFrameObserver(rtc, frameObserver):
+    return _agorartc.registerVideoFrameObserver(rtc, frameObserver)
+
+def unregisterVideoFrameObserver(rtc, frameObserver):
+    return _agorartc.unregisterVideoFrameObserver(rtc, frameObserver)
 class APICaseHandler(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr

@@ -59,6 +59,7 @@ namespace common {
         cChannelEngineEvent->onRemoteSubscribeFallbackToAudioOnly = channelEngineEvent->onRemoteSubscribeFallbackToAudioOnly;
         cChannelEngineEvent->onConnectionStateChanged = channelEngineEvent->onConnectionStateChanged;
         cChannelEngineEvent->onLocalPublishFallbackToAudioOnly = channelEngineEvent->onLocalPublishFallbackToAudioOnly;
+        cChannelEngineEvent->onTestEnd = channelEngineEvent->onTestEnd;
     }
 
     void RtcChannelEventHandler::onChannelWarning(IChannel* rtcChannel, int warn,
@@ -478,6 +479,9 @@ namespace common {
 
     void RtcChannelEventHandler::onTestEnd(IChannel* rtcChannel)
     {
+        if (cChannelEngineEvent && cChannelEngineEvent->onTestEnd)
+            cChannelEngineEvent->onTestEnd(rtcChannel->channelId());
+
         if (!mEventHandler)
             return;
 

@@ -3095,64 +3095,65 @@ namespace Swig {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_agora__common__APICaseHandler swig_types[0]
-#define SWIGTYPE_p_agora__common__AudioPlaybackDeviceManager swig_types[1]
-#define SWIGTYPE_p_agora__common__AudioRecordingDeviceManager swig_types[2]
-#define SWIGTYPE_p_agora__common__RtcChannelBridge swig_types[3]
-#define SWIGTYPE_p_agora__common__RtcChannelEventHandlerBase swig_types[4]
-#define SWIGTYPE_p_agora__common__RtcEngineBridge swig_types[5]
-#define SWIGTYPE_p_agora__common__RtcEngineEventHandlerBase swig_types[6]
-#define SWIGTYPE_p_agora__common__VideoDeviceManager swig_types[7]
-#define SWIGTYPE_p_agora__rtc__AudioVolumeInfo swig_types[8]
-#define SWIGTYPE_p_agora__rtc__BeautyOptions swig_types[9]
-#define SWIGTYPE_p_agora__rtc__CameraCapturerConfiguration swig_types[10]
-#define SWIGTYPE_p_agora__rtc__ChannelMediaInfo swig_types[11]
-#define SWIGTYPE_p_agora__rtc__ChannelMediaOptions swig_types[12]
-#define SWIGTYPE_p_agora__rtc__ChannelMediaRelayConfiguration swig_types[13]
-#define SWIGTYPE_p_agora__rtc__IChannel swig_types[14]
-#define SWIGTYPE_p_agora__rtc__IChannelEventHandler swig_types[15]
-#define SWIGTYPE_p_agora__rtc__IMetadataObserver swig_types[16]
-#define SWIGTYPE_p_agora__rtc__IMetadataObserver__METADATA_TYPE swig_types[17]
-#define SWIGTYPE_p_agora__rtc__IMetadataObserver__Metadata swig_types[18]
-#define SWIGTYPE_p_agora__rtc__IPacketObserver swig_types[19]
-#define SWIGTYPE_p_agora__rtc__IRtcEngineEventHandler swig_types[20]
-#define SWIGTYPE_p_agora__rtc__InjectStreamConfig swig_types[21]
-#define SWIGTYPE_p_agora__rtc__LastmileProbeConfig swig_types[22]
-#define SWIGTYPE_p_agora__rtc__LastmileProbeOneWayResult swig_types[23]
-#define SWIGTYPE_p_agora__rtc__LastmileProbeResult swig_types[24]
-#define SWIGTYPE_p_agora__rtc__LiveStreamAdvancedFeature swig_types[25]
-#define SWIGTYPE_p_agora__rtc__LiveTranscoding swig_types[26]
-#define SWIGTYPE_p_agora__rtc__LocalAudioStats swig_types[27]
-#define SWIGTYPE_p_agora__rtc__LocalVideoStats swig_types[28]
-#define SWIGTYPE_p_agora__rtc__Rect swig_types[29]
-#define SWIGTYPE_p_agora__rtc__Rectangle swig_types[30]
-#define SWIGTYPE_p_agora__rtc__RemoteAudioStats swig_types[31]
-#define SWIGTYPE_p_agora__rtc__RemoteVideoStats swig_types[32]
-#define SWIGTYPE_p_agora__rtc__RtcImage swig_types[33]
-#define SWIGTYPE_p_agora__rtc__RtcStats swig_types[34]
-#define SWIGTYPE_p_agora__rtc__ScreenCaptureParameters swig_types[35]
-#define SWIGTYPE_p_agora__rtc__TranscodingUser swig_types[36]
-#define SWIGTYPE_p_agora__rtc__UserInfo swig_types[37]
-#define SWIGTYPE_p_agora__rtc__VideoCanvas swig_types[38]
-#define SWIGTYPE_p_agora__rtc__VideoDimensions swig_types[39]
-#define SWIGTYPE_p_agora__rtc__VideoEncoderConfiguration swig_types[40]
-#define SWIGTYPE_p_agora__rtc__WatermarkOptions swig_types[41]
-#define SWIGTYPE_p_agora__util__AutoPtrT_agora__util__IString_t swig_types[42]
-#define SWIGTYPE_p_agora__util__IString swig_types[43]
-#define SWIGTYPE_p_bool swig_types[44]
-#define SWIGTYPE_p_char swig_types[45]
-#define SWIGTYPE_p_int swig_types[46]
-#define SWIGTYPE_p_long_long swig_types[47]
-#define SWIGTYPE_p_p_void swig_types[48]
-#define SWIGTYPE_p_short swig_types[49]
-#define SWIGTYPE_p_signed_char swig_types[50]
-#define SWIGTYPE_p_unsigned_char swig_types[51]
-#define SWIGTYPE_p_unsigned_int swig_types[52]
-#define SWIGTYPE_p_unsigned_long_long swig_types[53]
-#define SWIGTYPE_p_unsigned_short swig_types[54]
-#define SWIGTYPE_p_void swig_types[55]
-static swig_type_info *swig_types[57];
-static swig_module_info swig_module = {swig_types, 56, 0, 0, 0, 0};
+#define SWIGTYPE_p_VideoFrameObserver swig_types[0]
+#define SWIGTYPE_p_agora__common__APICaseHandler swig_types[1]
+#define SWIGTYPE_p_agora__common__AudioPlaybackDeviceManager swig_types[2]
+#define SWIGTYPE_p_agora__common__AudioRecordingDeviceManager swig_types[3]
+#define SWIGTYPE_p_agora__common__RtcChannelBridge swig_types[4]
+#define SWIGTYPE_p_agora__common__RtcChannelEventHandlerBase swig_types[5]
+#define SWIGTYPE_p_agora__common__RtcEngineBridge swig_types[6]
+#define SWIGTYPE_p_agora__common__RtcEngineEventHandlerBase swig_types[7]
+#define SWIGTYPE_p_agora__common__VideoDeviceManager swig_types[8]
+#define SWIGTYPE_p_agora__rtc__AudioVolumeInfo swig_types[9]
+#define SWIGTYPE_p_agora__rtc__BeautyOptions swig_types[10]
+#define SWIGTYPE_p_agora__rtc__CameraCapturerConfiguration swig_types[11]
+#define SWIGTYPE_p_agora__rtc__ChannelMediaInfo swig_types[12]
+#define SWIGTYPE_p_agora__rtc__ChannelMediaOptions swig_types[13]
+#define SWIGTYPE_p_agora__rtc__ChannelMediaRelayConfiguration swig_types[14]
+#define SWIGTYPE_p_agora__rtc__IChannel swig_types[15]
+#define SWIGTYPE_p_agora__rtc__IChannelEventHandler swig_types[16]
+#define SWIGTYPE_p_agora__rtc__IMetadataObserver swig_types[17]
+#define SWIGTYPE_p_agora__rtc__IMetadataObserver__METADATA_TYPE swig_types[18]
+#define SWIGTYPE_p_agora__rtc__IMetadataObserver__Metadata swig_types[19]
+#define SWIGTYPE_p_agora__rtc__IPacketObserver swig_types[20]
+#define SWIGTYPE_p_agora__rtc__IRtcEngineEventHandler swig_types[21]
+#define SWIGTYPE_p_agora__rtc__InjectStreamConfig swig_types[22]
+#define SWIGTYPE_p_agora__rtc__LastmileProbeConfig swig_types[23]
+#define SWIGTYPE_p_agora__rtc__LastmileProbeOneWayResult swig_types[24]
+#define SWIGTYPE_p_agora__rtc__LastmileProbeResult swig_types[25]
+#define SWIGTYPE_p_agora__rtc__LiveStreamAdvancedFeature swig_types[26]
+#define SWIGTYPE_p_agora__rtc__LiveTranscoding swig_types[27]
+#define SWIGTYPE_p_agora__rtc__LocalAudioStats swig_types[28]
+#define SWIGTYPE_p_agora__rtc__LocalVideoStats swig_types[29]
+#define SWIGTYPE_p_agora__rtc__Rect swig_types[30]
+#define SWIGTYPE_p_agora__rtc__Rectangle swig_types[31]
+#define SWIGTYPE_p_agora__rtc__RemoteAudioStats swig_types[32]
+#define SWIGTYPE_p_agora__rtc__RemoteVideoStats swig_types[33]
+#define SWIGTYPE_p_agora__rtc__RtcImage swig_types[34]
+#define SWIGTYPE_p_agora__rtc__RtcStats swig_types[35]
+#define SWIGTYPE_p_agora__rtc__ScreenCaptureParameters swig_types[36]
+#define SWIGTYPE_p_agora__rtc__TranscodingUser swig_types[37]
+#define SWIGTYPE_p_agora__rtc__UserInfo swig_types[38]
+#define SWIGTYPE_p_agora__rtc__VideoCanvas swig_types[39]
+#define SWIGTYPE_p_agora__rtc__VideoDimensions swig_types[40]
+#define SWIGTYPE_p_agora__rtc__VideoEncoderConfiguration swig_types[41]
+#define SWIGTYPE_p_agora__rtc__WatermarkOptions swig_types[42]
+#define SWIGTYPE_p_agora__util__AutoPtrT_agora__util__IString_t swig_types[43]
+#define SWIGTYPE_p_agora__util__IString swig_types[44]
+#define SWIGTYPE_p_bool swig_types[45]
+#define SWIGTYPE_p_char swig_types[46]
+#define SWIGTYPE_p_int swig_types[47]
+#define SWIGTYPE_p_long_long swig_types[48]
+#define SWIGTYPE_p_p_void swig_types[49]
+#define SWIGTYPE_p_short swig_types[50]
+#define SWIGTYPE_p_signed_char swig_types[51]
+#define SWIGTYPE_p_unsigned_char swig_types[52]
+#define SWIGTYPE_p_unsigned_int swig_types[53]
+#define SWIGTYPE_p_unsigned_long_long swig_types[54]
+#define SWIGTYPE_p_unsigned_short swig_types[55]
+#define SWIGTYPE_p_void swig_types[56]
+static swig_type_info *swig_types[58];
+static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -7103,6 +7104,90 @@ void SwigDirector_RtcChannelEventHandlerBase::onTestEnd(agora::rtc::IChannel *rt
       PyObject *error = PyErr_Occurred();
       if (error) {
         Swig::DirectorMethodException::raise("Error detected when calling 'RtcChannelEventHandlerBase.onTestEnd'");
+      }
+    }
+  }
+  SWIG_PYTHON_THREAD_END_BLOCK;
+}
+
+
+SwigDirector_VideoFrameObserver::SwigDirector_VideoFrameObserver(PyObject *self): VideoFrameObserver(), Swig::Director(self) {
+  SWIG_DIRECTOR_RGTR((VideoFrameObserver *)this, this); 
+}
+
+
+
+
+SwigDirector_VideoFrameObserver::~SwigDirector_VideoFrameObserver() {
+}
+
+void SwigDirector_VideoFrameObserver::onCaptureVideoFrame(int width, int height, uint64_t ybuffer, uint64_t ubuffer, uint64_t vbuffer) {
+  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+  {
+    swig::SwigVar_PyObject obj0;
+    obj0 = SWIG_From_int(static_cast< int >(width));
+    swig::SwigVar_PyObject obj1;
+    obj1 = SWIG_From_int(static_cast< int >(height));
+    swig::SwigVar_PyObject obj2;
+    obj2 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(ybuffer));
+    swig::SwigVar_PyObject obj3;
+    obj3 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(ubuffer));
+    swig::SwigVar_PyObject obj4;
+    obj4 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(vbuffer));
+    if (!swig_get_self()) {
+      Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call VideoFrameObserver.__init__.");
+    }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+    const size_t swig_method_index = 0;
+    const char *const swig_method_name = "onCaptureVideoFrame";
+    PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+    swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4, NULL);
+#else
+    swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("onCaptureVideoFrame");
+    swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4, NULL);
+#endif
+    if (!result) {
+      PyObject *error = PyErr_Occurred();
+      if (error) {
+        Swig::DirectorMethodException::raise("Error detected when calling 'VideoFrameObserver.onCaptureVideoFrame'");
+      }
+    }
+  }
+  SWIG_PYTHON_THREAD_END_BLOCK;
+}
+
+
+void SwigDirector_VideoFrameObserver::onRenderVideoFrame(unsigned int uid, int width, int height, uint64_t ybuffer, uint64_t ubuffer, uint64_t vbuffer) {
+  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+  {
+    swig::SwigVar_PyObject obj0;
+    obj0 = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(uid));
+    swig::SwigVar_PyObject obj1;
+    obj1 = SWIG_From_int(static_cast< int >(width));
+    swig::SwigVar_PyObject obj2;
+    obj2 = SWIG_From_int(static_cast< int >(height));
+    swig::SwigVar_PyObject obj3;
+    obj3 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(ybuffer));
+    swig::SwigVar_PyObject obj4;
+    obj4 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(ubuffer));
+    swig::SwigVar_PyObject obj5;
+    obj5 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(vbuffer));
+    if (!swig_get_self()) {
+      Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call VideoFrameObserver.__init__.");
+    }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+    const size_t swig_method_index = 1;
+    const char *const swig_method_name = "onRenderVideoFrame";
+    PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+    swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5, NULL);
+#else
+    swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("onRenderVideoFrame");
+    swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5, NULL);
+#endif
+    if (!result) {
+      PyObject *error = PyErr_Occurred();
+      if (error) {
+        Swig::DirectorMethodException::raise("Error detected when calling 'VideoFrameObserver.onRenderVideoFrame'");
       }
     }
   }
@@ -32380,6 +32465,379 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_delete_VideoFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  VideoFrameObserver *arg1 = (VideoFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_VideoFrameObserver, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_VideoFrameObserver" "', argument " "1"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< VideoFrameObserver * >(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoFrameObserver_onCaptureVideoFrame(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  VideoFrameObserver *arg1 = (VideoFrameObserver *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  uint64_t arg4 ;
+  uint64_t arg5 ;
+  uint64_t arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  unsigned long long val4 ;
+  int ecode4 = 0 ;
+  unsigned long long val5 ;
+  int ecode5 = 0 ;
+  unsigned long long val6 ;
+  int ecode6 = 0 ;
+  PyObject *swig_obj[6] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!SWIG_Python_UnpackTuple(args, "VideoFrameObserver_onCaptureVideoFrame", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_VideoFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoFrameObserver_onCaptureVideoFrame" "', argument " "1"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< VideoFrameObserver * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoFrameObserver_onCaptureVideoFrame" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoFrameObserver_onCaptureVideoFrame" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoFrameObserver_onCaptureVideoFrame" "', argument " "4"" of type '" "uint64_t""'");
+  } 
+  arg4 = static_cast< uint64_t >(val4);
+  ecode5 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoFrameObserver_onCaptureVideoFrame" "', argument " "5"" of type '" "uint64_t""'");
+  } 
+  arg5 = static_cast< uint64_t >(val5);
+  ecode6 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoFrameObserver_onCaptureVideoFrame" "', argument " "6"" of type '" "uint64_t""'");
+  } 
+  arg6 = static_cast< uint64_t >(val6);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==swig_obj[0]));
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("VideoFrameObserver::onCaptureVideoFrame");
+    } else {
+      (arg1)->onCaptureVideoFrame(arg2,arg3,arg4,arg5,arg6);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoFrameObserver_onRenderVideoFrame(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  VideoFrameObserver *arg1 = (VideoFrameObserver *) 0 ;
+  unsigned int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  uint64_t arg5 ;
+  uint64_t arg6 ;
+  uint64_t arg7 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  unsigned long long val5 ;
+  int ecode5 = 0 ;
+  unsigned long long val6 ;
+  int ecode6 = 0 ;
+  unsigned long long val7 ;
+  int ecode7 = 0 ;
+  PyObject *swig_obj[7] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!SWIG_Python_UnpackTuple(args, "VideoFrameObserver_onRenderVideoFrame", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_VideoFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoFrameObserver_onRenderVideoFrame" "', argument " "1"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< VideoFrameObserver * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoFrameObserver_onRenderVideoFrame" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoFrameObserver_onRenderVideoFrame" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoFrameObserver_onRenderVideoFrame" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoFrameObserver_onRenderVideoFrame" "', argument " "5"" of type '" "uint64_t""'");
+  } 
+  arg5 = static_cast< uint64_t >(val5);
+  ecode6 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoFrameObserver_onRenderVideoFrame" "', argument " "6"" of type '" "uint64_t""'");
+  } 
+  arg6 = static_cast< uint64_t >(val6);
+  ecode7 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoFrameObserver_onRenderVideoFrame" "', argument " "7"" of type '" "uint64_t""'");
+  } 
+  arg7 = static_cast< uint64_t >(val7);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==swig_obj[0]));
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("VideoFrameObserver::onRenderVideoFrame");
+    } else {
+      (arg1)->onRenderVideoFrame(arg2,arg3,arg4,arg5,arg6,arg7);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoFrameObserver_privateData_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  VideoFrameObserver *arg1 = (VideoFrameObserver *) 0 ;
+  void *arg2 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "VideoFrameObserver_privateData_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_VideoFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoFrameObserver_privateData_set" "', argument " "1"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< VideoFrameObserver * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1],SWIG_as_voidptrptr(&arg2), 0, SWIG_POINTER_DISOWN);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoFrameObserver_privateData_set" "', argument " "2"" of type '" "void *""'"); 
+  }
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->privateData = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoFrameObserver_privateData_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  VideoFrameObserver *arg1 = (VideoFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  void *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_VideoFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoFrameObserver_privateData_get" "', argument " "1"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< VideoFrameObserver * >(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (void *) ((arg1)->privateData);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_VideoFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PyObject *arg1 = (PyObject *) 0 ;
+  PyObject *swig_obj[1] ;
+  VideoFrameObserver *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  arg1 = swig_obj[0];
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if ( arg1 != Py_None ) {
+      /* subclassed */
+      result = (VideoFrameObserver *)new SwigDirector_VideoFrameObserver(arg1); 
+    } else {
+      SWIG_SetErrorMsg(PyExc_RuntimeError,"accessing abstract class or protected constructor"); 
+      SWIG_fail;
+    }
+    
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VideoFrameObserver, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_disown_VideoFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  VideoFrameObserver *arg1 = (VideoFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_VideoFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "disown_VideoFrameObserver" "', argument " "1"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< VideoFrameObserver * >(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    {
+      Swig::Director *director = SWIG_DIRECTOR_CAST(arg1);
+      if (director) director->swig_disown();
+    }
+    
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *VideoFrameObserver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_VideoFrameObserver, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *VideoFrameObserver_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_registerVideoFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  agora::common::RtcEngineBridge *arg1 = (agora::common::RtcEngineBridge *) 0 ;
+  VideoFrameObserver *arg2 = (VideoFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "registerVideoFrameObserver", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_agora__common__RtcEngineBridge, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "registerVideoFrameObserver" "', argument " "1"" of type '" "agora::common::RtcEngineBridge *""'"); 
+  }
+  arg1 = reinterpret_cast< agora::common::RtcEngineBridge * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_VideoFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "registerVideoFrameObserver" "', argument " "2"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg2 = reinterpret_cast< VideoFrameObserver * >(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    registerVideoFrameObserver(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_unregisterVideoFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  agora::common::RtcEngineBridge *arg1 = (agora::common::RtcEngineBridge *) 0 ;
+  VideoFrameObserver *arg2 = (VideoFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "unregisterVideoFrameObserver", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_agora__common__RtcEngineBridge, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "unregisterVideoFrameObserver" "', argument " "1"" of type '" "agora::common::RtcEngineBridge *""'"); 
+  }
+  arg1 = reinterpret_cast< agora::common::RtcEngineBridge * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_VideoFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "unregisterVideoFrameObserver" "', argument " "2"" of type '" "VideoFrameObserver *""'"); 
+  }
+  arg2 = reinterpret_cast< VideoFrameObserver * >(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    unregisterVideoFrameObserver(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_APICaseHandler_handleAPICase(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   agora::common::APICaseHandler *arg1 = (agora::common::APICaseHandler *) 0 ;
@@ -41113,6 +41571,17 @@ static PyMethodDef SwigMethods[] = {
 	 { "RtcChannelEventHandlerBase_swiginit", RtcChannelEventHandlerBase_swiginit, METH_VARARGS, NULL},
 	 { "createVideoCanvas", _wrap_createVideoCanvas, METH_O, NULL},
 	 { "createRtcEngineBridge", _wrap_createRtcEngineBridge, METH_NOARGS, NULL},
+	 { "delete_VideoFrameObserver", _wrap_delete_VideoFrameObserver, METH_O, NULL},
+	 { "VideoFrameObserver_onCaptureVideoFrame", _wrap_VideoFrameObserver_onCaptureVideoFrame, METH_VARARGS, NULL},
+	 { "VideoFrameObserver_onRenderVideoFrame", _wrap_VideoFrameObserver_onRenderVideoFrame, METH_VARARGS, NULL},
+	 { "VideoFrameObserver_privateData_set", _wrap_VideoFrameObserver_privateData_set, METH_VARARGS, NULL},
+	 { "VideoFrameObserver_privateData_get", _wrap_VideoFrameObserver_privateData_get, METH_O, NULL},
+	 { "new_VideoFrameObserver", _wrap_new_VideoFrameObserver, METH_O, NULL},
+	 { "disown_VideoFrameObserver", _wrap_disown_VideoFrameObserver, METH_O, NULL},
+	 { "VideoFrameObserver_swigregister", VideoFrameObserver_swigregister, METH_O, NULL},
+	 { "VideoFrameObserver_swiginit", VideoFrameObserver_swiginit, METH_VARARGS, NULL},
+	 { "registerVideoFrameObserver", _wrap_registerVideoFrameObserver, METH_VARARGS, NULL},
+	 { "unregisterVideoFrameObserver", _wrap_unregisterVideoFrameObserver, METH_VARARGS, NULL},
 	 { "APICaseHandler_handleAPICase", _wrap_APICaseHandler_handleAPICase, METH_VARARGS, NULL},
 	 { "delete_APICaseHandler", _wrap_delete_APICaseHandler, METH_O, NULL},
 	 { "new_APICaseHandler", _wrap_new_APICaseHandler, METH_O, NULL},
@@ -42036,6 +42505,7 @@ static void *_p_agora__common__RtcChannelEventHandlerBaseTo_p_agora__rtc__IChann
 static void *_p_agora__common__RtcEngineEventHandlerBaseTo_p_agora__rtc__IRtcEngineEventHandler(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((agora::rtc::IRtcEngineEventHandler *)  ((agora::common::RtcEngineEventHandlerBase *) x));
 }
+static swig_type_info _swigt__p_VideoFrameObserver = {"_p_VideoFrameObserver", "VideoFrameObserver *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_agora__common__APICaseHandler = {"_p_agora__common__APICaseHandler", "agora::common::APICaseHandler *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_agora__common__AudioPlaybackDeviceManager = {"_p_agora__common__AudioPlaybackDeviceManager", "agora::common::AudioPlaybackDeviceManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_agora__common__AudioRecordingDeviceManager = {"_p_agora__common__AudioRecordingDeviceManager", "agora::common::AudioRecordingDeviceManager *", 0, 0, (void*)0, 0};
@@ -42094,6 +42564,7 @@ static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned
 static swig_type_info _swigt__p_void = {"_p_void", "void *|agora::rtc::view_t", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_VideoFrameObserver,
   &_swigt__p_agora__common__APICaseHandler,
   &_swigt__p_agora__common__AudioPlaybackDeviceManager,
   &_swigt__p_agora__common__AudioRecordingDeviceManager,
@@ -42152,6 +42623,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_void,
 };
 
+static swig_cast_info _swigc__p_VideoFrameObserver[] = {  {&_swigt__p_VideoFrameObserver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_agora__common__APICaseHandler[] = {  {&_swigt__p_agora__common__APICaseHandler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_agora__common__AudioPlaybackDeviceManager[] = {  {&_swigt__p_agora__common__AudioPlaybackDeviceManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_agora__common__AudioRecordingDeviceManager[] = {  {&_swigt__p_agora__common__AudioRecordingDeviceManager, 0, 0, 0},{0, 0, 0, 0}};
@@ -42210,6 +42682,7 @@ static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short
 static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_VideoFrameObserver,
   _swigc__p_agora__common__APICaseHandler,
   _swigc__p_agora__common__AudioPlaybackDeviceManager,
   _swigc__p_agora__common__AudioRecordingDeviceManager,

@@ -47,7 +47,9 @@ namespace agora
 		void
 		RtcChannelBridge::add_C_ChannelEventHandler(CChannelEngineEventHandler* channelEngineEventHandler)
 		{
-			channelEventHandler = new RtcChannelEventHandler();
+			if (!channelEventHandler)
+                channelEventHandler = new RtcChannelEventHandler();
+
 			static_cast<RtcChannelEventHandler*>(channelEventHandler)->initChannelCallbackEvent(channelEngineEventHandler);
 		}
 

@@ -2882,6 +2882,8 @@ typedef void(__stdcall* FUNC_OnFacePositionChanged)(int imageWidth, int imageHei
 typedef void(__stdcall* FUNC_OnChannelLocalPublishFallbackToAudioOnly)(const char* channelId, bool isFallbackOrRecover);
 typedef void(__stdcall* FUNC_OnChannelMediaRelayStateChanged)(int state, int code);
 typedef void(__stdcall* FUNC_OnChannelMediaRelayEvent)(int code);
+typedef void(__stdcall* FUNC_OnChannelTestEnd)(const char* channelId);
+
 typedef void(__stdcall* FUNC_OnJoinChannelSuccess)(const char*, uid_t uid, int elapsed);
 typedef void(__stdcall* FUNC_OnReJoinChannelSuccess)(const char*, uid_t uid, int elapsed);
 typedef void(__stdcall* FUNC_OnConnectionLost)();
@@ -2953,6 +2955,7 @@ typedef void(__stdcall* FUNC_OnChannelMediaRelayEvent)(int code);
 typedef void(__stdcall* FUNC_OnFacePositionChanged)(int imageWidth, int imageHeight, int x, int y, int width, int height, int vecDistance, int numFaces);
 typedef void(__stdcall* FUNC_OnChannelLocalPublishFallbackToAudioOnly)(const char* channelId, bool isFallbackOrRecover);
 
+
 // raw data callback
 typedef void(__stdcall* FUNC_OnCaptureVideoFrame)(int videoFrameType, int width, int height, int yStride, void* yBuffer, int rotation, int64_t renderTimeMs);
 typedef void(__stdcall* FUNC_OnRenderVideoFrame)(unsigned int uid, int videoFrameType, int width, int height, int yStride, void* yBuffer, int rotation, int64_t renderTimeMs);
@@ -3004,6 +3007,7 @@ typedef void(__stdcall* FUNC_OnChannelRemoteSubscribeFallbackToAudioOnly)(const 
 typedef void(__stdcall* FUNC_OnChannelConnectionStateChanged)(const char* channelId, int state, int reason);
 typedef void(__stdcall* FUNC_OnFacePositionChanged)(int imageWidth, int imageHeight, int x, int y, int width, int height, int vecDistance, int numFaces);
 typedef void(__stdcall* FUNC_OnChannelLocalPublishFallbackToAudioOnly)(const char* channelId, bool isFallbackOrRecover);
+typedef void(__stdcall* FUNC_OnTestEnd)();
 #else
 typedef void (*FUNC_OnChannelWarning)(const char* channelId, int warn, const char* msg);
 typedef void (*FUNC_OnChannelError)(const char* channelId, int err, const char* msg);
@@ -3037,6 +3041,7 @@ typedef void (*FUNC_OnFacePositionChanged)(int imageWidth, int imageHeight, int 
 typedef void (*FUNC_OnChannelLocalPublishFallbackToAudioOnly)(const char* channelId, bool isFallbackOrRecover);
 typedef void (*FUNC_OnChannelMediaRelayStateChanged)(int state, int code);
 typedef void (*FUNC_OnChannelMediaRelayEvent)(int code);
+typedef void (*FUNC_OnChannelTestEnd)(const char* channelId);
 
 typedef void (*FUNC_OnJoinChannelSuccess)(const char*, uid_t uid, int elapsed);
 typedef void (*FUNC_OnReJoinChannelSuccess)(const char*, uid_t uid, int elapsed);
@@ -3130,6 +3135,7 @@ typedef bool (*FUNC_OnReceiveVideoPacket)(const unsigned char* buffer, void* siz
 typedef bool (*FUNC_OnReadyToSendMetadata)();
 typedef void (*FUNC_OnMetadataReceived)(unsigned int uid, unsigned int size, unsigned char* buffer, long long timeStampMs);
 typedef int (*FUNC_OnGetMaxMetadataSize)();
+typedef void (*FUNC_OnTestEnd)();
 #endif
 
 struct RtcEventHandler {
@@ -3207,6 +3213,7 @@ struct RtcEventHandler {
     FUNC_OnChannelMediaRelayStateChanged onChannelMediaRelayStateChanged = NULL;
     FUNC_OnChannelMediaRelayEvent onChannelMediaRelayEvent = NULL;
     FUNC_OnFacePositionChanged onFacePositionChanged = NULL;
+    FUNC_OnTestEnd onTestEnd = NULL;
 };
 
 struct ChannelEventHandler {
@@ -3239,6 +3246,7 @@ struct ChannelEventHandler {
     FUNC_OnChannelRemoteSubscribeFallbackToAudioOnly onRemoteSubscribeFallbackToAudioOnly = NULL;
     FUNC_OnChannelConnectionStateChanged onConnectionStateChanged = NULL;
     FUNC_OnChannelLocalPublishFallbackToAudioOnly onLocalPublishFallbackToAudioOnly = NULL;
+    FUNC_OnChannelTestEnd onTestEnd = NULL;
 };
 
 typedef void* IRtcEngineBridge_ptr;
@@ -3281,10 +3289,10 @@ extern enum ERROR_CODE
 initialize(IRtcEngineBridge_ptr apiBridge, const char* appId, void* context, enum AREA_CODE areaCode);
 
 extern void
-add_C_EventHandler(IRtcChannelBridge_ptr apiBridge, struct RtcEventHandler* handler);
+add_C_EventHandler(IRtcEngineBridge_ptr apiBridge, struct RtcEventHandler* handler);
 
 extern void
-remove_C_EventHandler(IRtcChannelBridge_ptr apiBridge);
+remove_C_EventHandler(IRtcEngineBridge_ptr apiBridge);
 
 extern enum ERROR_CODE
 setChannelProfile(IRtcEngineBridge_ptr apiBridge, enum CHANNEL_PROFILE_TYPE channel_profile_type);
@@ -3673,7 +3681,7 @@ setAudioMixingPosition(IRtcEngineBridge_ptr apiBridge, int pos /*in ms*/);
 extern enum ERROR_CODE
 setAudioMixingPitch(IRtcEngineBridge_ptr apiBridge, int pitch);
 
-extern int
+extern enum ERROR_CODE
 getEffectsVolume(IRtcEngineBridge_ptr apiBridge);
 
 extern enum ERROR_CODE

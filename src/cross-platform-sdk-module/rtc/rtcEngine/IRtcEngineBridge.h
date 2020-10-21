@@ -7,6 +7,7 @@
 #include "../deviceManager/IVideoDeviceManagerBridge.h"
 #include "../include/IAgoraRtcEngine.h"
 #include "../rtcChannel/IRtcChannelBridge.h"
+#include "../callback/rtcEngineCallback/RtcEngineEventHandler.h"
 
 namespace agora {
 namespace common {
@@ -16,6 +17,12 @@ namespace common {
 
         virtual int
         initEventHandler(rtc::IRtcEngineEventHandler* eventHandler)
+            = 0;
+
+        virtual void add_C_EventHandler(CEngineEventHandler* engineEventHandler)
+            = 0;
+
+        virtual void remove_C_EventHandler()
             = 0;
 
         virtual int

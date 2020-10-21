@@ -31,10 +31,10 @@ namespace agora
 			initChannelEventHandler(rtc::IChannelEventHandler* eventHandler) override;
 
 			void
-			add_C_ChannelEventHandler(CChannelEngineEventHandler* channelEngineEventHandler);
+			add_C_ChannelEventHandler(CChannelEngineEventHandler* channelEngineEventHandler) override;
 
 			void
-			remove_C_ChannelEventHandler();
+			remove_C_ChannelEventHandler() override;
 
 			virtual int
 			callApi(API_TYPE apiType, const std::string& parameters) override;

@@ -1,7 +1,5 @@
 #include "RtcEngineBridge.h"
 #include "../test/ApiTester.h"
-#include "../include/IAgoraRtcEngine2.h"
-
 
 namespace agora {
 namespace common {
@@ -1827,6 +1825,10 @@ namespace common {
             ret = registerMediaMetadataObserver(reinterpret_cast<IMetadataObserver*>(ptr), IMetadataObserver::METADATA_TYPE(type), useSdkDefault);
         } break;
 
+        case REGISTER_VIDEO_FRAME_OBSERVER: {
+            ret = registerVideoFrameObserver(reinterpret_cast<media::IVideoFrameObserver*>(ptr));
+        } break;
+
         default:
             ret = ERROR_CODE::ERROR_INVALID_API_TYPE;
             break;
@@ -1844,16 +1846,18 @@ namespace common {
     void
     RtcEngineBridge::add_C_EventHandler(CEngineEventHandler* engineEventHandler)
     {
-        if (!mRtcEngineEventHandler) {
+        if (!mRtcEngineEventHandler)
             mRtcEngineEventHandler = new RtcEngineEventHandler();
-        }
+
         static_cast<RtcEngineEventHandler*>(mRtcEngineEventHandler)->initCallbackEvent(engineEventHandler);
     }
 
     void RtcEngineBridge::remove_C_EventHandler()
     {
-        delete (mRtcEngineEventHandler);
-        mRtcEngineEventHandler = nullptr;
+        if (mRtcEngineEventHandler) {
+            delete (mRtcEngineEventHandler);
+            mRtcEngineEventHandler = nullptr;
+        }
     }
 
     int
@@ -1882,12 +1886,7 @@ namespace common {
         rtcEngineContext.eventHandler = mRtcEngineEventHandler;
 
         LOG_JSON(INITIALIZE, "appId", appId, "areaCode", areaCode);
-        int ret = mRtcEngine->initialize(rtcEngineContext);
-
-        agora::rtc::IRtcEngine3 * rtc3 = (agora::rtc::IRtcEngine3 *)(mRtcEngine);
-        rtc3->setAppType(AppType(9));
-        
-        return ret;
+        return mRtcEngine->initialize(rtcEngineContext);
     }
 
     const char*
@@ -3108,6 +3107,17 @@ namespace common {
     RtcEngineBridge::sendCustomReportMessage(const char* id, const char* category, const char* event, const char* label, int value)
     {
         return mRtcEngine->sendCustomReportMessage(id, category, event, label, value);
+    }
+
+    int
+    RtcEngineBridge::registerVideoFrameObserver(media::IVideoFrameObserver *videoFrameObserver)
+    {
+        agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
+        mediaEngine.queryInterface(mRtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
+        if (mediaEngine)
+            return mediaEngine->registerVideoFrameObserver(videoFrameObserver);
+
+        return ERROR_CODE::ERROR_NO_ENGINE;
     }
 
     CROSS_PLATFORM_EXPORT IRtcEngineBridge*

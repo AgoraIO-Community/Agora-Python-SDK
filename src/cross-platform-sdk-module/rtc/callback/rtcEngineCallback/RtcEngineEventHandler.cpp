@@ -101,6 +101,7 @@ namespace common {
         cEngineEventHandler->onChannelMediaRelayStateChanged = engineEventHandler->onChannelMediaRelayStateChanged;
         cEngineEventHandler->onChannelMediaRelayEvent = engineEventHandler->onChannelMediaRelayEvent;
         cEngineEventHandler->onFacePositionChanged = engineEventHandler->onFacePositionChanged;
+        cEngineEventHandler->onTestEnd = engineEventHandler->onTestEnd;
     }
 
     void
@@ -1184,6 +1185,9 @@ namespace common {
     void
     RtcEngineEventHandler::onTestEnd()
     {
+        if (cEngineEventHandler && cEngineEventHandler->onTestEnd)
+            cEngineEventHandler->onTestEnd();
+
         if (!mEventHandler)
             return;
 

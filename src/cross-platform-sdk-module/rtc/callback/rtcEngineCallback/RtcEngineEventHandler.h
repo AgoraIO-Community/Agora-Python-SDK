@@ -131,6 +131,7 @@ namespace agora
 		typedef void(__stdcall *FUNC_OnChannelConnectionStateChanged)(const char* channelId, int state, int reason);
 		typedef void(__stdcall *FUNC_OnFacePositionChanged)(int imageWidth, int imageHeight, int x, int y, int width, int height, int vecDistance, int numFaces);
 		typedef void(__stdcall *FUNC_OnChannelLocalPublishFallbackToAudioOnly)(const char* channelId, bool isFallbackOrRecover);
+		typedef void(__stdcall *FUNC_OnTestEnd)();
 #else
 		typedef void(*FUNC_OnJoinChannelSuccess)(const char *, rtc::uid_t uid, int elapsed);
 		typedef void(*FUNC_OnReJoinChannelSuccess)(const char *, rtc::uid_t uid, int elapsed);
@@ -224,6 +225,7 @@ namespace agora
 		typedef bool(*FUNC_OnReadyToSendMetadata)();
 		typedef void(*FUNC_OnMetadataReceived)(unsigned int uid, unsigned int size, unsigned char *buffer, long long timeStampMs);
 		typedef int(*FUNC_OnGetMaxMetadataSize)();
+		typedef void(*FUNC_OnTestEnd)();
 #endif
 
 		class CEngineEventHandler
@@ -308,6 +310,7 @@ namespace agora
 			FUNC_OnChannelMediaRelayStateChanged onChannelMediaRelayStateChanged = nullptr;
 			FUNC_OnChannelMediaRelayEvent onChannelMediaRelayEvent = nullptr;
 			FUNC_OnFacePositionChanged onFacePositionChanged = nullptr;
+			FUNC_OnTestEnd onTestEnd = nullptr;
 
 			void reset ()
 			{
@@ -385,6 +388,7 @@ namespace agora
 				onChannelMediaRelayStateChanged = nullptr;
 				onChannelMediaRelayEvent = nullptr;
 				onFacePositionChanged = nullptr;
+				onTestEnd = nullptr;
 			}
 		};
 

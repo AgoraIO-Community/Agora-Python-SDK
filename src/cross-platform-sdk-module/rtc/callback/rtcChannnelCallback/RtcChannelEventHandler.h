@@ -42,6 +42,7 @@ namespace common {
     typedef void(__stdcall* FUNC_OnChannelLocalPublishFallbackToAudioOnly)(const char* channelId, bool isFallbackOrRecover);
     typedef void(__stdcall* FUNC_OnChannelMediaRelayStateChanged)(int state, int code);
     typedef void(__stdcall* FUNC_OnChannelMediaRelayEvent)(int code);
+    typedef void(__stdcall* FUNC_OnChannelTestEnd)(const char* channelId);
 #else
     typedef void (*FUNC_OnChannelWarning)(const char* channelId, int warn, const char* msg);
     typedef void (*FUNC_OnChannelError)(const char* channelId, int err, const char* msg);
@@ -75,6 +76,7 @@ namespace common {
     typedef void (*FUNC_OnChannelLocalPublishFallbackToAudioOnly)(const char* channelId, bool isFallbackOrRecover);
     typedef void (*FUNC_OnChannelMediaRelayStateChanged)(int state, int code);
     typedef void (*FUNC_OnChannelMediaRelayEvent)(int code);
+    typedef void (*FUNC_OnChannelTestEnd)(const char* channelId);
 #endif
 
     class CChannelEngineEventHandler {
@@ -115,6 +117,7 @@ namespace common {
         FUNC_OnChannelRemoteSubscribeFallbackToAudioOnly onRemoteSubscribeFallbackToAudioOnly = nullptr;
         FUNC_OnChannelConnectionStateChanged onConnectionStateChanged = nullptr;
         FUNC_OnChannelLocalPublishFallbackToAudioOnly onLocalPublishFallbackToAudioOnly = nullptr;
+        FUNC_OnChannelTestEnd onTestEnd = nullptr;
 
         void reset()
         {
@@ -147,6 +150,7 @@ namespace common {
             onRemoteSubscribeFallbackToAudioOnly = nullptr;
             onConnectionStateChanged = nullptr;
             onLocalPublishFallbackToAudioOnly = nullptr;
+            onTestEnd = nullptr;
         }
     };
 

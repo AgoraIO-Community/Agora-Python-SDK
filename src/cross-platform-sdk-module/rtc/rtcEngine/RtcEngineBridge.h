@@ -71,9 +71,9 @@ namespace agora
             AudioRecordingDeviceManager*
             createAudioRecordingDeviceManager(int* errorCode);
 
-			void add_C_EventHandler(CEngineEventHandler* engineEventHandler);
+			void add_C_EventHandler(CEngineEventHandler* engineEventHandler) override;
 
-			void remove_C_EventHandler();
+			void remove_C_EventHandler() override;
 
 			int
 			initialize(const char* appId, void* context, unsigned int areaCode);
@@ -580,6 +580,9 @@ namespace agora
 
 			int
 			sendCustomReportMessage(const char *id, const char* category, const char* event, const char* label, int value);
+
+			int
+			registerVideoFrameObserver(media::IVideoFrameObserver *videoFrameObserver);
 		};
 
 		CROSS_PLATFORM_EXPORT IRtcEngineBridge*
