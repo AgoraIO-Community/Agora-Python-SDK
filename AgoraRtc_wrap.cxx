@@ -36538,12 +36538,11 @@ fail:
 SWIGINTERN PyObject *_wrap_AudioRecordingDeviceManager_startDeviceTest(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   agora::common::AudioRecordingDeviceManager *arg1 = (agora::common::AudioRecordingDeviceManager *) 0 ;
-  char *arg2 = (char *) 0 ;
+  int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
   PyObject *swig_obj[2] ;
   int result;
   
@@ -36553,21 +36552,19 @@ SWIGINTERN PyObject *_wrap_AudioRecordingDeviceManager_startDeviceTest(PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioRecordingDeviceManager_startDeviceTest" "', argument " "1"" of type '" "agora::common::AudioRecordingDeviceManager *""'"); 
   }
   arg1 = reinterpret_cast< agora::common::AudioRecordingDeviceManager * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AudioRecordingDeviceManager_startDeviceTest" "', argument " "2"" of type '" "char const *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AudioRecordingDeviceManager_startDeviceTest" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    result = (int)(arg1)->startDeviceTest((char const *)arg2);
+    result = (int)(arg1)->startDeviceTest(arg2);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
 

@@ -24,8 +24,14 @@ void CompareAndDumpApiTestResult(const char *caseFilePath,
 
 #ifdef AGORO_ENABLE_TEST
 
-#define GET_MACRO(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, NAME, ...) NAME
-#define LOG_JSON(...) GET_MACRO(__VA_ARGS__, LOG_JSON15, LOG_JSON14, LOG_JSON13, LOG_JSON12, LOG_JSON11, LOG_JSON10, LOG_JSON9, LOG_JSON8, LOG_JSON7, LOG_JSON6, LOG_JSON5, LOG_JSON4, LOG_JSON3, LOG_JSON2, LOG_JSON1)(__VA_ARGS__)
+#define GET_MACRO(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, \
+                  _15, NAME, ...)                                              \
+  NAME
+#define LOG_JSON(...)                                                          \
+  GET_MACRO(__VA_ARGS__, LOG_JSON15, LOG_JSON14, LOG_JSON13, LOG_JSON12,       \
+            LOG_JSON11, LOG_JSON10, LOG_JSON9, LOG_JSON8, LOG_JSON7,           \
+            LOG_JSON6, LOG_JSON5, LOG_JSON4, LOG_JSON3, LOG_JSON2, LOG_JSON1)  \
+  (__VA_ARGS__)
 
 #define LOG_JSON1(t1) agora::common::GetApiJsonLogger().log(t1)
 #define LOG_JSON2(t1, t2) agora::common::GetApiJsonLogger().log(t1, t2)

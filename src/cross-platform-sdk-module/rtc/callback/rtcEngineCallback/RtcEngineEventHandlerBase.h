@@ -8,12 +8,10 @@ namespace common {
 
 class RtcEngineEventHandlerBase : public rtc::IRtcEngineEventHandler {
 public:
-    virtual void onTestEnd() {}
+  virtual void onTestEnd() {}
 };
 
-
-}
-}
-
+} // namespace common
+} // namespace agora
 
 #endif /* RtcEngineBridgeEventHandler_h */

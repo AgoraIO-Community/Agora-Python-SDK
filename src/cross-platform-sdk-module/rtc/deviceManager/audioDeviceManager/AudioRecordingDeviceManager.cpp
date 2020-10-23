@@ -38,9 +38,9 @@ AudioRecordingDeviceManager::~AudioRecordingDeviceManager() {
   }
 
   if (audioDeviceManager) {
-    if (audioDeviceManager->get()) {
-      audioDeviceManager->get()->release();
-    }
+//    if (audioDeviceManager->get()) {
+//      audioDeviceManager->get()->release();
+//    }
 
     delete audioDeviceManager;
     audioDeviceManager = nullptr;
@@ -88,11 +88,11 @@ int AudioRecordingDeviceManager::callApi(API_TYPE_DEVICE_MANAGER apiType,
   } break;
 
   case API_TYPE_DEVICE_MANAGER::START_DEVICE_TEST: {
-    std::string testAudioFilePath;
-    get_parameter_string(document, "testAudioFilePath", testAudioFilePath, ret);
-    CHECK_RET_ERROR(ret)
+      int indicationInterval;
+      get_parameter_int(document, "indicationInterval", indicationInterval, ret);
+      CHECK_RET_ERROR(ret)
 
-    ret = startDeviceTest(testAudioFilePath.c_str());
+    ret = startDeviceTest(indicationInterval);
   } break;
 
   case API_TYPE_DEVICE_MANAGER::STOP_AUDIO_DEVICE_LOOP_BACK_TEST: {
@@ -187,7 +187,7 @@ int AudioRecordingDeviceManager::getDevice(
 int AudioRecordingDeviceManager::getCurrentDevice(
     char deviceId[rtc::MAX_DEVICE_ID_LENGTH]) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->getPlaybackDevice(deviceId);
+    return (*audioDeviceManager)->getRecordingDevice(deviceId);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
@@ -196,7 +196,7 @@ int AudioRecordingDeviceManager::getCurrentDeviceInfo(
     char deviceId[rtc::MAX_DEVICE_ID_LENGTH],
     char deviceName[rtc::MAX_DEVICE_ID_LENGTH]) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->getPlaybackDeviceInfo(deviceId, deviceName);
+    return (*audioDeviceManager)->getRecordingDeviceInfo(deviceId, deviceName);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
@@ -204,50 +204,50 @@ int AudioRecordingDeviceManager::getCurrentDeviceInfo(
 int AudioRecordingDeviceManager::setDevice(
     const char deviceId[rtc::MAX_DEVICE_ID_LENGTH]) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->setPlaybackDevice(deviceId);
+    return (*audioDeviceManager)->setRecordingDevice(deviceId);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
 int AudioRecordingDeviceManager::setDeviceVolume(int volume) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->setPlaybackDeviceVolume(volume);
+    return (*audioDeviceManager)->setRecordingDeviceVolume(volume);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
 int AudioRecordingDeviceManager::getDeviceVolume(int *volume) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->getPlaybackDeviceVolume(volume);
+    return (*audioDeviceManager)->getRecordingDeviceVolume(volume);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
 int AudioRecordingDeviceManager::setDeviceMute(bool mute) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->setPlaybackDeviceMute(mute);
+    return (*audioDeviceManager)->setRecordingDeviceMute(mute);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
 int AudioRecordingDeviceManager::getDeviceMute(bool *mute) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->getPlaybackDeviceMute(mute);
+    return (*audioDeviceManager)->getRecordingDeviceMute(mute);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
 int AudioRecordingDeviceManager::startDeviceTest(
-    const char *testAudioFilePath) {
+    int indicationInterval) {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->startPlaybackDeviceTest(testAudioFilePath);
+    return (*audioDeviceManager)->startRecordingDeviceTest(1);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
 int AudioRecordingDeviceManager::stopDeviceTest() {
   if (audioDeviceManager && audioDeviceManager->get()) {
-    return (*audioDeviceManager)->stopPlaybackDeviceTest();
+    return (*audioDeviceManager)->stopRecordingDeviceTest();
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }

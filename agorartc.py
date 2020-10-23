@@ -8205,8 +8205,8 @@ class AudioRecordingDeviceManager(object):
     def getDeviceMute(self):
         return _agorartc.AudioRecordingDeviceManager_getDeviceMute(self)
 
-    def startDeviceTest(self, testAudioFilePath):
-        return _agorartc.AudioRecordingDeviceManager_startDeviceTest(self, testAudioFilePath)
+    def startDeviceTest(self, indicationInterval):
+        return _agorartc.AudioRecordingDeviceManager_startDeviceTest(self, indicationInterval)
 
     def stopDeviceTest(self):
         return _agorartc.AudioRecordingDeviceManager_stopDeviceTest(self)

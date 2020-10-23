@@ -50,7 +50,7 @@ public:
 
   int getDeviceMute(bool *mute);
 
-  int startDeviceTest(const char *testAudioFilePath);
+  int startDeviceTest(int indicationInterval);
 
   int stopDeviceTest();
 

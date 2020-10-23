@@ -38,9 +38,9 @@ AudioPlaybackDeviceManager::~AudioPlaybackDeviceManager() {
   }
 
   if (audioDeviceManager) {
-    if (audioDeviceManager->get()) {
-      audioDeviceManager->get()->release();
-    }
+//    if (audioDeviceManager->get()) {
+//      audioDeviceManager->get()->release();
+//    }
 
     delete audioDeviceManager;
     audioDeviceManager = nullptr;

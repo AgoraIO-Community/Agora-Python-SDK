@@ -38,9 +38,9 @@ VideoDeviceManager::~VideoDeviceManager() {
   }
 
   if (videoDeviceManager) {
-    if (videoDeviceManager->get()) {
-      videoDeviceManager->get()->release();
-    }
+//    if (videoDeviceManager->get()) {
+//      videoDeviceManager->get()->release();
+//    }
 
     delete videoDeviceManager;
     videoDeviceManager = nullptr;
