@@ -69,7 +69,7 @@ pip3 install agora-python-sdk
 
 ## Usage
 
-**Visit [Agora-Python-QuickStart](https://github.com/AgoraIO-Community/Agora-Python-QuickStart) to obtain some existed GUI demo.**
+**Visit [Agora-Python-QuickStart](https://github.com/AgoraIO-Community/Agora-Python-QuickStart) to obtain some existed GUI demos.**
 
 You can also write a simple demo yourself by the following instructins.
 
@@ -87,7 +87,7 @@ You can also write a simple demo yourself by the following instructins.
    >>> eventHandler = agorartc.RtcEngineEventHandlerBase()
    >>> rtc.initEventHandler(eventHandler)
    0 (Success)
-   >>> rtc.initialize("your-appID", None, agorartc.AREA_CODE_GLOB & 0xFFFFFFFF)  # If you do not have an App ID, see Appendix (TODO).
+   >>> rtc.initialize("your-appID", None, agorartc.AREA_CODE_GLOB & 0xFFFFFFFF)  # If you do not have an App ID, see Appendix (https://github.com/AgoraIO-Community/Agora-Python-SDK#appendix).
    0 (Success)
    >>> rtc.enableVideo()
    0 (Success)

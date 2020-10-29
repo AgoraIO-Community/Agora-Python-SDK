@@ -88,7 +88,7 @@ pip3 install agora-python-sdk
    >>> eventHandler = agorartc.RtcEngineEventHandlerBase()
    >>> rtc.initEventHandler(eventHandler)
    0 （成功）
-   >>> rtc.initialize("您的appID", None, agorartc.AREA_CODE_GLOB & 0xFFFFFFFF)  # 如您还未获取App ID，您可以查看附录()。
+   >>> rtc.initialize("您的appID", None, agorartc.AREA_CODE_GLOB & 0xFFFFFFFF)  # 如您还未获取App ID，您可以查看附录(https://github.com/AgoraIO-Community/Agora-Python-SDK/blob/master/Readme.zh.md#%E9%99%84%E5%BD%95)。
    0 （成功）
    >>> rtc.enableVideo()
    0 （成功）
