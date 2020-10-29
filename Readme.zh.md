@@ -10,16 +10,102 @@ Agora RTC Python SDK，目前支持 Windows 和 macOS 平台。
 - Visual Studio 2017+，需要添加C++支持 (Windows)
 - Python 3.6+
 
-## 编译 SDK
+## 安装
 
-1. Clone 仓库
-2. （macOS）在 [Agora Video SDK for macOS](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_1_2_FULL.zip) 下载 SDK。解压缩之后，将 `libs` 目录下的 `AograRtcEngineKit.framework` 复制到仓库的根目录。
-3. （Windows）在 [Agora Video SDK for Windows](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_1_2_FULL.zip) 下载 SDK。解压缩之后，将 `libs/x86_64` 目录下的 `agora_rtc_sdk.dll` 和 `agora_rtc_sdk.lib` 复制到仓库的根目录。
-4. 打开命令行工具，定位到仓库目录，运行命令 `python setup.py build_ext --inplace`
+您可以用`pip3`指令从PyPI上下载并安装，也可以使用本仓库的代码编译SDK。
 
-## 运行示例程序
+### 方法一：使用PyPI（推荐）
 
-1. 首先在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。
-2. 运行命令 `pip install PyQt5` 安装 `PyQt5`，`PyQt5` 只是示例程序到依赖项，如果只是编译 SDK，不需要安装。
-3. 打开控制台，定位到 `API-Examples/one-to-one-video` 目录，运行命令 `python one2one.py`
+```bash
+pip3 install agora-python-sdk
+```
 
+### 方法二：编译SDK
+
+1. Clone当前仓库。
+
+   ```bash
+   git clone https://github.com/AgoraIO-Community/Agora-Python-SDK.git
+   ```
+
+2. 下载所需的SDK。
+
+   - （macOS）在 [Agora Video SDK for macOS](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_1_2_FULL.zip) 下载 SDK。解压缩之后，将 `libs` 目录下的 `AograRtcEngineKit.framework` 复制到仓库的根目录。
+   - （Windows）在 [Agora Video SDK for Windows](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_1_2_FULL.zip) 下载 SDK。解压缩之后，将 `libs/x86_64` 目录下的 `agora_rtc_sdk.dll` 和 `agora_rtc_sdk.lib` 复制到仓库的根目录。
+
+3. 编译SDK。
+
+   打开命令行工具，定位到仓库目录，运行命令
+
+   ```bash
+   python3 setup.py build_ext --inplace
+   ```
+
+4. （可选）将`agorartc`添加到`site-packages`文件夹中。
+
+   若想要在任何路径下都可直接使用SDK，需要将相关的文件拷贝到`site-packages`路径下。可以通过如下命令找到其路径：
+
+   ```bash
+   python3 -c 'import site; print(site.getsitepackages())'
+   ```
+
+   将`_agorartc.cpython-38-darwin.so`、`agorartc.py`和`AgoraRtcKit.framework`或`agora_rtc_sdk.dll`和`agora_rtc_sdk.lib`复制到`site-packages`文件夹里。
+
+   - macOS（终端）
+
+     ```bash
+     cp _agorartc.cpython-38-darwin.so [your-site-packages-folder-path]
+     cp agorartc.py [your-site-packages-folder-path]
+     cp -r AgoraRtcKit.framework [your-site-packages-folder-path]
+     ```
+
+   - Windows (PowerShell)
+
+     ```bash
+     cp _agorartc.cpython-38-darwin.so [your-site-packages-folder-path]
+     cp agorartc.py [your-site-packages-folder-path]
+     cp agora_rtc_sdk.dll [your-site-packages-folder-path]
+     cp agora_rtc_sdk.lib [your-site-packages-folder-path]
+     ```
+
+## 使用方法
+
+**您可以通过访问[Agora-Python-QuickStart](https://github.com/AgoraIO-Community/Agora-Python-QuickStart)获取现有的示例。**
+
+您也可以根据如下教程完成一个简单的示例。
+
+1. 在终端（macOS）或PowerShell（Windows）中打开一个Python3控制台。
+
+   ```bash
+   python3
+   ```
+
+2. 在Python控制台中完成示例。
+
+   ```python
+   >>> import agorartc
+   >>> rtc = agorartc.createRtcEngineBridge()
+   >>> eventHandler = agorartc.RtcEngineEventHandlerBase()
+   >>> rtc.initEventHandler(eventHandler)
+   0 （成功）
+   >>> rtc.initialize("您的appID", None, agorartc.AREA_CODE_GLOB & 0xFFFFFFFF)  # 如您还未获取App ID，您可以查看附录()。
+   0 （成功）
+   >>> rtc.enableVideo()
+   0 （成功）
+   >>> rtc.joinChannel("", "channel-name", "", 0)
+   0 （成功）
+   >>> rtc.leaveChannel()  # 离开频道
+   0 （成功）
+   ```
+
+
+
+## 附录
+
+### 创建Agora账户并获取App ID
+
+如果想要使用我们的SDK，您需要先获得一个App ID：
+
+1. 在[agora.io](https://dashboard.agora.io/signin/)中注册一个账号。当您完成注册后，您将被链接至控制台。
+2. 在控制台左侧点击**Projects** > **Project List**。
+3. 请将您从控制台中获取的App ID保存，您将会在调用SDK时使用。
