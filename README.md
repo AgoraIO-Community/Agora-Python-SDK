@@ -6,7 +6,7 @@ Use Agora RTC SDK with Python!
 ## Prerequisites
 
 - Xcode (macOS)
-- Visual Studio 2017+ with C++(Windows)
+- Visual Studio 2017+ with C++ (Windows)
 - Python 3.6+
 
 ## Installation
