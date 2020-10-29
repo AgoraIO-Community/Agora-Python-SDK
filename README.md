@@ -34,7 +34,7 @@ pip3 install agora-python-sdk
 
 3. Compile SDK.
 
-   Open Terminal and user `cd` to go to the repository root folder. Then compile using:
+   Open Terminal and use `cd` to go to the repository root folder. Then compile using:
 
    ```bash
    python3 setup.py build_ext --inplace
