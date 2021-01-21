@@ -16,6 +16,8 @@ Agora RTC Python SDK，目前支持 Windows 和 macOS 平台。
 
 ### 方法一：使用PyPI（推荐）
 
+*仅支持64位操作系统，32位操作系统请使用方法二。*
+
 ```bash
 pip3 install agora-python-sdk
 ```
@@ -31,7 +33,7 @@ pip3 install agora-python-sdk
 2. 下载所需的SDK。
 
    - （macOS）在 [Agora Video SDK for macOS](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_1_2_FULL.zip) 下载 SDK。解压缩之后，将 `libs` 目录下的 `AograRtcEngineKit.framework` 复制到仓库的根目录。
-   - （Windows）在 [Agora Video SDK for Windows](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_1_2_FULL.zip) 下载 SDK。解压缩之后，将 `libs/x86_64` 目录下的 `agora_rtc_sdk.dll` 和 `agora_rtc_sdk.lib` 复制到仓库的根目录。
+   - （Windows）在 [Agora Video SDK for Windows](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_1_2_FULL.zip) 下载 SDK。解压缩之后，将 `libs/x86_64`（64位）或`libs/x86`（32位） 目录下的 `agora_rtc_sdk.dll` 和 `agora_rtc_sdk.lib` 复制到仓库的根目录。
 
 3. 编译SDK。
 

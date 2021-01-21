@@ -22,6 +22,7 @@ pip3 install agora-python-sdk
 ### Method 2: Compile SDK
 
 1. Clone the repository.
+   *Only support for 64-bit OS. For 32-bit OS, please refer to Method 2.*
 
    ```bash
    git clone https://github.com/AgoraIO-Community/Agora-Python-SDK.git
@@ -30,7 +31,7 @@ pip3 install agora-python-sdk
 2. Download the required SDK.
 
    - (macOS) Download SDK [Agora Video SDK for macOS](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_1_2_FULL.zip). Unzip the downloaded SDK package and copy the `AograRtcEngineKit.framework` from `libs` folder into the repository root folder.
-   - (Windows) Download SDK [Agora Video SDK for Windows](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_1_2_FULL.zip). Unzip the downloaded SDK package and copy the `agora_rtc_sdk.dll` and `agora_rtc_sdk.lib` files from `libs/x86_64` into repository root folder.
+   - (Windows) Download SDK [Agora Video SDK for Windows](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_1_2_FULL.zip). Unzip the downloaded SDK package and copy the `agora_rtc_sdk.dll` and `agora_rtc_sdk.lib` files from `libs/x86_64`(64-bit) or `libs/x86`(32-bit) into repository root folder.
 
 3. Compile SDK.
 
