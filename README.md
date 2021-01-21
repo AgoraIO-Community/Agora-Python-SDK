@@ -15,6 +15,8 @@ Either can you install this module from PyPI using `pip3` or compile the SDK you
 
 ### Method 1: Use PyPI (Recommended)
 
+*Only support for 64-bit OS. For 32-bit OS, please refer to Method 2.*
+
 ```bash
 pip3 install agora-python-sdk
 ```
@@ -22,7 +24,6 @@ pip3 install agora-python-sdk
 ### Method 2: Compile SDK
 
 1. Clone the repository.
-   *Only support for 64-bit OS. For 32-bit OS, please refer to Method 2.*
 
    ```bash
    git clone https://github.com/AgoraIO-Community/Agora-Python-SDK.git
