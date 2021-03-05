@@ -100,7 +100,11 @@ pip3 install agora-python-sdk
    0 （成功）
    ```
 
+## 帮助
 
+如您需要了解关于我们API的更多信息，请参考[Agora C++ API](https://docs.agora.io/cn/Video/API%20Reference/cpp/v3.1.2/index.html)。
+
+*C# API文档还在推进中，但我们已有的C++ API是相似的。*
 
 ## 附录
 
