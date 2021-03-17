@@ -4,6 +4,8 @@
 
 Agora RTC Python SDK，目前支持 Windows 和 macOS 平台。
 
+*新特性：`AudioFrameObserver` 从 v3.1.2.10 开始被支持。*
+
 ## 运行环境
 
 - Xcode (macOS)

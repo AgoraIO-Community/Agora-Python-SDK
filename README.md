@@ -3,6 +3,8 @@
 
 Use Agora RTC SDK with Python! 
 
+*NEWS: `AudioFrameObserver` has been supported since v3.1.2.10.*
+
 ## Prerequisites
 
 - Xcode (macOS)
