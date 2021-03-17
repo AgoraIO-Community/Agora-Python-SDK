@@ -3095,65 +3095,66 @@ namespace Swig {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_VideoFrameObserver swig_types[0]
-#define SWIGTYPE_p_agora__common__APICaseHandler swig_types[1]
-#define SWIGTYPE_p_agora__common__AudioPlaybackDeviceManager swig_types[2]
-#define SWIGTYPE_p_agora__common__AudioRecordingDeviceManager swig_types[3]
-#define SWIGTYPE_p_agora__common__RtcChannelBridge swig_types[4]
-#define SWIGTYPE_p_agora__common__RtcChannelEventHandlerBase swig_types[5]
-#define SWIGTYPE_p_agora__common__RtcEngineBridge swig_types[6]
-#define SWIGTYPE_p_agora__common__RtcEngineEventHandlerBase swig_types[7]
-#define SWIGTYPE_p_agora__common__VideoDeviceManager swig_types[8]
-#define SWIGTYPE_p_agora__rtc__AudioVolumeInfo swig_types[9]
-#define SWIGTYPE_p_agora__rtc__BeautyOptions swig_types[10]
-#define SWIGTYPE_p_agora__rtc__CameraCapturerConfiguration swig_types[11]
-#define SWIGTYPE_p_agora__rtc__ChannelMediaInfo swig_types[12]
-#define SWIGTYPE_p_agora__rtc__ChannelMediaOptions swig_types[13]
-#define SWIGTYPE_p_agora__rtc__ChannelMediaRelayConfiguration swig_types[14]
-#define SWIGTYPE_p_agora__rtc__IChannel swig_types[15]
-#define SWIGTYPE_p_agora__rtc__IChannelEventHandler swig_types[16]
-#define SWIGTYPE_p_agora__rtc__IMetadataObserver swig_types[17]
-#define SWIGTYPE_p_agora__rtc__IMetadataObserver__METADATA_TYPE swig_types[18]
-#define SWIGTYPE_p_agora__rtc__IMetadataObserver__Metadata swig_types[19]
-#define SWIGTYPE_p_agora__rtc__IPacketObserver swig_types[20]
-#define SWIGTYPE_p_agora__rtc__IRtcEngineEventHandler swig_types[21]
-#define SWIGTYPE_p_agora__rtc__InjectStreamConfig swig_types[22]
-#define SWIGTYPE_p_agora__rtc__LastmileProbeConfig swig_types[23]
-#define SWIGTYPE_p_agora__rtc__LastmileProbeOneWayResult swig_types[24]
-#define SWIGTYPE_p_agora__rtc__LastmileProbeResult swig_types[25]
-#define SWIGTYPE_p_agora__rtc__LiveStreamAdvancedFeature swig_types[26]
-#define SWIGTYPE_p_agora__rtc__LiveTranscoding swig_types[27]
-#define SWIGTYPE_p_agora__rtc__LocalAudioStats swig_types[28]
-#define SWIGTYPE_p_agora__rtc__LocalVideoStats swig_types[29]
-#define SWIGTYPE_p_agora__rtc__Rect swig_types[30]
-#define SWIGTYPE_p_agora__rtc__Rectangle swig_types[31]
-#define SWIGTYPE_p_agora__rtc__RemoteAudioStats swig_types[32]
-#define SWIGTYPE_p_agora__rtc__RemoteVideoStats swig_types[33]
-#define SWIGTYPE_p_agora__rtc__RtcImage swig_types[34]
-#define SWIGTYPE_p_agora__rtc__RtcStats swig_types[35]
-#define SWIGTYPE_p_agora__rtc__ScreenCaptureParameters swig_types[36]
-#define SWIGTYPE_p_agora__rtc__TranscodingUser swig_types[37]
-#define SWIGTYPE_p_agora__rtc__UserInfo swig_types[38]
-#define SWIGTYPE_p_agora__rtc__VideoCanvas swig_types[39]
-#define SWIGTYPE_p_agora__rtc__VideoDimensions swig_types[40]
-#define SWIGTYPE_p_agora__rtc__VideoEncoderConfiguration swig_types[41]
-#define SWIGTYPE_p_agora__rtc__WatermarkOptions swig_types[42]
-#define SWIGTYPE_p_agora__util__AutoPtrT_agora__util__IString_t swig_types[43]
-#define SWIGTYPE_p_agora__util__IString swig_types[44]
-#define SWIGTYPE_p_bool swig_types[45]
-#define SWIGTYPE_p_char swig_types[46]
-#define SWIGTYPE_p_int swig_types[47]
-#define SWIGTYPE_p_long_long swig_types[48]
-#define SWIGTYPE_p_p_void swig_types[49]
-#define SWIGTYPE_p_short swig_types[50]
-#define SWIGTYPE_p_signed_char swig_types[51]
-#define SWIGTYPE_p_unsigned_char swig_types[52]
-#define SWIGTYPE_p_unsigned_int swig_types[53]
-#define SWIGTYPE_p_unsigned_long_long swig_types[54]
-#define SWIGTYPE_p_unsigned_short swig_types[55]
-#define SWIGTYPE_p_void swig_types[56]
-static swig_type_info *swig_types[58];
-static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
+#define SWIGTYPE_p_AudioFrameObserver swig_types[0]
+#define SWIGTYPE_p_VideoFrameObserver swig_types[1]
+#define SWIGTYPE_p_agora__common__APICaseHandler swig_types[2]
+#define SWIGTYPE_p_agora__common__AudioPlaybackDeviceManager swig_types[3]
+#define SWIGTYPE_p_agora__common__AudioRecordingDeviceManager swig_types[4]
+#define SWIGTYPE_p_agora__common__RtcChannelBridge swig_types[5]
+#define SWIGTYPE_p_agora__common__RtcChannelEventHandlerBase swig_types[6]
+#define SWIGTYPE_p_agora__common__RtcEngineBridge swig_types[7]
+#define SWIGTYPE_p_agora__common__RtcEngineEventHandlerBase swig_types[8]
+#define SWIGTYPE_p_agora__common__VideoDeviceManager swig_types[9]
+#define SWIGTYPE_p_agora__rtc__AudioVolumeInfo swig_types[10]
+#define SWIGTYPE_p_agora__rtc__BeautyOptions swig_types[11]
+#define SWIGTYPE_p_agora__rtc__CameraCapturerConfiguration swig_types[12]
+#define SWIGTYPE_p_agora__rtc__ChannelMediaInfo swig_types[13]
+#define SWIGTYPE_p_agora__rtc__ChannelMediaOptions swig_types[14]
+#define SWIGTYPE_p_agora__rtc__ChannelMediaRelayConfiguration swig_types[15]
+#define SWIGTYPE_p_agora__rtc__IChannel swig_types[16]
+#define SWIGTYPE_p_agora__rtc__IChannelEventHandler swig_types[17]
+#define SWIGTYPE_p_agora__rtc__IMetadataObserver swig_types[18]
+#define SWIGTYPE_p_agora__rtc__IMetadataObserver__METADATA_TYPE swig_types[19]
+#define SWIGTYPE_p_agora__rtc__IMetadataObserver__Metadata swig_types[20]
+#define SWIGTYPE_p_agora__rtc__IPacketObserver swig_types[21]
+#define SWIGTYPE_p_agora__rtc__IRtcEngineEventHandler swig_types[22]
+#define SWIGTYPE_p_agora__rtc__InjectStreamConfig swig_types[23]
+#define SWIGTYPE_p_agora__rtc__LastmileProbeConfig swig_types[24]
+#define SWIGTYPE_p_agora__rtc__LastmileProbeOneWayResult swig_types[25]
+#define SWIGTYPE_p_agora__rtc__LastmileProbeResult swig_types[26]
+#define SWIGTYPE_p_agora__rtc__LiveStreamAdvancedFeature swig_types[27]
+#define SWIGTYPE_p_agora__rtc__LiveTranscoding swig_types[28]
+#define SWIGTYPE_p_agora__rtc__LocalAudioStats swig_types[29]
+#define SWIGTYPE_p_agora__rtc__LocalVideoStats swig_types[30]
+#define SWIGTYPE_p_agora__rtc__Rect swig_types[31]
+#define SWIGTYPE_p_agora__rtc__Rectangle swig_types[32]
+#define SWIGTYPE_p_agora__rtc__RemoteAudioStats swig_types[33]
+#define SWIGTYPE_p_agora__rtc__RemoteVideoStats swig_types[34]
+#define SWIGTYPE_p_agora__rtc__RtcImage swig_types[35]
+#define SWIGTYPE_p_agora__rtc__RtcStats swig_types[36]
+#define SWIGTYPE_p_agora__rtc__ScreenCaptureParameters swig_types[37]
+#define SWIGTYPE_p_agora__rtc__TranscodingUser swig_types[38]
+#define SWIGTYPE_p_agora__rtc__UserInfo swig_types[39]
+#define SWIGTYPE_p_agora__rtc__VideoCanvas swig_types[40]
+#define SWIGTYPE_p_agora__rtc__VideoDimensions swig_types[41]
+#define SWIGTYPE_p_agora__rtc__VideoEncoderConfiguration swig_types[42]
+#define SWIGTYPE_p_agora__rtc__WatermarkOptions swig_types[43]
+#define SWIGTYPE_p_agora__util__AutoPtrT_agora__util__IString_t swig_types[44]
+#define SWIGTYPE_p_agora__util__IString swig_types[45]
+#define SWIGTYPE_p_bool swig_types[46]
+#define SWIGTYPE_p_char swig_types[47]
+#define SWIGTYPE_p_int swig_types[48]
+#define SWIGTYPE_p_long_long swig_types[49]
+#define SWIGTYPE_p_p_void swig_types[50]
+#define SWIGTYPE_p_short swig_types[51]
+#define SWIGTYPE_p_signed_char swig_types[52]
+#define SWIGTYPE_p_unsigned_char swig_types[53]
+#define SWIGTYPE_p_unsigned_int swig_types[54]
+#define SWIGTYPE_p_unsigned_long_long swig_types[55]
+#define SWIGTYPE_p_unsigned_short swig_types[56]
+#define SWIGTYPE_p_void swig_types[57]
+static swig_type_info *swig_types[59];
+static swig_module_info swig_module = {swig_types, 58, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3909,6 +3910,58 @@ SWIG_AsVal_size_t (PyObject * obj, size_t *val)
 #endif
   return res;
 }
+
+
+#ifdef SWIG_LONG_LONG_AVAILABLE
+SWIGINTERN int
+SWIG_AsVal_long_SS_long (PyObject *obj, long long *val)
+{
+  int res = SWIG_TypeError;
+  if (PyLong_Check(obj)) {
+    long long v = PyLong_AsLongLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
+      res = SWIG_OverflowError;
+    }
+  } else {
+    long v;
+    res = SWIG_AsVal_long (obj,&v);
+    if (SWIG_IsOK(res)) {
+      if (val) *val = v;
+      return res;
+    }
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    const double mant_max = 1LL << DBL_MANT_DIG;
+    const double mant_min = -mant_max;
+    double d;
+    res = SWIG_AsVal_double (obj,&d);
+    if (SWIG_IsOK(res) && !SWIG_CanCastAsInteger(&d, mant_min, mant_max))
+      return SWIG_OverflowError;
+    if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, mant_min, mant_max)) {
+      if (val) *val = (long long)(d);
+      return SWIG_AddCast(res);
+    }
+    res = SWIG_TypeError;
+  }
+#endif
+  return res;
+}
+#endif
+
+
+#ifdef SWIG_LONG_LONG_AVAILABLE
+SWIGINTERNINLINE PyObject* 
+SWIG_From_long_SS_long  (long long value)
+{
+  return ((value < LONG_MIN) || (value > LONG_MAX)) ?
+    PyLong_FromLongLong(value) : PyInt_FromLong(static_cast< long >(value));
+}
+#endif
 
 
 
@@ -7188,6 +7241,186 @@ void SwigDirector_VideoFrameObserver::onRenderVideoFrame(unsigned int uid, int w
       PyObject *error = PyErr_Occurred();
       if (error) {
         Swig::DirectorMethodException::raise("Error detected when calling 'VideoFrameObserver.onRenderVideoFrame'");
+      }
+    }
+  }
+  SWIG_PYTHON_THREAD_END_BLOCK;
+}
+
+
+SwigDirector_AudioFrameObserver::SwigDirector_AudioFrameObserver(PyObject *self): AudioFrameObserver(), Swig::Director(self) {
+  SWIG_DIRECTOR_RGTR((AudioFrameObserver *)this, this); 
+}
+
+
+
+
+SwigDirector_AudioFrameObserver::~SwigDirector_AudioFrameObserver() {
+}
+
+void SwigDirector_AudioFrameObserver::onRecordAudioFrame(unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) {
+  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+  {
+    swig::SwigVar_PyObject obj0;
+    obj0 = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(type1));
+    swig::SwigVar_PyObject obj1;
+    obj1 = SWIG_From_int(static_cast< int >(samples));
+    swig::SwigVar_PyObject obj2;
+    obj2 = SWIG_From_int(static_cast< int >(bytesPerSample));
+    swig::SwigVar_PyObject obj3;
+    obj3 = SWIG_From_int(static_cast< int >(channels));
+    swig::SwigVar_PyObject obj4;
+    obj4 = SWIG_From_int(static_cast< int >(samplesPerSec));
+    swig::SwigVar_PyObject obj5;
+    obj5 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(buffer1));
+    swig::SwigVar_PyObject obj6;
+    obj6 = SWIG_From_long_SS_long(static_cast< long long >(renderTimeMs));
+    swig::SwigVar_PyObject obj7;
+    obj7 = SWIG_From_int(static_cast< int >(avsync_type));
+    if (!swig_get_self()) {
+      Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call AudioFrameObserver.__init__.");
+    }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+    const size_t swig_method_index = 0;
+    const char *const swig_method_name = "onRecordAudioFrame";
+    PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+    swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7, NULL);
+#else
+    swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("onRecordAudioFrame");
+    swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7, NULL);
+#endif
+    if (!result) {
+      PyObject *error = PyErr_Occurred();
+      if (error) {
+        Swig::DirectorMethodException::raise("Error detected when calling 'AudioFrameObserver.onRecordAudioFrame'");
+      }
+    }
+  }
+  SWIG_PYTHON_THREAD_END_BLOCK;
+}
+
+
+void SwigDirector_AudioFrameObserver::onPlaybackAudioFrame(unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) {
+  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+  {
+    swig::SwigVar_PyObject obj0;
+    obj0 = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(type1));
+    swig::SwigVar_PyObject obj1;
+    obj1 = SWIG_From_int(static_cast< int >(samples));
+    swig::SwigVar_PyObject obj2;
+    obj2 = SWIG_From_int(static_cast< int >(bytesPerSample));
+    swig::SwigVar_PyObject obj3;
+    obj3 = SWIG_From_int(static_cast< int >(channels));
+    swig::SwigVar_PyObject obj4;
+    obj4 = SWIG_From_int(static_cast< int >(samplesPerSec));
+    swig::SwigVar_PyObject obj5;
+    obj5 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(buffer1));
+    swig::SwigVar_PyObject obj6;
+    obj6 = SWIG_From_long_SS_long(static_cast< long long >(renderTimeMs));
+    swig::SwigVar_PyObject obj7;
+    obj7 = SWIG_From_int(static_cast< int >(avsync_type));
+    if (!swig_get_self()) {
+      Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call AudioFrameObserver.__init__.");
+    }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+    const size_t swig_method_index = 1;
+    const char *const swig_method_name = "onPlaybackAudioFrame";
+    PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+    swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7, NULL);
+#else
+    swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("onPlaybackAudioFrame");
+    swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7, NULL);
+#endif
+    if (!result) {
+      PyObject *error = PyErr_Occurred();
+      if (error) {
+        Swig::DirectorMethodException::raise("Error detected when calling 'AudioFrameObserver.onPlaybackAudioFrame'");
+      }
+    }
+  }
+  SWIG_PYTHON_THREAD_END_BLOCK;
+}
+
+
+void SwigDirector_AudioFrameObserver::onMixedAudioFrame(unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) {
+  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+  {
+    swig::SwigVar_PyObject obj0;
+    obj0 = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(type1));
+    swig::SwigVar_PyObject obj1;
+    obj1 = SWIG_From_int(static_cast< int >(samples));
+    swig::SwigVar_PyObject obj2;
+    obj2 = SWIG_From_int(static_cast< int >(bytesPerSample));
+    swig::SwigVar_PyObject obj3;
+    obj3 = SWIG_From_int(static_cast< int >(channels));
+    swig::SwigVar_PyObject obj4;
+    obj4 = SWIG_From_int(static_cast< int >(samplesPerSec));
+    swig::SwigVar_PyObject obj5;
+    obj5 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(buffer1));
+    swig::SwigVar_PyObject obj6;
+    obj6 = SWIG_From_long_SS_long(static_cast< long long >(renderTimeMs));
+    swig::SwigVar_PyObject obj7;
+    obj7 = SWIG_From_int(static_cast< int >(avsync_type));
+    if (!swig_get_self()) {
+      Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call AudioFrameObserver.__init__.");
+    }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+    const size_t swig_method_index = 2;
+    const char *const swig_method_name = "onMixedAudioFrame";
+    PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+    swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7, NULL);
+#else
+    swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("onMixedAudioFrame");
+    swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7, NULL);
+#endif
+    if (!result) {
+      PyObject *error = PyErr_Occurred();
+      if (error) {
+        Swig::DirectorMethodException::raise("Error detected when calling 'AudioFrameObserver.onMixedAudioFrame'");
+      }
+    }
+  }
+  SWIG_PYTHON_THREAD_END_BLOCK;
+}
+
+
+void SwigDirector_AudioFrameObserver::onPlaybackAudioFrameBeforeMixing(unsigned int uid, unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) {
+  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+  {
+    swig::SwigVar_PyObject obj0;
+    obj0 = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(uid));
+    swig::SwigVar_PyObject obj1;
+    obj1 = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(type1));
+    swig::SwigVar_PyObject obj2;
+    obj2 = SWIG_From_int(static_cast< int >(samples));
+    swig::SwigVar_PyObject obj3;
+    obj3 = SWIG_From_int(static_cast< int >(bytesPerSample));
+    swig::SwigVar_PyObject obj4;
+    obj4 = SWIG_From_int(static_cast< int >(channels));
+    swig::SwigVar_PyObject obj5;
+    obj5 = SWIG_From_int(static_cast< int >(samplesPerSec));
+    swig::SwigVar_PyObject obj6;
+    obj6 = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(buffer1));
+    swig::SwigVar_PyObject obj7;
+    obj7 = SWIG_From_long_SS_long(static_cast< long long >(renderTimeMs));
+    swig::SwigVar_PyObject obj8;
+    obj8 = SWIG_From_int(static_cast< int >(avsync_type));
+    if (!swig_get_self()) {
+      Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call AudioFrameObserver.__init__.");
+    }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+    const size_t swig_method_index = 3;
+    const char *const swig_method_name = "onPlaybackAudioFrameBeforeMixing";
+    PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+    swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7,(PyObject *)obj8, NULL);
+#else
+    swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("onPlaybackAudioFrameBeforeMixing");
+    swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3,(PyObject *)obj4,(PyObject *)obj5,(PyObject *)obj6,(PyObject *)obj7,(PyObject *)obj8, NULL);
+#endif
+    if (!result) {
+      PyObject *error = PyErr_Occurred();
+      if (error) {
+        Swig::DirectorMethodException::raise("Error detected when calling 'AudioFrameObserver.onPlaybackAudioFrameBeforeMixing'");
       }
     }
   }
@@ -32838,6 +33071,621 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_delete_AudioFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_AudioFrameObserver" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AudioFrameObserver_onRecordAudioFrame(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  unsigned int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  uint64_t arg7 ;
+  int64_t arg8 ;
+  int arg9 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  unsigned long long val7 ;
+  int ecode7 = 0 ;
+  long long val8 ;
+  int ecode8 = 0 ;
+  int val9 ;
+  int ecode9 = 0 ;
+  PyObject *swig_obj[9] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AudioFrameObserver_onRecordAudioFrame", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "7"" of type '" "uint64_t""'");
+  } 
+  arg7 = static_cast< uint64_t >(val7);
+  ecode8 = SWIG_AsVal_long_SS_long(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "8"" of type '" "int64_t""'");
+  } 
+  arg8 = static_cast< int64_t >(val8);
+  ecode9 = SWIG_AsVal_int(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "AudioFrameObserver_onRecordAudioFrame" "', argument " "9"" of type '" "int""'");
+  } 
+  arg9 = static_cast< int >(val9);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==swig_obj[0]));
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("AudioFrameObserver::onRecordAudioFrame");
+    } else {
+      (arg1)->onRecordAudioFrame(arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AudioFrameObserver_onPlaybackAudioFrame(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  unsigned int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  uint64_t arg7 ;
+  int64_t arg8 ;
+  int arg9 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  unsigned long long val7 ;
+  int ecode7 = 0 ;
+  long long val8 ;
+  int ecode8 = 0 ;
+  int val9 ;
+  int ecode9 = 0 ;
+  PyObject *swig_obj[9] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AudioFrameObserver_onPlaybackAudioFrame", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "7"" of type '" "uint64_t""'");
+  } 
+  arg7 = static_cast< uint64_t >(val7);
+  ecode8 = SWIG_AsVal_long_SS_long(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "8"" of type '" "int64_t""'");
+  } 
+  arg8 = static_cast< int64_t >(val8);
+  ecode9 = SWIG_AsVal_int(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "AudioFrameObserver_onPlaybackAudioFrame" "', argument " "9"" of type '" "int""'");
+  } 
+  arg9 = static_cast< int >(val9);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==swig_obj[0]));
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("AudioFrameObserver::onPlaybackAudioFrame");
+    } else {
+      (arg1)->onPlaybackAudioFrame(arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AudioFrameObserver_onMixedAudioFrame(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  unsigned int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  uint64_t arg7 ;
+  int64_t arg8 ;
+  int arg9 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  unsigned long long val7 ;
+  int ecode7 = 0 ;
+  long long val8 ;
+  int ecode8 = 0 ;
+  int val9 ;
+  int ecode9 = 0 ;
+  PyObject *swig_obj[9] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AudioFrameObserver_onMixedAudioFrame", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "7"" of type '" "uint64_t""'");
+  } 
+  arg7 = static_cast< uint64_t >(val7);
+  ecode8 = SWIG_AsVal_long_SS_long(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "8"" of type '" "int64_t""'");
+  } 
+  arg8 = static_cast< int64_t >(val8);
+  ecode9 = SWIG_AsVal_int(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "AudioFrameObserver_onMixedAudioFrame" "', argument " "9"" of type '" "int""'");
+  } 
+  arg9 = static_cast< int >(val9);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==swig_obj[0]));
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("AudioFrameObserver::onMixedAudioFrame");
+    } else {
+      (arg1)->onMixedAudioFrame(arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AudioFrameObserver_onPlaybackAudioFrameBeforeMixing(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  unsigned int arg2 ;
+  unsigned int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  int arg7 ;
+  uint64_t arg8 ;
+  int64_t arg9 ;
+  int arg10 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  unsigned long long val8 ;
+  int ecode8 = 0 ;
+  long long val9 ;
+  int ecode9 = 0 ;
+  int val10 ;
+  int ecode10 = 0 ;
+  PyObject *swig_obj[10] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing", 10, 10, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  ecode3 = SWIG_AsVal_unsigned_SS_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "3"" of type '" "unsigned int""'");
+  } 
+  arg3 = static_cast< unsigned int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  ecode8 = SWIG_AsVal_unsigned_SS_long_SS_long(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "8"" of type '" "uint64_t""'");
+  } 
+  arg8 = static_cast< uint64_t >(val8);
+  ecode9 = SWIG_AsVal_long_SS_long(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "9"" of type '" "int64_t""'");
+  } 
+  arg9 = static_cast< int64_t >(val9);
+  ecode10 = SWIG_AsVal_int(swig_obj[9], &val10);
+  if (!SWIG_IsOK(ecode10)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode10), "in method '" "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing" "', argument " "10"" of type '" "int""'");
+  } 
+  arg10 = static_cast< int >(val10);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==swig_obj[0]));
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("AudioFrameObserver::onPlaybackAudioFrameBeforeMixing");
+    } else {
+      (arg1)->onPlaybackAudioFrameBeforeMixing(arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AudioFrameObserver_privateData_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  void *arg2 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AudioFrameObserver_privateData_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioFrameObserver_privateData_set" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1],SWIG_as_voidptrptr(&arg2), 0, SWIG_POINTER_DISOWN);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AudioFrameObserver_privateData_set" "', argument " "2"" of type '" "void *""'"); 
+  }
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->privateData = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AudioFrameObserver_privateData_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  void *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioFrameObserver_privateData_get" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (void *) ((arg1)->privateData);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_AudioFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PyObject *arg1 = (PyObject *) 0 ;
+  PyObject *swig_obj[1] ;
+  AudioFrameObserver *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  arg1 = swig_obj[0];
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if ( arg1 != Py_None ) {
+      /* subclassed */
+      result = (AudioFrameObserver *)new SwigDirector_AudioFrameObserver(arg1); 
+    } else {
+      SWIG_SetErrorMsg(PyExc_RuntimeError,"accessing abstract class or protected constructor"); 
+      SWIG_fail;
+    }
+    
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_AudioFrameObserver, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_disown_AudioFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  AudioFrameObserver *arg1 = (AudioFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "disown_AudioFrameObserver" "', argument " "1"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg1 = reinterpret_cast< AudioFrameObserver * >(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    {
+      Swig::Director *director = SWIG_DIRECTOR_CAST(arg1);
+      if (director) director->swig_disown();
+    }
+    
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *AudioFrameObserver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_AudioFrameObserver, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *AudioFrameObserver_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_registerAudioFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  agora::common::RtcEngineBridge *arg1 = (agora::common::RtcEngineBridge *) 0 ;
+  AudioFrameObserver *arg2 = (AudioFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "registerAudioFrameObserver", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_agora__common__RtcEngineBridge, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "registerAudioFrameObserver" "', argument " "1"" of type '" "agora::common::RtcEngineBridge *""'"); 
+  }
+  arg1 = reinterpret_cast< agora::common::RtcEngineBridge * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "registerAudioFrameObserver" "', argument " "2"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg2 = reinterpret_cast< AudioFrameObserver * >(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    registerAudioFrameObserver(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_unregisterAudioFrameObserver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  agora::common::RtcEngineBridge *arg1 = (agora::common::RtcEngineBridge *) 0 ;
+  AudioFrameObserver *arg2 = (AudioFrameObserver *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "unregisterAudioFrameObserver", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_agora__common__RtcEngineBridge, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "unregisterAudioFrameObserver" "', argument " "1"" of type '" "agora::common::RtcEngineBridge *""'"); 
+  }
+  arg1 = reinterpret_cast< agora::common::RtcEngineBridge * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_AudioFrameObserver, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "unregisterAudioFrameObserver" "', argument " "2"" of type '" "AudioFrameObserver *""'"); 
+  }
+  arg2 = reinterpret_cast< AudioFrameObserver * >(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    unregisterAudioFrameObserver(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_APICaseHandler_handleAPICase(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   agora::common::APICaseHandler *arg1 = (agora::common::APICaseHandler *) 0 ;
@@ -41579,6 +42427,19 @@ static PyMethodDef SwigMethods[] = {
 	 { "VideoFrameObserver_swiginit", VideoFrameObserver_swiginit, METH_VARARGS, NULL},
 	 { "registerVideoFrameObserver", _wrap_registerVideoFrameObserver, METH_VARARGS, NULL},
 	 { "unregisterVideoFrameObserver", _wrap_unregisterVideoFrameObserver, METH_VARARGS, NULL},
+	 { "delete_AudioFrameObserver", _wrap_delete_AudioFrameObserver, METH_O, NULL},
+	 { "AudioFrameObserver_onRecordAudioFrame", _wrap_AudioFrameObserver_onRecordAudioFrame, METH_VARARGS, NULL},
+	 { "AudioFrameObserver_onPlaybackAudioFrame", _wrap_AudioFrameObserver_onPlaybackAudioFrame, METH_VARARGS, NULL},
+	 { "AudioFrameObserver_onMixedAudioFrame", _wrap_AudioFrameObserver_onMixedAudioFrame, METH_VARARGS, NULL},
+	 { "AudioFrameObserver_onPlaybackAudioFrameBeforeMixing", _wrap_AudioFrameObserver_onPlaybackAudioFrameBeforeMixing, METH_VARARGS, NULL},
+	 { "AudioFrameObserver_privateData_set", _wrap_AudioFrameObserver_privateData_set, METH_VARARGS, NULL},
+	 { "AudioFrameObserver_privateData_get", _wrap_AudioFrameObserver_privateData_get, METH_O, NULL},
+	 { "new_AudioFrameObserver", _wrap_new_AudioFrameObserver, METH_O, NULL},
+	 { "disown_AudioFrameObserver", _wrap_disown_AudioFrameObserver, METH_O, NULL},
+	 { "AudioFrameObserver_swigregister", AudioFrameObserver_swigregister, METH_O, NULL},
+	 { "AudioFrameObserver_swiginit", AudioFrameObserver_swiginit, METH_VARARGS, NULL},
+	 { "registerAudioFrameObserver", _wrap_registerAudioFrameObserver, METH_VARARGS, NULL},
+	 { "unregisterAudioFrameObserver", _wrap_unregisterAudioFrameObserver, METH_VARARGS, NULL},
 	 { "APICaseHandler_handleAPICase", _wrap_APICaseHandler_handleAPICase, METH_VARARGS, NULL},
 	 { "delete_APICaseHandler", _wrap_delete_APICaseHandler, METH_O, NULL},
 	 { "new_APICaseHandler", _wrap_new_APICaseHandler, METH_O, NULL},
@@ -42502,6 +43363,7 @@ static void *_p_agora__common__RtcChannelEventHandlerBaseTo_p_agora__rtc__IChann
 static void *_p_agora__common__RtcEngineEventHandlerBaseTo_p_agora__rtc__IRtcEngineEventHandler(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((agora::rtc::IRtcEngineEventHandler *)  ((agora::common::RtcEngineEventHandlerBase *) x));
 }
+static swig_type_info _swigt__p_AudioFrameObserver = {"_p_AudioFrameObserver", "AudioFrameObserver *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_VideoFrameObserver = {"_p_VideoFrameObserver", "VideoFrameObserver *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_agora__common__APICaseHandler = {"_p_agora__common__APICaseHandler", "agora::common::APICaseHandler *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_agora__common__AudioPlaybackDeviceManager = {"_p_agora__common__AudioPlaybackDeviceManager", "agora::common::AudioPlaybackDeviceManager *", 0, 0, (void*)0, 0};
@@ -42561,6 +43423,7 @@ static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned
 static swig_type_info _swigt__p_void = {"_p_void", "void *|agora::rtc::view_t", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_AudioFrameObserver,
   &_swigt__p_VideoFrameObserver,
   &_swigt__p_agora__common__APICaseHandler,
   &_swigt__p_agora__common__AudioPlaybackDeviceManager,
@@ -42620,6 +43483,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_void,
 };
 
+static swig_cast_info _swigc__p_AudioFrameObserver[] = {  {&_swigt__p_AudioFrameObserver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VideoFrameObserver[] = {  {&_swigt__p_VideoFrameObserver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_agora__common__APICaseHandler[] = {  {&_swigt__p_agora__common__APICaseHandler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_agora__common__AudioPlaybackDeviceManager[] = {  {&_swigt__p_agora__common__AudioPlaybackDeviceManager, 0, 0, 0},{0, 0, 0, 0}};
@@ -42679,6 +43543,7 @@ static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short
 static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_AudioFrameObserver,
   _swigc__p_VideoFrameObserver,
   _swigc__p_agora__common__APICaseHandler,
   _swigc__p_agora__common__AudioPlaybackDeviceManager,

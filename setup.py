@@ -1,4 +1,4 @@
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 import os
 import platform
 
@@ -14,6 +14,9 @@ elif platform.system() == 'Windows':
     libraries = ['agora_rtc_sdk']
     library_dirs = ['.']
     extra_compile_args = ['/std:c++14', '-DNOMINMAX']
+
+with open("publish_dscp.md", "r") as fh:
+    long_description = fh.read()
 
 agorartc_module = Extension('_agorartc',
                            sources=[
@@ -37,10 +40,30 @@ agorartc_module = Extension('_agorartc',
                            extra_compile_args = extra_compile_args
                            )
 
-setup (name = 'agorartc',
-       version = '0.1',
+setup (name = 'agora-python-sdk',
+       version = '3.1.2.10',
        author      = "Agora.io",
-       description = """Agora RTC Python SDK""",
+       description = "Agora RTC Python SDK",
+       long_description = long_description,
+       long_description_content_type = "text/markdown",
+       url="https://github.com/AgoraIO-Community/Agora-Python-SDK",
        ext_modules = [agorartc_module],
        py_modules = ["agorartc"],
-       )
+       classifiers=[
+        "Programming Language :: Python :: 3",
+        "Development Status :: 4 - Beta",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: MacOS",
+        "Operating System :: Microsoft :: Windows",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Multimedia :: Video",
+        "Topic :: Multimedia :: Video :: Capture",
+        "Programming Language :: C++",
+       ],
+       python_requires='>=3.6',
+)
+
+
+
+

@@ -41,6 +41,83 @@ class MyVideoFrameObserver : public agora::media::IVideoFrameObserver {
     VideoFrameObserver* videoFrameObserver_ = nullptr;
 };
 
+class MyAudioFrameObserver : public agora::media::IAudioFrameObserver {
+public:
+    MyAudioFrameObserver (AudioFrameObserver * audioFrameObserver) : audioFrameObserver_(audioFrameObserver) { }
+
+    virtual bool onRecordAudioFrame(AudioFrame& audioFrame) override {
+        if (audioFrameObserver_)
+        {
+            audioFrameObserver_->onRecordAudioFrame(
+                audioFrame.type,
+                audioFrame.samples,
+                audioFrame.bytesPerSample,
+                audioFrame.channels,
+                audioFrame.samplesPerSec,
+                (uint64_t)audioFrame.buffer,
+                audioFrame.renderTimeMs,
+                audioFrame.avsync_type);
+        }
+
+        return true;
+    }
+
+    virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame) override {
+        if (audioFrameObserver_)
+        {
+            audioFrameObserver_->onPlaybackAudioFrame(
+                audioFrame.type,
+                audioFrame.samples,
+                audioFrame.bytesPerSample,
+                audioFrame.channels,
+                audioFrame.samplesPerSec,
+                (uint64_t)audioFrame.buffer,
+                audioFrame.renderTimeMs,
+                audioFrame.avsync_type);
+        }
+
+        return true;
+    }
+
+    virtual bool onMixedAudioFrame(AudioFrame& audioFrame) override {
+        if (audioFrameObserver_)
+        {
+            audioFrameObserver_->onMixedAudioFrame(
+                audioFrame.type,
+                audioFrame.samples,
+                audioFrame.bytesPerSample,
+                audioFrame.channels,
+                audioFrame.samplesPerSec,
+                (uint64_t)audioFrame.buffer,
+                audioFrame.renderTimeMs,
+                audioFrame.avsync_type);
+        }
+
+        return true;
+    }
+
+    virtual bool onPlaybackAudioFrameBeforeMixing(unsigned int uid, AudioFrame& audioFrame) override {
+        if (audioFrameObserver_)
+        {
+            audioFrameObserver_->onPlaybackAudioFrameBeforeMixing(
+                uid,
+                audioFrame.type,
+                audioFrame.samples,
+                audioFrame.bytesPerSample,
+                audioFrame.channels,
+                audioFrame.samplesPerSec,
+                (uint64_t)audioFrame.buffer,
+                audioFrame.renderTimeMs,
+                audioFrame.avsync_type);
+        }
+
+        return true;
+    }
+
+private:
+    AudioFrameObserver* audioFrameObserver_ = nullptr;
+};
+
 using namespace agora::rtc;
 
 VideoCanvas createVideoCanvas(uint64_t ptr) {
@@ -62,5 +139,16 @@ void registerVideoFrameObserver(agora::common::RtcEngineBridge* rtc, VideoFrameO
 void unregisterVideoFrameObserver(agora::common::RtcEngineBridge* rtc, VideoFrameObserver * frameObserver) {
     rtc->registerVideoFrameObserver(nullptr);
     MyVideoFrameObserver * fo = (MyVideoFrameObserver *)frameObserver->privateData;
+    delete fo;
+}
+
+void registerAudioFrameObserver(agora::common::RtcEngineBridge* rtc, AudioFrameObserver * frameObserver) {
+    MyAudioFrameObserver * fo = new MyAudioFrameObserver(frameObserver);
+    frameObserver->privateData = fo;
+    rtc->registerAudioFrameObserver(fo);
+}
+void unregisterAudioFrameObserver(agora::common::RtcEngineBridge* rtc, AudioFrameObserver * frameObserver) {
+    rtc->registerAudioFrameObserver(nullptr);
+    MyAudioFrameObserver * fo = (MyAudioFrameObserver *)frameObserver->privateData;
     delete fo;
 }

@@ -27,4 +27,18 @@ public:
 void registerVideoFrameObserver(agora::common::RtcEngineBridge* rtc, VideoFrameObserver * frameObserver);
 void unregisterVideoFrameObserver(agora::common::RtcEngineBridge* rtc, VideoFrameObserver * frameObserver);
 
+class AudioFrameObserver {
+public:
+    virtual ~AudioFrameObserver() {}
+    virtual void onRecordAudioFrame(unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) = 0;
+    virtual void onPlaybackAudioFrame(unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) = 0;
+    virtual void onMixedAudioFrame(unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) = 0;
+    virtual void onPlaybackAudioFrameBeforeMixing(unsigned int uid, unsigned int type1, int samples, int bytesPerSample, int channels, int samplesPerSec, uint64_t buffer1, int64_t renderTimeMs, int avsync_type) = 0;
+
+    void * privateData = nullptr;
+};
+
+void registerAudioFrameObserver(agora::common::RtcEngineBridge* rtc, AudioFrameObserver * frameObserver);
+void unregisterAudioFrameObserver(agora::common::RtcEngineBridge* rtc, AudioFrameObserver * frameObserver);
+
 #endif

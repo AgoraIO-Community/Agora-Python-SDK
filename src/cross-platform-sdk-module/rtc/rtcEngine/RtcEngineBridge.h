@@ -428,6 +428,9 @@ public:
 
   int registerVideoFrameObserver(
       media::IVideoFrameObserver *videoFrameObserver);
+
+  int registerAudioFrameObserver(
+      media::IAudioFrameObserver *audioFrameObserver);
 };
 
 CROSS_PLATFORM_EXPORT IRtcEngineBridge *createRtcEngineBridge();

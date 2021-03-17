@@ -70,19 +70,19 @@ class IString(object):
         raise AttributeError("No constructor defined - class is abstract")
     __repr__ = _swig_repr
 
-    def empty(self):
+    def empty(self) -> "bool":
         return _agorartc.IString_empty(self)
 
-    def c_str(self):
+    def c_str(self) -> "char const *":
         return _agorartc.IString_c_str(self)
 
-    def data(self):
+    def data(self) -> "char const *":
         return _agorartc.IString_data(self)
 
-    def length(self):
+    def length(self) -> "size_t":
         return _agorartc.IString_length(self)
 
-    def release(self):
+    def release(self) -> "void":
         return _agorartc.IString_release(self)
 
 # Register IString in _agorartc:
@@ -2533,29 +2533,29 @@ class RtcEngineBridge(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def initEventHandler(self, eventHandler):
+    def initEventHandler(self, eventHandler: "IRtcEngineEventHandler") -> "int":
         return _agorartc.RtcEngineBridge_initEventHandler(self, eventHandler)
 
-    def release(self, sync=False):
+    def release(self, sync: "bool"=False) -> "void":
         r""" Releases all IVideoDeviceManager resources."""
         return _agorartc.RtcEngineBridge_release(self, sync)
 
-    def createChannel(self, channelId):
+    def createChannel(self, channelId: "char const *") -> "agora::common::RtcChannelBridge *":
         return _agorartc.RtcEngineBridge_createChannel(self, channelId)
 
-    def createVideoDeviceManager(self):
+    def createVideoDeviceManager(self) -> "agora::common::VideoDeviceManager *":
         return _agorartc.RtcEngineBridge_createVideoDeviceManager(self)
 
-    def createAudioPlaybackDeviceManager(self):
+    def createAudioPlaybackDeviceManager(self) -> "agora::common::AudioPlaybackDeviceManager *":
         return _agorartc.RtcEngineBridge_createAudioPlaybackDeviceManager(self)
 
-    def createAudioRecordingDeviceManager(self):
+    def createAudioRecordingDeviceManager(self) -> "agora::common::AudioRecordingDeviceManager *":
         return _agorartc.RtcEngineBridge_createAudioRecordingDeviceManager(self)
 
-    def initialize(self, appId, context, areaCode):
+    def initialize(self, appId: "char const *", context: "void *", areaCode: "unsigned int") -> "int":
         return _agorartc.RtcEngineBridge_initialize(self, appId, context, areaCode)
 
-    def setChannelProfile(self, profile):
+    def setChannelProfile(self, profile: "agora::rtc::CHANNEL_PROFILE_TYPE") -> "int":
         r"""
          Sets the channel profile of the Agora IRtcEngine.
 
@@ -2579,7 +2579,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setChannelProfile(self, profile)
 
-    def setClientRole(self, role):
+    def setClientRole(self, role: "agora::rtc::CLIENT_ROLE_TYPE") -> "int":
         r"""
          Sets the role of the user, such as a host or an audience (default), before joining a channel in the live interactive streaming.
 
@@ -2605,7 +2605,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setClientRole(self, role)
 
-    def joinChannel(self, token, channelId, info, uid):
+    def joinChannel(self, token: "char const *", channelId: "char const *", info: "char const *", uid: "agora::rtc::uid_t") -> "int":
         r"""
          Joins a channel with the user ID.
 
@@ -2651,7 +2651,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_joinChannel(self, token, channelId, info, uid)
 
-    def switchChannel(self, token, channelId):
+    def switchChannel(self, token: "char const *", channelId: "char const *") -> "int":
         r"""
          Switches to a different channel.
 
@@ -2699,7 +2699,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_switchChannel(self, token, channelId)
 
-    def leaveChannel(self):
+    def leaveChannel(self) -> "int":
         r"""
          Allows a user to leave a channel, such as hanging up or exiting a call.
 
@@ -2727,7 +2727,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_leaveChannel(self)
 
-    def renewToken(self, token):
+    def renewToken(self, token: "char const *") -> "int":
         r"""
          Gets a new token when the current token expires after a period of time.
 
@@ -2751,7 +2751,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_renewToken(self, token)
 
-    def registerLocalUserAccount(self, appId, userAccount):
+    def registerLocalUserAccount(self, appId: "char const *", userAccount: "char const *") -> "int":
         r"""
          Registers a user account.
 
@@ -2789,7 +2789,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_registerLocalUserAccount(self, appId, userAccount)
 
-    def joinChannelWithUserAccount(self, token, channelId, userAccount):
+    def joinChannelWithUserAccount(self, token: "char const *", channelId: "char const *", userAccount: "char const *") -> "int":
         r"""
          Joins the channel with a user account.
 
@@ -2830,7 +2830,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_joinChannelWithUserAccount(self, token, channelId, userAccount)
 
-    def getUserInfoByUserAccount(self, userAccount, userInfo):
+    def getUserInfoByUserAccount(self, userAccount: "char const *", userInfo: "UserInfo") -> "int":
         r"""
          Gets the user information by passing in the user account.
 
@@ -2853,7 +2853,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getUserInfoByUserAccount(self, userAccount, userInfo)
 
-    def getUserInfoByUid(self, uid, userInfo):
+    def getUserInfoByUid(self, uid: "agora::rtc::uid_t", userInfo: "UserInfo") -> "int":
         r"""
          Gets the user information by passing in the user ID.
 
@@ -2877,7 +2877,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getUserInfoByUid(self, uid, userInfo)
 
-    def startEchoTest(self, *args):
+    def startEchoTest(self, *args) -> "int":
         r"""
         *Overload 1:*
         DEPRECATED** Starts an audio call test.
@@ -2923,7 +2923,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_startEchoTest(self, *args)
 
-    def stopEchoTest(self):
+    def stopEchoTest(self) -> "int":
         r"""
          Stops the audio call test.
 
@@ -2934,7 +2934,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_stopEchoTest(self)
 
-    def enableVideo(self):
+    def enableVideo(self) -> "int":
         r"""
          Enables the video module.
 
@@ -2956,7 +2956,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableVideo(self)
 
-    def disableVideo(self):
+    def disableVideo(self) -> "int":
         r"""
          Disables the video module.
 
@@ -2978,7 +2978,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_disableVideo(self)
 
-    def setVideoProfile(self, profile, swapWidthAndHeight):
+    def setVideoProfile(self, profile: "agora::rtc::VIDEO_PROFILE_TYPE", swapWidthAndHeight: "bool") -> "int":
         r"""
         DEPRECATED** Sets the video profile.
 
@@ -3006,7 +3006,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setVideoProfile(self, profile, swapWidthAndHeight)
 
-    def setVideoEncoderConfiguration(self, config):
+    def setVideoEncoderConfiguration(self, config: "VideoEncoderConfiguration") -> "int":
         r"""
          Sets the video encoder configuration.
 
@@ -3025,7 +3025,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setVideoEncoderConfiguration(self, config)
 
-    def setCameraCapturerConfiguration(self, config):
+    def setCameraCapturerConfiguration(self, config: "CameraCapturerConfiguration") -> "int":
         r"""
          Sets the camera capture configuration.
 
@@ -3047,7 +3047,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setCameraCapturerConfiguration(self, config)
 
-    def setupLocalVideo(self, canvas):
+    def setupLocalVideo(self, canvas: "VideoCanvas") -> "int":
         r"""
          Initializes the local video view.
 
@@ -3068,7 +3068,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setupLocalVideo(self, canvas)
 
-    def setupRemoteVideo(self, canvas):
+    def setupRemoteVideo(self, canvas: "VideoCanvas") -> "int":
         r"""
          Initializes the video view of a remote user.
 
@@ -3091,7 +3091,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setupRemoteVideo(self, canvas)
 
-    def startPreview(self):
+    def startPreview(self) -> "int":
         r"""
          Starts the local video preview before joining the channel.
 
@@ -3109,7 +3109,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_startPreview(self)
 
-    def setRemoteUserPriority(self, uid, userPriority):
+    def setRemoteUserPriority(self, uid: "agora::rtc::uid_t", userPriority: "agora::rtc::PRIORITY_TYPE") -> "int":
         r"""
          Prioritizes a remote user's stream.
 
@@ -3129,7 +3129,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setRemoteUserPriority(self, uid, userPriority)
 
-    def stopPreview(self):
+    def stopPreview(self) -> "int":
         r"""
          Stops the local video preview and disables video.
 
@@ -3140,7 +3140,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_stopPreview(self)
 
-    def enableAudio(self):
+    def enableAudio(self) -> "int":
         r"""
          Enables the audio module.
 
@@ -3161,7 +3161,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableAudio(self)
 
-    def enableLocalAudio(self, enabled):
+    def enableLocalAudio(self, enabled: "bool") -> "int":
         r"""
          Disables/Re-enables the local audio function.
 
@@ -3191,7 +3191,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableLocalAudio(self, enabled)
 
-    def disableAudio(self):
+    def disableAudio(self) -> "int":
         r"""
          Disables the audio module.
 
@@ -3206,7 +3206,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_disableAudio(self)
 
-    def setAudioProfile(self, profile, scenario):
+    def setAudioProfile(self, profile: "agora::rtc::AUDIO_PROFILE_TYPE", scenario: "agora::rtc::AUDIO_SCENARIO_TYPE") -> "int":
         r"""
          Sets the audio parameters and application scenarios.
 
@@ -3230,7 +3230,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setAudioProfile(self, profile, scenario)
 
-    def muteLocalAudioStream(self, mute):
+    def muteLocalAudioStream(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes sending the local audio stream.
 
@@ -3251,7 +3251,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_muteLocalAudioStream(self, mute)
 
-    def muteAllRemoteAudioStreams(self, mute):
+    def muteAllRemoteAudioStreams(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving all remote users' audio streams.
 
@@ -3267,7 +3267,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_muteAllRemoteAudioStreams(self, mute)
 
-    def setDefaultMuteAllRemoteVideoStreams(self, mute):
+    def setDefaultMuteAllRemoteVideoStreams(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving all remote users' audio streams by default.
 
@@ -3290,7 +3290,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setDefaultMuteAllRemoteVideoStreams(self, mute)
 
-    def adjustUserPlaybackSignalVolume(self, uid, volume):
+    def adjustUserPlaybackSignalVolume(self, uid: "unsigned int", volume: "int") -> "int":
         r"""
          Adjusts the playback volume of a specified remote user.
 
@@ -3315,7 +3315,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_adjustUserPlaybackSignalVolume(self, uid, volume)
 
-    def muteRemoteAudioStream(self, userId, mute):
+    def muteRemoteAudioStream(self, userId: "agora::rtc::uid_t", mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving a specified remote user's audio stream.
 
@@ -3335,7 +3335,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_muteRemoteAudioStream(self, userId, mute)
 
-    def muteLocalVideoStream(self, mute):
+    def muteLocalVideoStream(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes sending the local video stream.
 
@@ -3357,7 +3357,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_muteLocalVideoStream(self, mute)
 
-    def enableLocalVideo(self, enabled):
+    def enableLocalVideo(self, enabled: "bool") -> "int":
         r"""
          Enables/Disables the local video capture.
 
@@ -3381,7 +3381,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableLocalVideo(self, enabled)
 
-    def muteAllRemoteVideoStreams(self, mute):
+    def muteAllRemoteVideoStreams(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving all video stream from a specified remote user.
 
@@ -3397,7 +3397,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_muteAllRemoteVideoStreams(self, mute)
 
-    def setDefaultMuteAllRemoteAudioStreams(self, mute):
+    def setDefaultMuteAllRemoteAudioStreams(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving all remote users' video streams by default.
 
@@ -3417,7 +3417,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setDefaultMuteAllRemoteAudioStreams(self, mute)
 
-    def muteRemoteVideoStream(self, userId, mute):
+    def muteRemoteVideoStream(self, userId: "agora::rtc::uid_t", mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving the video stream from a specified remote user.
 
@@ -3437,7 +3437,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_muteRemoteVideoStream(self, userId, mute)
 
-    def setRemoteVideoStreamType(self, userId, streamType):
+    def setRemoteVideoStreamType(self, userId: "agora::rtc::uid_t", streamType: "agora::rtc::REMOTE_VIDEO_STREAM_TYPE") -> "int":
         r"""
          Sets the stream type of the remote video.
 
@@ -3465,7 +3465,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setRemoteVideoStreamType(self, userId, streamType)
 
-    def setRemoteDefaultVideoStreamType(self, streamType):
+    def setRemoteDefaultVideoStreamType(self, streamType: "agora::rtc::REMOTE_VIDEO_STREAM_TYPE") -> "int":
         r"""
          Sets the default stream type of remote videos.
 
@@ -3491,7 +3491,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setRemoteDefaultVideoStreamType(self, streamType)
 
-    def enableAudioVolumeIndication(self, interval, smooth, report_vad):
+    def enableAudioVolumeIndication(self, interval: "int", smooth: "int", report_vad: "bool") -> "int":
         r"""
          Enables the 'onAudioVolumeIndication' callback at a set time interval to report on which users are speaking and the speakers' volume.
 
@@ -3515,7 +3515,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableAudioVolumeIndication(self, interval, smooth, report_vad)
 
-    def startAudioRecording(self, *args):
+    def startAudioRecording(self, *args) -> "int":
         r"""
         *Overload 1:*
          Deprecated: Starts an audio recording.
@@ -3576,7 +3576,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_startAudioRecording(self, *args)
 
-    def stopAudioRecording(self):
+    def stopAudioRecording(self) -> "int":
         r"""
          Stops an audio recording on the client.
 
@@ -3589,7 +3589,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_stopAudioRecording(self)
 
-    def setRemoteVoicePosition(self, uid, pan, gain):
+    def setRemoteVoicePosition(self, uid: "agora::rtc::uid_t", pan: "double", gain: "double") -> "int":
         r"""
          Sets the sound position and gain of a remote user.
 
@@ -3616,7 +3616,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setRemoteVoicePosition(self, uid, pan, gain)
 
-    def setLogFile(self, file):
+    def setLogFile(self, file: "char const *") -> "int":
         r"""
          Sets the log files that the SDK outputs.
 
@@ -3639,7 +3639,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLogFile(self, file)
 
-    def setLogFilter(self, filter):
+    def setLogFilter(self, filter: "unsigned int") -> "int":
         r"""
          Sets the output log level of the SDK.
 
@@ -3660,7 +3660,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLogFilter(self, filter)
 
-    def setLogFileSize(self, fileSizeInKBytes):
+    def setLogFileSize(self, fileSizeInKBytes: "unsigned int") -> "int":
         r"""
          Sets the size of a log file that the SDK outputs.
 
@@ -3682,7 +3682,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLogFileSize(self, fileSizeInKBytes)
 
-    def setLocalRenderMode(self, *args):
+    def setLocalRenderMode(self, *args) -> "int":
         r"""
         *Overload 1:*
 
@@ -3723,7 +3723,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalRenderMode(self, *args)
 
-    def setRemoteRenderMode(self, *args):
+    def setRemoteRenderMode(self, *args) -> "int":
         r"""
         *Overload 1:*
 
@@ -3769,7 +3769,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setRemoteRenderMode(self, *args)
 
-    def setLocalVideoMirrorMode(self, mirrorMode):
+    def setLocalVideoMirrorMode(self, mirrorMode: "agora::rtc::VIDEO_MIRROR_MODE_TYPE") -> "int":
         r"""
         		     Deprecated: This method is deprecated, use the 'setupLocalVideo'
         		     or 'IRtcEngine::setLocalRenderMode(RENDER_MODE_TYPE' renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) "setLocalRenderMode" method instead.
@@ -3791,7 +3791,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalVideoMirrorMode(self, mirrorMode)
 
-    def enableDualStreamMode(self, enabled):
+    def enableDualStreamMode(self, enabled: "bool") -> "int":
         r"""
          Sets the stream mode to the single-stream (default) or dual-stream mode. (`LIVE_BROADCASTING` only.)
 
@@ -3804,7 +3804,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableDualStreamMode(self, enabled)
 
-    def adjustRecordingSignalVolume(self, volume):
+    def adjustRecordingSignalVolume(self, volume: "int") -> "int":
         r"""
          Adjusts the recording volume.
 
@@ -3824,7 +3824,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_adjustRecordingSignalVolume(self, volume)
 
-    def adjustPlaybackSignalVolume(self, volume):
+    def adjustPlaybackSignalVolume(self, volume: "int") -> "int":
         r"""
          Adjusts the playback volume of all remote users.
 
@@ -3847,7 +3847,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_adjustPlaybackSignalVolume(self, volume)
 
-    def enableWebSdkInteroperability(self, enabled):
+    def enableWebSdkInteroperability(self, enabled: "bool") -> "int":
         r"""
         		     Deprecated: This method is deprecated. As of v3.0.0, the Native SDK automatically enables interoperability with the Web SDK, so you no longer need to call this method.
         		     Enables interoperability with the Agora Web SDK.
@@ -3868,7 +3868,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableWebSdkInteroperability(self, enabled)
 
-    def setVideoQualityParameters(self, preferFrameRateOverImageQuality):
+    def setVideoQualityParameters(self, preferFrameRateOverImageQuality: "bool") -> "int":
         r"""
         DEPRECATED** Sets the preferences for the high-quality video. (`LIVE_BROADCASTING` only).
 
@@ -3886,7 +3886,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setVideoQualityParameters(self, preferFrameRateOverImageQuality)
 
-    def setLocalPublishFallbackOption(self, option):
+    def setLocalPublishFallbackOption(self, option: "agora::rtc::STREAM_FALLBACK_OPTIONS") -> "int":
         r"""
          Sets the fallback option for the published video stream based on the network conditions.
 
@@ -3911,7 +3911,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalPublishFallbackOption(self, option)
 
-    def setRemoteSubscribeFallbackOption(self, option):
+    def setRemoteSubscribeFallbackOption(self, option: "agora::rtc::STREAM_FALLBACK_OPTIONS") -> "int":
         r"""
          Sets the fallback option for the remotely subscribed video stream based on the network conditions.
 
@@ -3930,7 +3930,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setRemoteSubscribeFallbackOption(self, option)
 
-    def rate(self, callId, rating, description):
+    def rate(self, callId: "char const *", rating: "int", description: "char const *") -> "int":
         r"""
          Allows a user to rate a call after the call ends.
 
@@ -3948,7 +3948,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_rate(self, callId, rating, description)
 
-    def complain(self, callId, description):
+    def complain(self, callId: "char const *", description: "char const *") -> "int":
         r"""
          Allows a user to complain about the call quality after a call ends.
 
@@ -3964,7 +3964,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_complain(self, callId, description)
 
-    def getVersion(self):
+    def getVersion(self) -> "char const *":
         r"""
          Retrieves the SDK version number.
 
@@ -3974,7 +3974,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getVersion(self)
 
-    def enableLastmileTest(self):
+    def enableLastmileTest(self) -> "int":
         r"""
           Enables the network connection quality test.
 
@@ -3998,7 +3998,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableLastmileTest(self)
 
-    def disableLastmileTest(self):
+    def disableLastmileTest(self) -> "int":
         r"""
          Disables the network connection quality test.
 
@@ -4009,7 +4009,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_disableLastmileTest(self)
 
-    def startLastmileProbeTest(self, config):
+    def startLastmileProbeTest(self, config: "LastmileProbeConfig") -> "int":
         r"""
          Starts the last-mile network probe test.
 
@@ -4035,11 +4035,11 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_startLastmileProbeTest(self, config)
 
-    def stopLastmileProbeTest(self):
+    def stopLastmileProbeTest(self) -> "int":
         r""" Stops the last-mile network probe test."""
         return _agorartc.RtcEngineBridge_stopLastmileProbeTest(self)
 
-    def getErrorDescription(self, code):
+    def getErrorDescription(self, code: "int") -> "char const *":
         r"""
          Retrieves the warning or error description.
 
@@ -4051,7 +4051,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getErrorDescription(self, code)
 
-    def setEncryptionSecret(self, secret):
+    def setEncryptionSecret(self, secret: "char const *") -> "int":
         r"""
         DEPRECATED** Enables built-in encryption with an encryption password before users join a channel.
 
@@ -4075,7 +4075,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setEncryptionSecret(self, secret)
 
-    def setEncryptionMode(self, encryptionMode):
+    def setEncryptionMode(self, encryptionMode: "char const *") -> "int":
         r"""
         DEPRECATED** Sets the built-in encryption mode.
 
@@ -4103,7 +4103,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setEncryptionMode(self, encryptionMode)
 
-    def registerPacketObserver(self, observer):
+    def registerPacketObserver(self, observer: "agora::rtc::IPacketObserver *") -> "int":
         r"""
          Registers a packet observer.
 
@@ -4124,7 +4124,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_registerPacketObserver(self, observer)
 
-    def createDataStream(self, streamId, reliable, ordered):
+    def createDataStream(self, streamId: "int *", reliable: "bool", ordered: "bool") -> "int":
         r"""
          Creates a data stream.
 
@@ -4150,7 +4150,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_createDataStream(self, streamId, reliable, ordered)
 
-    def sendStreamMessage(self, streamId, data, length):
+    def sendStreamMessage(self, streamId: "int", data: "char const *", length: "size_t") -> "int":
         r"""
          Sends data stream messages to all users in a channel.
 
@@ -4179,7 +4179,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_sendStreamMessage(self, streamId, data, length)
 
-    def addPublishStreamUrl(self, url, transcodingEnabled):
+    def addPublishStreamUrl(self, url: "char const *", transcodingEnabled: "bool") -> "int":
         r"""
          Publishes the local stream to a specified CDN live RTMP address.  (CDN live only.)
 
@@ -4208,7 +4208,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_addPublishStreamUrl(self, url, transcodingEnabled)
 
-    def removePublishStreamUrl(self, url):
+    def removePublishStreamUrl(self, url: "char const *") -> "int":
         r"""
          Removes an RTMP stream from the CDN. (CDN live only.)
 
@@ -4230,7 +4230,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_removePublishStreamUrl(self, url)
 
-    def setLiveTranscoding(self, transcoding):
+    def setLiveTranscoding(self, transcoding: "LiveTranscoding") -> "int":
         r"""
          Sets the video layout and audio settings for CDN live. (CDN live only.)
 
@@ -4251,7 +4251,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLiveTranscoding(self, transcoding)
 
-    def addVideoWatermark(self, *args):
+    def addVideoWatermark(self, *args) -> "int":
         r"""
         *Overload 1:*
         DEPRECATED** Adds a watermark image to the local video or CDN live stream.
@@ -4310,7 +4310,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_addVideoWatermark(self, *args)
 
-    def clearVideoWatermarks(self):
+    def clearVideoWatermarks(self) -> "int":
         r"""
          Removes the watermark image from the video stream added by the 'agora::rtc::IRtcEngine::addVideoWatermark(const' char* watermarkUrl, const WatermarkOptions& options) "addVideoWatermark" method.
 
@@ -4321,7 +4321,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_clearVideoWatermarks(self)
 
-    def setBeautyEffectOptions(self, enabled, options):
+    def setBeautyEffectOptions(self, enabled: "bool", options: "BeautyOptions") -> "int":
         r"""
          Since: v3.0.0
 
@@ -4340,7 +4340,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setBeautyEffectOptions(self, enabled, options)
 
-    def addInjectStreamUrl(self, url, config):
+    def addInjectStreamUrl(self, url: "char const *", config: "InjectStreamConfig") -> "int":
         r"""
          Adds a voice or video stream URL address to the live streaming.
 
@@ -4377,7 +4377,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_addInjectStreamUrl(self, url, config)
 
-    def startChannelMediaRelay(self, configuration):
+    def startChannelMediaRelay(self, configuration: "ChannelMediaRelayConfiguration") -> "int":
         r"""
          Starts to relay media streams across channels.
 
@@ -4423,7 +4423,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_startChannelMediaRelay(self, configuration)
 
-    def updateChannelMediaRelay(self, configuration):
+    def updateChannelMediaRelay(self, configuration: "ChannelMediaRelayConfiguration") -> "int":
         r"""
          Updates the channels for media stream relay. After a successful
         'startChannelMediaRelay' method call, if
@@ -4452,7 +4452,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_updateChannelMediaRelay(self, configuration)
 
-    def stopChannelMediaRelay(self):
+    def stopChannelMediaRelay(self) -> "int":
         r"""
          Stops the media stream relay.
 
@@ -4481,7 +4481,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_stopChannelMediaRelay(self)
 
-    def removeInjectStreamUrl(self, url):
+    def removeInjectStreamUrl(self, url: "char const *") -> "int":
         r"""
          Removes the voice or video stream URL address from the live streaming.
 
@@ -4499,7 +4499,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_removeInjectStreamUrl(self, url)
 
-    def getConnectionState(self):
+    def getConnectionState(self) -> "agora::rtc::CONNECTION_STATE_TYPE":
         r"""
          Gets the current connection state of the SDK.
 
@@ -4508,7 +4508,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getConnectionState(self)
 
-    def setParameters(self, parameters):
+    def setParameters(self, parameters: "char const *") -> "int":
         r"""
          Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
 
@@ -4524,7 +4524,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setParameters(self, parameters)
 
-    def setPlaybackDeviceVolume(self, volume):
+    def setPlaybackDeviceVolume(self, volume: "int") -> "int":
         r"""
          Sets the volume of the audio playback device.
 
@@ -4537,7 +4537,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setPlaybackDeviceVolume(self, volume)
 
-    def startAudioMixing(self, filePath, loopback, replace, cycle):
+    def startAudioMixing(self, filePath: "char const *", loopback: "bool", replace: "bool", cycle: "int") -> "int":
         r"""
          Starts playing and mixing the music file.
 
@@ -4574,7 +4574,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_startAudioMixing(self, filePath, loopback, replace, cycle)
 
-    def stopAudioMixing(self):
+    def stopAudioMixing(self) -> "int":
         r"""
          Stops playing and mixing the music file.
 
@@ -4587,7 +4587,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_stopAudioMixing(self)
 
-    def pauseAudioMixing(self):
+    def pauseAudioMixing(self) -> "int":
         r"""
          Pauses playing and mixing the music file.
 
@@ -4600,7 +4600,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_pauseAudioMixing(self)
 
-    def resumeAudioMixing(self):
+    def resumeAudioMixing(self) -> "int":
         r"""
          Resumes playing and mixing the music file.
 
@@ -4613,7 +4613,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_resumeAudioMixing(self)
 
-    def setHighQualityAudioParameters(self, fullband, stereo, fullBitrate):
+    def setHighQualityAudioParameters(self, fullband: "bool", stereo: "bool", fullBitrate: "bool") -> "int":
         r"""
         DEPRECATED** Agora does not recommend using this method.
 
@@ -4641,7 +4641,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setHighQualityAudioParameters(self, fullband, stereo, fullBitrate)
 
-    def adjustAudioMixingVolume(self, volume):
+    def adjustAudioMixingVolume(self, volume: "int") -> "int":
         r"""
          Adjusts the volume during audio mixing.
 
@@ -4659,7 +4659,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_adjustAudioMixingVolume(self, volume)
 
-    def adjustAudioMixingPlayoutVolume(self, volume):
+    def adjustAudioMixingPlayoutVolume(self, volume: "int") -> "int":
         r"""
          Adjusts the audio mixing volume for local playback.
 
@@ -4675,7 +4675,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_adjustAudioMixingPlayoutVolume(self, volume)
 
-    def getAudioMixingPlayoutVolume(self):
+    def getAudioMixingPlayoutVolume(self) -> "int":
         r"""
          Retrieves the audio mixing volume for local playback.
 
@@ -4690,7 +4690,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getAudioMixingPlayoutVolume(self)
 
-    def adjustAudioMixingPublishVolume(self, volume):
+    def adjustAudioMixingPublishVolume(self, volume: "int") -> "int":
         r"""
          Adjusts the audio mixing volume for publishing (for remote users).
 
@@ -4706,7 +4706,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_adjustAudioMixingPublishVolume(self, volume)
 
-    def getAudioMixingPublishVolume(self):
+    def getAudioMixingPublishVolume(self) -> "int":
         r"""
          Retrieves the audio mixing volume for publishing.
 
@@ -4721,7 +4721,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getAudioMixingPublishVolume(self)
 
-    def getAudioMixingDuration(self):
+    def getAudioMixingDuration(self) -> "int":
         r"""
          Retrieves the duration (ms) of the music file.
 
@@ -4734,7 +4734,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getAudioMixingDuration(self)
 
-    def getAudioMixingCurrentPosition(self):
+    def getAudioMixingCurrentPosition(self) -> "int":
         r"""
          Retrieves the playback position (ms) of the music file.
 
@@ -4747,7 +4747,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getAudioMixingCurrentPosition(self)
 
-    def setAudioMixingPosition(self, pos):
+    def setAudioMixingPosition(self, pos: "int") -> "int":
         r"""
          Sets the playback position of the music file to a different starting position (the default plays from the beginning).
 
@@ -4761,7 +4761,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setAudioMixingPosition(self, pos)
 
-    def setAudioMixingPitch(self, pitch):
+    def setAudioMixingPitch(self, pitch: "int") -> "int":
         r"""
          Sets the pitch of the local music file.
         Since: v3.0.1
@@ -4784,7 +4784,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setAudioMixingPitch(self, pitch)
 
-    def getEffectsVolume(self):
+    def getEffectsVolume(self) -> "int":
         r"""
          Retrieves the volume of the audio effects.
 
@@ -4798,7 +4798,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_getEffectsVolume(self)
 
-    def setEffectsVolume(self, volume):
+    def setEffectsVolume(self, volume: "int") -> "int":
         r"""
          Sets the volume of the audio effects.
 
@@ -4812,7 +4812,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setEffectsVolume(self, volume)
 
-    def setVolumeOfEffect(self, soundId, volume):
+    def setVolumeOfEffect(self, soundId: "int", volume: "int") -> "int":
         r"""
          Sets the volume of a specified audio effect.
 
@@ -4828,7 +4828,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setVolumeOfEffect(self, soundId, volume)
 
-    def playEffect(self, soundId, filePath, loopCount, pitch, pan, gain, publish=False):
+    def playEffect(self, soundId: "int", filePath: "char const *", loopCount: "int", pitch: "double", pan: "double", gain: "int", publish: "bool"=False) -> "int":
         r"""
          Plays a specified local or online audio effect file.
 
@@ -4871,7 +4871,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_playEffect(self, soundId, filePath, loopCount, pitch, pan, gain, publish)
 
-    def stopEffect(self, soundId):
+    def stopEffect(self, soundId: "int") -> "int":
         r"""
          Stops playing a specified audio effect.
 
@@ -4885,7 +4885,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_stopEffect(self, soundId)
 
-    def stopAllEffects(self):
+    def stopAllEffects(self) -> "int":
         r"""
          Stops playing all audio effects.
 
@@ -4896,7 +4896,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_stopAllEffects(self)
 
-    def preloadEffect(self, soundId, filePath):
+    def preloadEffect(self, soundId: "int", filePath: "char const *") -> "int":
         r"""
          Preloads a specified audio effect file into the memory.
 
@@ -4918,7 +4918,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_preloadEffect(self, soundId, filePath)
 
-    def unloadEffect(self, soundId):
+    def unloadEffect(self, soundId: "int") -> "int":
         r"""
          Releases a specified preloaded audio effect from the memory.
 
@@ -4931,7 +4931,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_unloadEffect(self, soundId)
 
-    def pauseEffect(self, soundId):
+    def pauseEffect(self, soundId: "int") -> "int":
         r"""
          Pauses a specified audio effect.
 
@@ -4944,7 +4944,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_pauseEffect(self, soundId)
 
-    def pauseAllEffects(self):
+    def pauseAllEffects(self) -> "int":
         r"""
          Pauses all audio effects.
 
@@ -4955,7 +4955,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_pauseAllEffects(self)
 
-    def resumeEffect(self, soundId):
+    def resumeEffect(self, soundId: "int") -> "int":
         r"""
          Resumes playing a specified audio effect.
 
@@ -4968,7 +4968,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_resumeEffect(self, soundId)
 
-    def resumeAllEffects(self):
+    def resumeAllEffects(self) -> "int":
         r"""
          Resumes playing all audio effects.
 
@@ -4979,7 +4979,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_resumeAllEffects(self)
 
-    def enableSoundPositionIndication(self, enabled):
+    def enableSoundPositionIndication(self, enabled: "bool") -> "int":
         r"""
          Enables/Disables stereo panning for remote users.
 
@@ -4997,7 +4997,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_enableSoundPositionIndication(self, enabled)
 
-    def setLocalVoicePitch(self, pitch):
+    def setLocalVoicePitch(self, pitch: "double") -> "int":
         r"""
          Changes the voice pitch of the local speaker.
 
@@ -5010,7 +5010,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalVoicePitch(self, pitch)
 
-    def setLocalVoiceEqualization(self, bandFrequency, bandGain):
+    def setLocalVoiceEqualization(self, bandFrequency: "agora::rtc::AUDIO_EQUALIZATION_BAND_FREQUENCY", bandGain: "int") -> "int":
         r"""
          Sets the local voice equalization effect.
 
@@ -5026,7 +5026,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalVoiceEqualization(self, bandFrequency, bandGain)
 
-    def setLocalVoiceReverb(self, reverbKey, value):
+    def setLocalVoiceReverb(self, reverbKey: "agora::rtc::AUDIO_REVERB_TYPE", value: "int") -> "int":
         r"""
           Sets the local voice reverberation.
 
@@ -5044,7 +5044,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalVoiceReverb(self, reverbKey, value)
 
-    def setLocalVoiceChanger(self, voiceChanger):
+    def setLocalVoiceChanger(self, voiceChanger: "agora::rtc::VOICE_CHANGER_PRESET") -> "int":
         r"""
          Sets the local voice changer option.
 
@@ -5076,7 +5076,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalVoiceChanger(self, voiceChanger)
 
-    def setLocalVoiceReverbPreset(self, reverbPreset):
+    def setLocalVoiceReverbPreset(self, reverbPreset: "agora::rtc::AUDIO_REVERB_PRESET") -> "int":
         r"""
          Sets the local voice reverberation option, including the virtual stereo.
 
@@ -5103,7 +5103,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setLocalVoiceReverbPreset(self, reverbPreset)
 
-    def setExternalAudioSource(self, enabled, sampleRate, channels):
+    def setExternalAudioSource(self, enabled: "bool", sampleRate: "int", channels: "int") -> "int":
         r"""
          Sets the external audio source. Please call this method before 'joinChannel'.
 
@@ -5125,7 +5125,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setExternalAudioSource(self, enabled, sampleRate, channels)
 
-    def setExternalAudioSink(self, enabled, sampleRate, channels):
+    def setExternalAudioSink(self, enabled: "bool", sampleRate: "int", channels: "int") -> "int":
         r"""
          Sets the external audio sink.
         This method applies to scenarios where you want to use external audio
@@ -5157,7 +5157,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setExternalAudioSink(self, enabled, sampleRate, channels)
 
-    def setRecordingAudioFrameParameters(self, sampleRate, channel, mode, samplesPerCall):
+    def setRecordingAudioFrameParameters(self, sampleRate: "int", channel: "int", mode: "agora::rtc::RAW_AUDIO_FRAME_OP_MODE_TYPE", samplesPerCall: "int") -> "int":
         r"""
          Sets the audio recording format for the 'onRecordAudioFrame' callback.
 
@@ -5183,7 +5183,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setRecordingAudioFrameParameters(self, sampleRate, channel, mode, samplesPerCall)
 
-    def setPlaybackAudioFrameParameters(self, sampleRate, channel, mode, samplesPerCall):
+    def setPlaybackAudioFrameParameters(self, sampleRate: "int", channel: "int", mode: "agora::rtc::RAW_AUDIO_FRAME_OP_MODE_TYPE", samplesPerCall: "int") -> "int":
         r"""
          Sets the audio playback format for the 'onPlaybackAudioFrame' callback.
 
@@ -5208,7 +5208,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setPlaybackAudioFrameParameters(self, sampleRate, channel, mode, samplesPerCall)
 
-    def setMixedAudioFrameParameters(self, sampleRate, samplesPerCall):
+    def setMixedAudioFrameParameters(self, sampleRate: "int", samplesPerCall: "int") -> "int":
         r"""
          Sets the mixed audio format for the 'onMixedAudioFrame' callback.
 
@@ -5227,7 +5227,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_setMixedAudioFrameParameters(self, sampleRate, samplesPerCall)
 
-    def registerMediaMetadataObserver(self, observer, type, useSdkDefault=True):
+    def registerMediaMetadataObserver(self, observer: "agora::rtc::IMetadataObserver *", type: "agora::rtc::IMetadataObserver::METADATA_TYPE", useSdkDefault: "bool"=True) -> "int":
         r"""
          Registers the metadata observer.
 
@@ -5250,7 +5250,7 @@ class RtcEngineBridge(object):
         """
         return _agorartc.RtcEngineBridge_registerMediaMetadataObserver(self, observer, type, useSdkDefault)
 
-    def sendMetadata(self, metadata):
+    def sendMetadata(self, metadata: "agora::rtc::IMetadataObserver::Metadata *") -> "int":
         return _agorartc.RtcEngineBridge_sendMetadata(self, metadata)
 
     def __init__(self):
@@ -5276,7 +5276,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
     __repr__ = _swig_repr
     __swig_destroy__ = _agorartc.delete_RtcEngineEventHandlerBase
 
-    def onJoinChannelSuccess(self, channel, uid, elapsed):
+    def onJoinChannelSuccess(self, channel: "char const *", uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
         Occurs when a user joins a channel.
 
@@ -5295,7 +5295,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onJoinChannelSuccess(self, channel, uid, elapsed)
 
-    def onLeaveChannel(self, stats):
+    def onLeaveChannel(self, stats: "RtcStats") -> "void":
         r"""
         Occurs when a user leaves the channel.
 
@@ -5308,7 +5308,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLeaveChannel(self, stats)
 
-    def onRejoinChannelSuccess(self, channel, uid, elapsed):
+    def onRejoinChannelSuccess(self, channel: "char const *", uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
         Occurs when a user rejoins the channel after disconnection due to network problems.
 
@@ -5323,7 +5323,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRejoinChannelSuccess(self, channel, uid, elapsed)
 
-    def onUserJoined(self, uid, elapsed):
+    def onUserJoined(self, uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
         Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) joins the channel.
 
@@ -5348,7 +5348,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onUserJoined(self, uid, elapsed)
 
-    def onClientRoleChanged(self, oldRole, newRole):
+    def onClientRoleChanged(self, oldRole: "agora::rtc::CLIENT_ROLE_TYPE", newRole: "agora::rtc::CLIENT_ROLE_TYPE") -> "void":
         r"""
         Occurs when the user role switches in the live interactive streaming. For example, from a host to an audience or vice versa.
 
@@ -5362,7 +5362,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onClientRoleChanged(self, oldRole, newRole)
 
-    def onUserOffline(self, uid, reason):
+    def onUserOffline(self, uid: "agora::rtc::uid_t", reason: "agora::rtc::USER_OFFLINE_REASON_TYPE") -> "void":
         r"""
         Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) leaves the channel.
 
@@ -5378,7 +5378,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onUserOffline(self, uid, reason)
 
-    def onUserMuteAudio(self, uid, muted):
+    def onUserMuteAudio(self, uid: "agora::rtc::uid_t", muted: "bool") -> "void":
         r"""
         Deprecated: This method is deprecated from v3.0.0, use the 'onRemoteAudioStateChanged' callback instead.
 
@@ -5397,7 +5397,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onUserMuteAudio(self, uid, muted)
 
-    def onFirstRemoteVideoDecoded(self, uid, width, height, elapsed):
+    def onFirstRemoteVideoDecoded(self, uid: "agora::rtc::uid_t", width: "int", height: "int", elapsed: "int") -> "void":
         r"""
          Occurs when the first remote video frame is received and decoded.
 
@@ -5438,7 +5438,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onFirstRemoteVideoDecoded(self, uid, width, height, elapsed)
 
-    def onUserMuteVideo(self, uid, muted):
+    def onUserMuteVideo(self, uid: "agora::rtc::uid_t", muted: "bool") -> "void":
         r"""
          Occurs when a remote user's video stream playback pauses/resumes.
 
@@ -5467,7 +5467,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onUserMuteVideo(self, uid, muted)
 
-    def onAudioRouteChanged(self, routing):
+    def onAudioRouteChanged(self, routing: "agora::rtc::AUDIO_ROUTE_TYPE") -> "void":
         r"""
         Occurs when the local audio route changes.
 
@@ -5480,7 +5480,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioRouteChanged(self, routing)
 
-    def onConnectionLost(self):
+    def onConnectionLost(self) -> "void":
         r"""
         Occurs when the SDK cannot reconnect to Agora's edge server 10 seconds after its connection to the server is interrupted.
 
@@ -5495,7 +5495,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onConnectionLost(self)
 
-    def onRequestToken(self):
+    def onRequestToken(self) -> "void":
         r"""
         Occurs when the token expires.
 
@@ -5505,7 +5505,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRequestToken(self)
 
-    def onAudioVolumeIndication(self, speakers, speakerNumber, totalVolume):
+    def onAudioVolumeIndication(self, speakers: "AudioVolumeInfo", speakerNumber: "unsigned int", totalVolume: "int") -> "void":
         r"""
         Reports which users are speaking, the speakers' volume and whether the local user is speaking.
 
@@ -5547,7 +5547,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioVolumeIndication(self, speakers, speakerNumber, totalVolume)
 
-    def onWarning(self, warn, msg):
+    def onWarning(self, warn: "int", msg: "char const *") -> "void":
         r"""
         Reports a warning during SDK runtime.
 
@@ -5560,7 +5560,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onWarning(self, warn, msg)
 
-    def onError(self, err, msg):
+    def onError(self, err: "int", msg: "char const *") -> "void":
         r"""
         Reports an error during SDK runtime.
 
@@ -5575,7 +5575,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onError(self, err, msg)
 
-    def onRtcStats(self, stats):
+    def onRtcStats(self, stats: "RtcStats") -> "void":
         r"""
         Reports the statistics of the current call.
 
@@ -5586,7 +5586,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRtcStats(self, stats)
 
-    def onAudioMixingFinished(self):
+    def onAudioMixingFinished(self) -> "void":
         r"""
          Occurs when the audio mixing file playback finishes.
 
@@ -5598,7 +5598,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioMixingFinished(self)
 
-    def onVideoSizeChanged(self, uid, width, height, rotation):
+    def onVideoSizeChanged(self, uid: "agora::rtc::uid_t", width: "int", height: "int", rotation: "int") -> "void":
         r"""
         Occurs when the video size or rotation of a specified user changes.
 
@@ -5613,7 +5613,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onVideoSizeChanged(self, uid, width, height, rotation)
 
-    def onConnectionInterrupted(self):
+    def onConnectionInterrupted(self) -> "void":
         r"""
         DEPRECATED** Occurs when the connection between the SDK and the server is interrupted.
 
@@ -5631,7 +5631,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onConnectionInterrupted(self)
 
-    def onMicrophoneEnabled(self, enabled):
+    def onMicrophoneEnabled(self, enabled: "bool") -> "void":
         r"""
          Occurs when the microphone is enabled/disabled.
 
@@ -5654,7 +5654,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onMicrophoneEnabled(self, enabled)
 
-    def onAudioQuality(self, uid, quality, delay, lost):
+    def onAudioQuality(self, uid: "agora::rtc::uid_t", quality: "int", delay: "unsigned short", lost: "unsigned short") -> "void":
         r"""
         DEPRECATED** Reports the statistics of the audio stream from each remote user/host.
 
@@ -5673,7 +5673,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioQuality(self, uid, quality, delay, lost)
 
-    def onRemoteVideoTransportStats(self, uid, delay, lost, rxKBitRate):
+    def onRemoteVideoTransportStats(self, uid: "agora::rtc::uid_t", delay: "unsigned short", lost: "unsigned short", rxKBitRate: "unsigned short") -> "void":
         r"""
          Reports the transport-layer statistics of each remote video stream.
 
@@ -5699,7 +5699,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteVideoTransportStats(self, uid, delay, lost, rxKBitRate)
 
-    def onRemoteAudioTransportStats(self, uid, delay, lost, rxKBitRate):
+    def onRemoteAudioTransportStats(self, uid: "agora::rtc::uid_t", delay: "unsigned short", lost: "unsigned short", rxKBitRate: "unsigned short") -> "void":
         r"""
          Reports the transport-layer statistics of each remote audio stream.
 
@@ -5725,7 +5725,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteAudioTransportStats(self, uid, delay, lost, rxKBitRate)
 
-    def onStreamInjectedStatus(self, url, uid, status):
+    def onStreamInjectedStatus(self, url: "char const *", uid: "agora::rtc::uid_t", status: "int") -> "void":
         r"""
         Occurs when a voice or video stream URL address is added to the live interactive streaming.
 
@@ -5738,7 +5738,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onStreamInjectedStatus(self, url, uid, status)
 
-    def onTranscodingUpdated(self):
+    def onTranscodingUpdated(self) -> "void":
         r"""
          Occurs when the publisher's transcoding is updated.
 
@@ -5748,7 +5748,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onTranscodingUpdated(self)
 
-    def onStreamUnpublished(self, url):
+    def onStreamUnpublished(self, url: "char const *") -> "void":
         r"""
         Deprecated: This method is deprecated, use the 'onRtmpStreamingStateChanged' callback instead.
 
@@ -5761,7 +5761,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onStreamUnpublished(self, url)
 
-    def onStreamPublished(self, url, error):
+    def onStreamPublished(self, url: "char const *", error: "int") -> "void":
         r"""
         Deprecated: This method is deprecated, use the 'onRtmpStreamingStateChanged' callback instead.
 
@@ -5786,7 +5786,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onStreamPublished(self, url, error)
 
-    def onAudioDeviceVolumeChanged(self, deviceType, volume, muted):
+    def onAudioDeviceVolumeChanged(self, deviceType: "agora::rtc::MEDIA_DEVICE_TYPE", volume: "int", muted: "bool") -> "void":
         r"""
         Occurs when the volume of the playback device, microphone, or application changes.
 
@@ -5801,7 +5801,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioDeviceVolumeChanged(self, deviceType, volume, muted)
 
-    def onActiveSpeaker(self, uid):
+    def onActiveSpeaker(self, uid: "agora::rtc::uid_t") -> "void":
         r"""
         Reports which user is the loudest speaker.
 
@@ -5816,7 +5816,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onActiveSpeaker(self, uid)
 
-    def onFirstRemoteAudioFrame(self, uid, elapsed):
+    def onFirstRemoteAudioFrame(self, uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
         Occurs when the engine receives the first audio frame from a specific remote user.
 
@@ -5831,7 +5831,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onFirstRemoteAudioFrame(self, uid, elapsed)
 
-    def onFirstLocalAudioFrame(self, elapsed):
+    def onFirstLocalAudioFrame(self, elapsed: "int") -> "void":
         r"""
         Occurs when the engine sends the first local audio frame.
 
@@ -5842,15 +5842,15 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onFirstLocalAudioFrame(self, elapsed)
 
-    def onMediaEngineStartCallSuccess(self):
+    def onMediaEngineStartCallSuccess(self) -> "void":
         r""" Occurs when the media engine call starts."""
         return _agorartc.RtcEngineEventHandlerBase_onMediaEngineStartCallSuccess(self)
 
-    def onMediaEngineLoadSuccess(self):
+    def onMediaEngineLoadSuccess(self) -> "void":
         r""" Occurs when the media engine loads."""
         return _agorartc.RtcEngineEventHandlerBase_onMediaEngineLoadSuccess(self)
 
-    def onStreamMessageError(self, uid, streamId, code, missed, cached):
+    def onStreamMessageError(self, uid: "agora::rtc::uid_t", streamId: "int", code: "int", missed: "int", cached: "int") -> "void":
         r"""
         Occurs when the local user does not receive the data stream from the remote user within five seconds.
 
@@ -5868,7 +5868,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onStreamMessageError(self, uid, streamId, code, missed, cached)
 
-    def onStreamMessage(self, uid, streamId, data, length):
+    def onStreamMessage(self, uid: "agora::rtc::uid_t", streamId: "int", data: "char const *", length: "size_t") -> "void":
         r"""
         Occurs when the local user receives the data stream from the remote user within five seconds.
 
@@ -5884,7 +5884,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onStreamMessage(self, uid, streamId, data, length)
 
-    def onConnectionBanned(self):
+    def onConnectionBanned(self) -> "void":
         r"""
         DEPRECATED** Deprecated as of v2.3.2. Replaced by the 'onConnectionStateChanged(CONNECTION_STATE_FAILED, CONNECTION_CHANGED_BANNED_BY_SERVER)' callback.
 
@@ -5892,7 +5892,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onConnectionBanned(self)
 
-    def onLastmileQuality(self, quality):
+    def onLastmileQuality(self, quality: "int") -> "void":
         r"""
         Reports the last mile network quality of the local user once every two seconds before the user joins the channel.
 
@@ -5903,7 +5903,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLastmileQuality(self, quality)
 
-    def onVideoStopped(self):
+    def onVideoStopped(self) -> "void":
         r"""
         DEPRECATED** Occurs when the video stops playing.
 
@@ -5913,7 +5913,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onVideoStopped(self)
 
-    def onApiCallExecuted(self, err, api, result):
+    def onApiCallExecuted(self, err: "int", api: "char const *", result: "char const *") -> "void":
         r"""
         Occurs when a method is executed by the SDK.
 
@@ -5926,7 +5926,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onApiCallExecuted(self, err, api, result)
 
-    def onTokenPrivilegeWillExpire(self, token):
+    def onTokenPrivilegeWillExpire(self, token: "char const *") -> "void":
         r"""
         Occurs when the token expires in 30 seconds.
 
@@ -5937,7 +5937,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onTokenPrivilegeWillExpire(self, token)
 
-    def onNetworkQuality(self, uid, txQuality, rxQuality):
+    def onNetworkQuality(self, uid: "agora::rtc::uid_t", txQuality: "int", rxQuality: "int") -> "void":
         r"""
         Reports the last mile network quality of each user in the channel once every two seconds.
 
@@ -5952,7 +5952,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onNetworkQuality(self, uid, txQuality, rxQuality)
 
-    def onLocalVideoStats(self, stats):
+    def onLocalVideoStats(self, stats: "LocalVideoStats") -> "void":
         r"""
          Reports the statistics of the local video stream.
 
@@ -5972,7 +5972,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLocalVideoStats(self, stats)
 
-    def onLocalAudioStats(self, stats):
+    def onLocalAudioStats(self, stats: "LocalAudioStats") -> "void":
         r"""
          Reports the statistics of the local audio stream.
 
@@ -5984,7 +5984,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLocalAudioStats(self, stats)
 
-    def onRemoteVideoStats(self, stats):
+    def onRemoteVideoStats(self, stats: "RemoteVideoStats") -> "void":
         r"""
          Reports the statistics of the video stream from each remote user/host.
 
@@ -5998,7 +5998,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteVideoStats(self, stats)
 
-    def onRemoteAudioStats(self, stats):
+    def onRemoteAudioStats(self, stats: "RemoteAudioStats") -> "void":
         r"""
         Reports the statistics of the audio stream from each remote user/host.
 
@@ -6011,7 +6011,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteAudioStats(self, stats)
 
-    def onFirstLocalVideoFrame(self, width, height, elapsed):
+    def onFirstLocalVideoFrame(self, width: "int", height: "int", elapsed: "int") -> "void":
         r"""
         Occurs when the first local video frame is displayed/rendered on the local video view.
 
@@ -6025,7 +6025,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onFirstLocalVideoFrame(self, width, height, elapsed)
 
-    def onFirstRemoteVideoFrame(self, uid, width, height, elapsed):
+    def onFirstRemoteVideoFrame(self, uid: "agora::rtc::uid_t", width: "int", height: "int", elapsed: "int") -> "void":
         r"""
         Occurs when the first remote video frame is rendered.
 
@@ -6042,7 +6042,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onFirstRemoteVideoFrame(self, uid, width, height, elapsed)
 
-    def onUserEnableVideo(self, uid, enabled):
+    def onUserEnableVideo(self, uid: "agora::rtc::uid_t", enabled: "bool") -> "void":
         r"""
          Occurs when a specific remote user enables/disables the video
         module.
@@ -6080,7 +6080,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onUserEnableVideo(self, uid, enabled)
 
-    def onAudioDeviceStateChanged(self, deviceId, deviceType, deviceState):
+    def onAudioDeviceStateChanged(self, deviceId: "char const *", deviceType: "int", deviceState: "int") -> "void":
         r"""
         Occurs when the audio device state changes.
 
@@ -6095,7 +6095,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioDeviceStateChanged(self, deviceId, deviceType, deviceState)
 
-    def onCameraReady(self):
+    def onCameraReady(self) -> "void":
         r"""
         DEPRECATED** Occurs when the camera turns on and is ready to capture the video.
 
@@ -6105,7 +6105,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onCameraReady(self)
 
-    def onCameraFocusAreaChanged(self, x, y, width, height):
+    def onCameraFocusAreaChanged(self, x: "int", y: "int", width: "int", height: "int") -> "void":
         r"""
         Occurs when the camera focus area changes.
 
@@ -6124,7 +6124,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onCameraFocusAreaChanged(self, x, y, width, height)
 
-    def onCameraExposureAreaChanged(self, x, y, width, height):
+    def onCameraExposureAreaChanged(self, x: "int", y: "int", width: "int", height: "int") -> "void":
         r"""
         Occurs when the camera exposure area changes.
 
@@ -6143,7 +6143,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onCameraExposureAreaChanged(self, x, y, width, height)
 
-    def onRemoteAudioMixingBegin(self):
+    def onRemoteAudioMixingBegin(self) -> "void":
         r"""
          Occurs when the audio mixing file playback finishes.
 
@@ -6155,11 +6155,11 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteAudioMixingBegin(self)
 
-    def onRemoteAudioMixingEnd(self):
+    def onRemoteAudioMixingEnd(self) -> "void":
         r""" Occurs when a remote user finishes audio mixing."""
         return _agorartc.RtcEngineEventHandlerBase_onRemoteAudioMixingEnd(self)
 
-    def onAudioEffectFinished(self, soundId):
+    def onAudioEffectFinished(self, soundId: "int") -> "void":
         r"""
         Occurs when the local audio effect playback finishes.
 
@@ -6170,7 +6170,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioEffectFinished(self, soundId)
 
-    def onVideoDeviceStateChanged(self, deviceId, deviceType, deviceState):
+    def onVideoDeviceStateChanged(self, deviceId: "char const *", deviceType: "int", deviceState: "int") -> "void":
         r"""
         Occurs when the video device state changes.
 
@@ -6185,7 +6185,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onVideoDeviceStateChanged(self, deviceId, deviceType, deviceState)
 
-    def onRemoteVideoStateChanged(self, uid, state, reason, elapsed):
+    def onRemoteVideoStateChanged(self, uid: "agora::rtc::uid_t", state: "agora::rtc::REMOTE_VIDEO_STATE", reason: "agora::rtc::REMOTE_VIDEO_STATE_REASON", elapsed: "int") -> "void":
         r"""
         Occurs when the remote video state changes.
             Notes: This callback does not work properly when the number of users (in the `COMMUNICATION` profile) or hosts (in the `LIVE_BROADCASTING` profile) in the channel exceeds 17.
@@ -6204,7 +6204,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteVideoStateChanged(self, uid, state, reason, elapsed)
 
-    def onUserEnableLocalVideo(self, uid, enabled):
+    def onUserEnableLocalVideo(self, uid: "agora::rtc::uid_t", enabled: "bool") -> "void":
         r"""
          Occurs when a specified remote user enables/disables the local video
         capturing function.
@@ -6240,7 +6240,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onUserEnableLocalVideo(self, uid, enabled)
 
-    def onLocalPublishFallbackToAudioOnly(self, isFallbackOrRecover):
+    def onLocalPublishFallbackToAudioOnly(self, isFallbackOrRecover: "bool") -> "void":
         r"""
         Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back to the video after the network conditions improve.
 
@@ -6255,7 +6255,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLocalPublishFallbackToAudioOnly(self, isFallbackOrRecover)
 
-    def onRemoteSubscribeFallbackToAudioOnly(self, uid, isFallbackOrRecover):
+    def onRemoteSubscribeFallbackToAudioOnly(self, uid: "agora::rtc::uid_t", isFallbackOrRecover: "bool") -> "void":
         r"""
          Occurs when the remote media stream falls back to audio-only stream
         due to poor network conditions or switches back to the video stream
@@ -6285,7 +6285,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteSubscribeFallbackToAudioOnly(self, uid, isFallbackOrRecover)
 
-    def onConnectionStateChanged(self, state, reason):
+    def onConnectionStateChanged(self, state: "agora::rtc::CONNECTION_STATE_TYPE", reason: "agora::rtc::CONNECTION_CHANGED_REASON_TYPE") -> "void":
         r"""
         Occurs when the connection state between the SDK and the server changes.
 
@@ -6296,7 +6296,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onConnectionStateChanged(self, state, reason)
 
-    def onAudioMixingStateChanged(self, state, errorCode):
+    def onAudioMixingStateChanged(self, state: "agora::rtc::AUDIO_MIXING_STATE_TYPE", errorCode: "agora::rtc::AUDIO_MIXING_ERROR_TYPE") -> "void":
         r"""
         Occurs when the state of the local user's audio mixing file changes.
 
@@ -6312,7 +6312,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onAudioMixingStateChanged(self, state, errorCode)
 
-    def onFirstRemoteAudioDecoded(self, uid, elapsed):
+    def onFirstRemoteAudioDecoded(self, uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
         Occurs when the SDK decodes the first remote audio frame for playback.
 
@@ -6336,7 +6336,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onFirstRemoteAudioDecoded(self, uid, elapsed)
 
-    def onLocalVideoStateChanged(self, localVideoState, error):
+    def onLocalVideoStateChanged(self, localVideoState: "agora::rtc::LOCAL_VIDEO_STREAM_STATE", error: "agora::rtc::LOCAL_VIDEO_STREAM_ERROR") -> "void":
         r"""
         Occurs when the local video stream state changes.
 
@@ -6351,7 +6351,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLocalVideoStateChanged(self, localVideoState, error)
 
-    def onRtmpStreamingStateChanged(self, url, state, errCode):
+    def onRtmpStreamingStateChanged(self, url: "char const *", state: "agora::rtc::RTMP_STREAM_PUBLISH_STATE", errCode: "agora::rtc::RTMP_STREAM_PUBLISH_ERROR") -> "void":
         r"""
         Occurs when the state of the RTMP streaming changes.
 
@@ -6368,7 +6368,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRtmpStreamingStateChanged(self, url, state, errCode)
 
-    def onNetworkTypeChanged(self, type):
+    def onNetworkTypeChanged(self, type: "agora::rtc::NETWORK_TYPE") -> "void":
         r"""
         Occurs when the local network type changes.
 
@@ -6379,7 +6379,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onNetworkTypeChanged(self, type)
 
-    def onLastmileProbeResult(self, result):
+    def onLastmileProbeResult(self, result: "LastmileProbeResult") -> "void":
         r"""
         Reports the last-mile network probe result.
 
@@ -6390,7 +6390,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLastmileProbeResult(self, result)
 
-    def onLocalUserRegistered(self, uid, userAccount):
+    def onLocalUserRegistered(self, uid: "agora::rtc::uid_t", userAccount: "char const *") -> "void":
         r"""
         Occurs when the local user successfully registers a user account by calling the 'registerLocalUserAccount' method or joins a channel by calling the 'joinChannelWithUserAccount' method.This callback reports the user ID and user account of the local user.
 
@@ -6401,7 +6401,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLocalUserRegistered(self, uid, userAccount)
 
-    def onUserInfoUpdated(self, uid, info):
+    def onUserInfoUpdated(self, uid: "agora::rtc::uid_t", info: "UserInfo") -> "void":
         r"""
         Occurs when the SDK gets the user ID and user account of the remote user.
 
@@ -6415,7 +6415,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onUserInfoUpdated(self, uid, info)
 
-    def onLocalAudioStateChanged(self, state, error):
+    def onLocalAudioStateChanged(self, state: "agora::rtc::LOCAL_AUDIO_STREAM_STATE", error: "agora::rtc::LOCAL_AUDIO_STREAM_ERROR") -> "void":
         r"""
          Occurs when the local audio state changes.
         This callback indicates the state change of the local audio stream,
@@ -6434,7 +6434,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onLocalAudioStateChanged(self, state, error)
 
-    def onRemoteAudioStateChanged(self, uid, state, reason, elapsed):
+    def onRemoteAudioStateChanged(self, uid: "agora::rtc::uid_t", state: "agora::rtc::REMOTE_AUDIO_STATE", reason: "agora::rtc::REMOTE_AUDIO_STATE_REASON", elapsed: "int") -> "void":
         r"""
         Occurs when the remote audio state changes.
 
@@ -6455,7 +6455,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onRemoteAudioStateChanged(self, uid, state, reason, elapsed)
 
-    def onChannelMediaRelayStateChanged(self, state, code):
+    def onChannelMediaRelayStateChanged(self, state: "agora::rtc::CHANNEL_MEDIA_RELAY_STATE", code: "agora::rtc::CHANNEL_MEDIA_RELAY_ERROR") -> "void":
         r"""
          Occurs when the state of the media stream relay changes.
 
@@ -6469,7 +6469,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onChannelMediaRelayStateChanged(self, state, code)
 
-    def onChannelMediaRelayEvent(self, code):
+    def onChannelMediaRelayEvent(self, code: "agora::rtc::CHANNEL_MEDIA_RELAY_EVENT") -> "void":
         r"""
          Reports events during the media stream relay.
 
@@ -6478,7 +6478,7 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
         """
         return _agorartc.RtcEngineEventHandlerBase_onChannelMediaRelayEvent(self, code)
 
-    def onTestEnd(self):
+    def onTestEnd(self) -> "void":
         return _agorartc.RtcEngineEventHandlerBase_onTestEnd(self)
 
     def __init__(self):
@@ -6511,7 +6511,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
     __repr__ = _swig_repr
     __swig_destroy__ = _agorartc.delete_RtcChannelEventHandlerBase
 
-    def onChannelWarning(self, rtcChannel, warn, msg):
+    def onChannelWarning(self, rtcChannel: "IChannel", warn: "int", msg: "char const *") -> "void":
         r"""
          Reports the warning code of `IChannel`.
 
@@ -6524,7 +6524,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onChannelWarning(self, rtcChannel, warn, msg)
 
-    def onChannelError(self, rtcChannel, err, msg):
+    def onChannelError(self, rtcChannel: "IChannel", err: "int", msg: "char const *") -> "void":
         r"""
          Reports the error code of `IChannel`.
 
@@ -6537,7 +6537,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onChannelError(self, rtcChannel, err, msg)
 
-    def onJoinChannelSuccess(self, rtcChannel, uid, elapsed):
+    def onJoinChannelSuccess(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
          Occurs when a user joins a channel.
 
@@ -6553,7 +6553,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onJoinChannelSuccess(self, rtcChannel, uid, elapsed)
 
-    def onRejoinChannelSuccess(self, rtcChannel, uid, elapsed):
+    def onRejoinChannelSuccess(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
          Occurs when a user rejoins the channel after being disconnected due to network problems.
 
@@ -6566,7 +6566,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRejoinChannelSuccess(self, rtcChannel, uid, elapsed)
 
-    def onLeaveChannel(self, rtcChannel, stats):
+    def onLeaveChannel(self, rtcChannel: "IChannel", stats: "RtcStats") -> "void":
         r"""
          Occurs when a user leaves the channel.
 
@@ -6581,7 +6581,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onLeaveChannel(self, rtcChannel, stats)
 
-    def onClientRoleChanged(self, rtcChannel, oldRole, newRole):
+    def onClientRoleChanged(self, rtcChannel: "IChannel", oldRole: "agora::rtc::CLIENT_ROLE_TYPE", newRole: "agora::rtc::CLIENT_ROLE_TYPE") -> "void":
         r"""
          Occurs when the user role switches in the live interactive streaming. For example, from a host to an audience or vice versa.
 
@@ -6598,7 +6598,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onClientRoleChanged(self, rtcChannel, oldRole, newRole)
 
-    def onUserJoined(self, rtcChannel, uid, elapsed):
+    def onUserJoined(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""
          Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) joins the channel.
 
@@ -6625,7 +6625,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onUserJoined(self, rtcChannel, uid, elapsed)
 
-    def onUserOffline(self, rtcChannel, uid, reason):
+    def onUserOffline(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", reason: "agora::rtc::USER_OFFLINE_REASON_TYPE") -> "void":
         r"""
          Occurs when a remote user ( `COMMUNICATION`)/host (`LIVE_BROADCASTING`) leaves the channel.
 
@@ -6643,7 +6643,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onUserOffline(self, rtcChannel, uid, reason)
 
-    def onConnectionLost(self, rtcChannel):
+    def onConnectionLost(self, rtcChannel: "IChannel") -> "void":
         r"""
          Occurs when the SDK cannot reconnect to Agora's edge server 10 seconds after its connection to the server is interrupted.
 
@@ -6661,7 +6661,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onConnectionLost(self, rtcChannel)
 
-    def onRequestToken(self, rtcChannel):
+    def onRequestToken(self, rtcChannel: "IChannel") -> "void":
         r"""
          Occurs when the token expires.
 
@@ -6674,7 +6674,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRequestToken(self, rtcChannel)
 
-    def onTokenPrivilegeWillExpire(self, rtcChannel, token):
+    def onTokenPrivilegeWillExpire(self, rtcChannel: "IChannel", token: "char const *") -> "void":
         r"""
          Occurs when the token expires in 30 seconds.
 
@@ -6687,7 +6687,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onTokenPrivilegeWillExpire(self, rtcChannel, token)
 
-    def onRtcStats(self, rtcChannel, stats):
+    def onRtcStats(self, rtcChannel: "IChannel", stats: "RtcStats") -> "void":
         r"""
          Reports the statistics of the current call.
 
@@ -6700,7 +6700,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRtcStats(self, rtcChannel, stats)
 
-    def onNetworkQuality(self, rtcChannel, uid, txQuality, rxQuality):
+    def onNetworkQuality(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", txQuality: "int", rxQuality: "int") -> "void":
         r"""
          Reports the last mile network quality of each user in the channel once every two seconds.
 
@@ -6717,7 +6717,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onNetworkQuality(self, rtcChannel, uid, txQuality, rxQuality)
 
-    def onRemoteVideoStats(self, rtcChannel, stats):
+    def onRemoteVideoStats(self, rtcChannel: "IChannel", stats: "RemoteVideoStats") -> "void":
         r"""
          Reports the statistics of the video stream from each remote user/host.
 
@@ -6733,7 +6733,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRemoteVideoStats(self, rtcChannel, stats)
 
-    def onRemoteAudioStats(self, rtcChannel, stats):
+    def onRemoteAudioStats(self, rtcChannel: "IChannel", stats: "RemoteAudioStats") -> "void":
         r"""
          Reports the statistics of the audio stream from each remote user/host.
 
@@ -6748,7 +6748,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRemoteAudioStats(self, rtcChannel, stats)
 
-    def onRemoteAudioStateChanged(self, rtcChannel, uid, state, reason, elapsed):
+    def onRemoteAudioStateChanged(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", state: "agora::rtc::REMOTE_AUDIO_STATE", reason: "agora::rtc::REMOTE_AUDIO_STATE_REASON", elapsed: "int") -> "void":
         r"""
          Occurs when the remote audio state changes.
 
@@ -6771,7 +6771,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRemoteAudioStateChanged(self, rtcChannel, uid, state, reason, elapsed)
 
-    def onActiveSpeaker(self, rtcChannel, uid):
+    def onActiveSpeaker(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t") -> "void":
         r"""
          Reports which user is the loudest speaker.
 
@@ -6788,7 +6788,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onActiveSpeaker(self, rtcChannel, uid)
 
-    def onVideoSizeChanged(self, rtcChannel, uid, width, height, rotation):
+    def onVideoSizeChanged(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", width: "int", height: "int", rotation: "int") -> "void":
         r"""
          Occurs when the video size or rotation of a specified user changes.
 
@@ -6805,7 +6805,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onVideoSizeChanged(self, rtcChannel, uid, width, height, rotation)
 
-    def onRemoteVideoStateChanged(self, rtcChannel, uid, state, reason, elapsed):
+    def onRemoteVideoStateChanged(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", state: "agora::rtc::REMOTE_VIDEO_STATE", reason: "agora::rtc::REMOTE_VIDEO_STATE_REASON", elapsed: "int") -> "void":
         r"""
          Occurs when the remote video state changes.
 
@@ -6827,7 +6827,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRemoteVideoStateChanged(self, rtcChannel, uid, state, reason, elapsed)
 
-    def onStreamMessage(self, rtcChannel, uid, streamId, data, length):
+    def onStreamMessage(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", streamId: "int", data: "char const *", length: "size_t") -> "void":
         r"""
          Occurs when the local user receives the data stream from the remote user within five seconds.
 
@@ -6846,7 +6846,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onStreamMessage(self, rtcChannel, uid, streamId, data, length)
 
-    def onStreamMessageError(self, rtcChannel, uid, streamId, code, missed, cached):
+    def onStreamMessageError(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", streamId: "int", code: "int", missed: "int", cached: "int") -> "void":
         r"""
          Occurs when the local user does not receive the data stream from the remote user within five seconds.
 
@@ -6867,7 +6867,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onStreamMessageError(self, rtcChannel, uid, streamId, code, missed, cached)
 
-    def onChannelMediaRelayStateChanged(self, rtcChannel, state, code):
+    def onChannelMediaRelayStateChanged(self, rtcChannel: "IChannel", state: "agora::rtc::CHANNEL_MEDIA_RELAY_STATE", code: "agora::rtc::CHANNEL_MEDIA_RELAY_ERROR") -> "void":
         r"""
          Occurs when the state of the media stream relay changes.
 
@@ -6882,7 +6882,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onChannelMediaRelayStateChanged(self, rtcChannel, state, code)
 
-    def onChannelMediaRelayEvent(self, rtcChannel, code):
+    def onChannelMediaRelayEvent(self, rtcChannel: "IChannel", code: "agora::rtc::CHANNEL_MEDIA_RELAY_EVENT") -> "void":
         r"""
          Reports events during the media stream relay.
         :type rtcChannel: :py:class:`IChannel`
@@ -6892,7 +6892,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onChannelMediaRelayEvent(self, rtcChannel, code)
 
-    def onRtmpStreamingStateChanged(self, rtcChannel, url, state, errCode):
+    def onRtmpStreamingStateChanged(self, rtcChannel: "IChannel", url: "char const *", state: "agora::rtc::RTMP_STREAM_PUBLISH_STATE", errCode: "agora::rtc::RTMP_STREAM_PUBLISH_ERROR") -> "void":
         r"""
         		     Occurs when the state of the RTMP streaming changes.
 
@@ -6911,7 +6911,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRtmpStreamingStateChanged(self, rtcChannel, url, state, errCode)
 
-    def onTranscodingUpdated(self, rtcChannel):
+    def onTranscodingUpdated(self, rtcChannel: "IChannel") -> "void":
         r"""
          Reports events during the RTMP streaming.
 
@@ -6924,7 +6924,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onTranscodingUpdated(self, rtcChannel)
 
-    def onStreamInjectedStatus(self, rtcChannel, url, uid, status):
+    def onStreamInjectedStatus(self, rtcChannel: "IChannel", url: "char const *", uid: "agora::rtc::uid_t", status: "int") -> "void":
         r"""
          Occurs when a voice or video stream URL address is added to the live interactive streaming.
 
@@ -6939,7 +6939,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onStreamInjectedStatus(self, rtcChannel, url, uid, status)
 
-    def onLocalPublishFallbackToAudioOnly(self, rtcChannel, isFallbackOrRecover):
+    def onLocalPublishFallbackToAudioOnly(self, rtcChannel: "IChannel", isFallbackOrRecover: "bool") -> "void":
         r"""
          Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back to the video after the network conditions improve.
 
@@ -6954,7 +6954,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onLocalPublishFallbackToAudioOnly(self, rtcChannel, isFallbackOrRecover)
 
-    def onRemoteSubscribeFallbackToAudioOnly(self, rtcChannel, uid, isFallbackOrRecover):
+    def onRemoteSubscribeFallbackToAudioOnly(self, rtcChannel: "IChannel", uid: "agora::rtc::uid_t", isFallbackOrRecover: "bool") -> "void":
         r"""
          Occurs when the remote media stream falls back to audio-only stream
         due to poor network conditions or switches back to the video stream
@@ -6985,7 +6985,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onRemoteSubscribeFallbackToAudioOnly(self, rtcChannel, uid, isFallbackOrRecover)
 
-    def onConnectionStateChanged(self, rtcChannel, state, reason):
+    def onConnectionStateChanged(self, rtcChannel: "IChannel", state: "agora::rtc::CONNECTION_STATE_TYPE", reason: "agora::rtc::CONNECTION_CHANGED_REASON_TYPE") -> "void":
         r"""
          Occurs when the connection state between the SDK and the server changes.
 
@@ -6998,7 +6998,7 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
         """
         return _agorartc.RtcChannelEventHandlerBase_onConnectionStateChanged(self, rtcChannel, state, reason)
 
-    def onTestEnd(self, rtcChannel):
+    def onTestEnd(self, rtcChannel: "IChannel") -> "void":
         return _agorartc.RtcChannelEventHandlerBase_onTestEnd(self, rtcChannel)
 
     def __init__(self):
@@ -7016,20 +7016,20 @@ class RtcChannelEventHandlerBase(IChannelEventHandler):
 _agorartc.RtcChannelEventHandlerBase_swigregister(RtcChannelEventHandlerBase)
 
 
-def createVideoCanvas(ptr):
+def createVideoCanvas(ptr: "uint64_t") -> "agora::rtc::VideoCanvas":
     return _agorartc.createVideoCanvas(ptr)
 
-def createRtcEngineBridge():
+def createRtcEngineBridge() -> "agora::common::RtcEngineBridge *":
     return _agorartc.createRtcEngineBridge()
 class VideoFrameObserver(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     __swig_destroy__ = _agorartc.delete_VideoFrameObserver
 
-    def onCaptureVideoFrame(self, width, height, ybuffer, ubuffer, vbuffer):
+    def onCaptureVideoFrame(self, width: "int", height: "int", ybuffer: "uint64_t", ubuffer: "uint64_t", vbuffer: "uint64_t") -> "void":
         return _agorartc.VideoFrameObserver_onCaptureVideoFrame(self, width, height, ybuffer, ubuffer, vbuffer)
 
-    def onRenderVideoFrame(self, uid, width, height, ybuffer, ubuffer, vbuffer):
+    def onRenderVideoFrame(self, uid: "unsigned int", width: "int", height: "int", ybuffer: "uint64_t", ubuffer: "uint64_t", vbuffer: "uint64_t") -> "void":
         return _agorartc.VideoFrameObserver_onRenderVideoFrame(self, uid, width, height, ybuffer, ubuffer, vbuffer)
     privateData = property(_agorartc.VideoFrameObserver_privateData_get, _agorartc.VideoFrameObserver_privateData_set)
 
@@ -7048,16 +7048,54 @@ class VideoFrameObserver(object):
 _agorartc.VideoFrameObserver_swigregister(VideoFrameObserver)
 
 
-def registerVideoFrameObserver(rtc, frameObserver):
+def registerVideoFrameObserver(rtc: "RtcEngineBridge", frameObserver: "VideoFrameObserver") -> "void":
     return _agorartc.registerVideoFrameObserver(rtc, frameObserver)
 
-def unregisterVideoFrameObserver(rtc, frameObserver):
+def unregisterVideoFrameObserver(rtc: "RtcEngineBridge", frameObserver: "VideoFrameObserver") -> "void":
     return _agorartc.unregisterVideoFrameObserver(rtc, frameObserver)
+class AudioFrameObserver(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _agorartc.delete_AudioFrameObserver
+
+    def onRecordAudioFrame(self, type1: "unsigned int", samples: "int", bytesPerSample: "int", channels: "int", samplesPerSec: "int", buffer1: "uint64_t", renderTimeMs: "int64_t", avsync_type: "int") -> "void":
+        return _agorartc.AudioFrameObserver_onRecordAudioFrame(self, type1, samples, bytesPerSample, channels, samplesPerSec, buffer1, renderTimeMs, avsync_type)
+
+    def onPlaybackAudioFrame(self, type1: "unsigned int", samples: "int", bytesPerSample: "int", channels: "int", samplesPerSec: "int", buffer1: "uint64_t", renderTimeMs: "int64_t", avsync_type: "int") -> "void":
+        return _agorartc.AudioFrameObserver_onPlaybackAudioFrame(self, type1, samples, bytesPerSample, channels, samplesPerSec, buffer1, renderTimeMs, avsync_type)
+
+    def onMixedAudioFrame(self, type1: "unsigned int", samples: "int", bytesPerSample: "int", channels: "int", samplesPerSec: "int", buffer1: "uint64_t", renderTimeMs: "int64_t", avsync_type: "int") -> "void":
+        return _agorartc.AudioFrameObserver_onMixedAudioFrame(self, type1, samples, bytesPerSample, channels, samplesPerSec, buffer1, renderTimeMs, avsync_type)
+
+    def onPlaybackAudioFrameBeforeMixing(self, uid: "unsigned int", type1: "unsigned int", samples: "int", bytesPerSample: "int", channels: "int", samplesPerSec: "int", buffer1: "uint64_t", renderTimeMs: "int64_t", avsync_type: "int") -> "void":
+        return _agorartc.AudioFrameObserver_onPlaybackAudioFrameBeforeMixing(self, uid, type1, samples, bytesPerSample, channels, samplesPerSec, buffer1, renderTimeMs, avsync_type)
+    privateData = property(_agorartc.AudioFrameObserver_privateData_get, _agorartc.AudioFrameObserver_privateData_set)
+
+    def __init__(self):
+        if self.__class__ == AudioFrameObserver:
+            _self = None
+        else:
+            _self = self
+        _agorartc.AudioFrameObserver_swiginit(self, _agorartc.new_AudioFrameObserver(_self, ))
+    def __disown__(self):
+        self.this.disown()
+        _agorartc.disown_AudioFrameObserver(self)
+        return weakref.proxy(self)
+
+# Register AudioFrameObserver in _agorartc:
+_agorartc.AudioFrameObserver_swigregister(AudioFrameObserver)
+
+
+def registerAudioFrameObserver(rtc: "RtcEngineBridge", frameObserver: "AudioFrameObserver") -> "void":
+    return _agorartc.registerAudioFrameObserver(rtc, frameObserver)
+
+def unregisterAudioFrameObserver(rtc: "RtcEngineBridge", frameObserver: "AudioFrameObserver") -> "void":
+    return _agorartc.unregisterAudioFrameObserver(rtc, frameObserver)
 class APICaseHandler(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def handleAPICase(self, apiType, paramter):
+    def handleAPICase(self, apiType: "int", paramter: "char const *") -> "void":
         return _agorartc.APICaseHandler_handleAPICase(self, apiType, paramter)
     __swig_destroy__ = _agorartc.delete_APICaseHandler
 
@@ -7076,28 +7114,28 @@ class APICaseHandler(object):
 _agorartc.APICaseHandler_swigregister(APICaseHandler)
 
 
-def BeginApiTest(caseFilePath, apiCaseHandler):
+def BeginApiTest(caseFilePath: "char const *", apiCaseHandler: "APICaseHandler") -> "void":
     return _agorartc.BeginApiTest(caseFilePath, apiCaseHandler)
 
-def CompareAndDumpApiTestResult(caseFilePath, dumpFilePath, apiCaseHandler):
+def CompareAndDumpApiTestResult(caseFilePath: "char const *", dumpFilePath: "char const *", apiCaseHandler: "APICaseHandler") -> "void":
     return _agorartc.CompareAndDumpApiTestResult(caseFilePath, dumpFilePath, apiCaseHandler)
 
-def BeginRtcEngineEventTest(caseFilePath, eventHandler):
+def BeginRtcEngineEventTest(caseFilePath: "char const *", eventHandler: "RtcEngineEventHandlerBase") -> "void":
     return _agorartc.BeginRtcEngineEventTest(caseFilePath, eventHandler)
 
-def CompareAndDumpRtcEngineEventTestResult(caseFilePath, dumpFilePath, eventHandler):
+def CompareAndDumpRtcEngineEventTestResult(caseFilePath: "char const *", dumpFilePath: "char const *", eventHandler: "RtcEngineEventHandlerBase") -> "void":
     return _agorartc.CompareAndDumpRtcEngineEventTestResult(caseFilePath, dumpFilePath, eventHandler)
 
-def LogEngineEventCase(eventType, parameter):
+def LogEngineEventCase(eventType: "char const *", parameter: "char const *") -> "void":
     return _agorartc.LogEngineEventCase(eventType, parameter)
 
-def BeginChannelEventTest(caseFilePath, rtcChannel, eventHandler):
+def BeginChannelEventTest(caseFilePath: "char const *", rtcChannel: "IChannel", eventHandler: "RtcChannelEventHandlerBase") -> "void":
     return _agorartc.BeginChannelEventTest(caseFilePath, rtcChannel, eventHandler)
 
-def CompareAndDumpChannelEventTestResult(caseFilePath, dumpFilePath, rtcChannel, eventHandler):
+def CompareAndDumpChannelEventTestResult(caseFilePath: "char const *", dumpFilePath: "char const *", rtcChannel: "IChannel", eventHandler: "RtcChannelEventHandlerBase") -> "void":
     return _agorartc.CompareAndDumpChannelEventTestResult(caseFilePath, dumpFilePath, rtcChannel, eventHandler)
 
-def LogChannelEventCase(eventType, parameter):
+def LogChannelEventCase(eventType: "char const *", parameter: "char const *") -> "void":
     return _agorartc.LogChannelEventCase(eventType, parameter)
 class IChannel(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
@@ -7106,7 +7144,7 @@ class IChannel(object):
         raise AttributeError("No constructor defined - class is abstract")
     __repr__ = _swig_repr
 
-    def channelId(self):
+    def channelId(self) -> "char const *":
         return _agorartc.IChannel_channelId(self)
     __swig_destroy__ = _agorartc.delete_IChannel
 
@@ -7149,10 +7187,10 @@ class RtcChannelBridge(object):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
 
-    def initChannelEventHandler(self, eventHandler):
+    def initChannelEventHandler(self, eventHandler: "IChannelEventHandler") -> "int":
         return _agorartc.RtcChannelBridge_initChannelEventHandler(self, eventHandler)
 
-    def release(self):
+    def release(self) -> "void":
         r"""
          Releases all IChannel resources.
 
@@ -7164,7 +7202,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_release(self)
 
-    def joinChannel(self, token, info, uid, options):
+    def joinChannel(self, token: "char const *", info: "char const *", uid: "agora::rtc::uid_t", options: "ChannelMediaOptions") -> "int":
         r"""
          Joins the channel with a user ID.
 
@@ -7206,7 +7244,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_joinChannel(self, token, info, uid, options)
 
-    def joinChannelWithUserAccount(self, token, userAccount, options):
+    def joinChannelWithUserAccount(self, token: "char const *", userAccount: "char const *", options: "ChannelMediaOptions") -> "int":
         r"""
          Joins the channel with a user account.
 
@@ -7242,7 +7280,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_joinChannelWithUserAccount(self, token, userAccount, options)
 
-    def leaveChannel(self):
+    def leaveChannel(self) -> "int":
         r"""
          Allows a user to leave a channel, such as hanging up or exiting a call.
 
@@ -7270,7 +7308,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_leaveChannel(self)
 
-    def publish(self):
+    def publish(self) -> "int":
         r"""
          Publishes the local stream to the channel.
 
@@ -7287,7 +7325,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_publish(self)
 
-    def unpublish(self):
+    def unpublish(self) -> "int":
         r"""
          Stops publishing a stream to the channel.
 
@@ -7301,7 +7339,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_unpublish(self)
 
-    def channelId(self):
+    def channelId(self) -> "char const *":
         r"""
          Gets the channel ID of the current `IChannel` object.
 
@@ -7312,7 +7350,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_channelId(self)
 
-    def getCallId(self, callId):
+    def getCallId(self, callId: "agora::util::AString &") -> "int":
         r"""
          Retrieves the current call ID.
 
@@ -7331,7 +7369,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_getCallId(self, callId)
 
-    def renewToken(self, token):
+    def renewToken(self, token: "char const *") -> "int":
         r"""
          Gets a new token when the current token expires after a period of time.
 
@@ -7355,7 +7393,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_renewToken(self, token)
 
-    def setEncryptionSecret(self, secret):
+    def setEncryptionSecret(self, secret: "char const *") -> "int":
         r"""
          Enables built-in encryption with an encryption password before users join a channel.
 
@@ -7379,7 +7417,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setEncryptionSecret(self, secret)
 
-    def setEncryptionMode(self, encryptionMode):
+    def setEncryptionMode(self, encryptionMode: "char const *") -> "int":
         r"""
          Sets the built-in encryption mode.
 
@@ -7407,7 +7445,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setEncryptionMode(self, encryptionMode)
 
-    def registerPacketObserver(self, observer):
+    def registerPacketObserver(self, observer: "agora::rtc::IPacketObserver *") -> "int":
         r"""
          Registers a packet observer.
 
@@ -7428,7 +7466,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_registerPacketObserver(self, observer)
 
-    def setClientRole(self, role):
+    def setClientRole(self, role: "agora::rtc::CLIENT_ROLE_TYPE") -> "int":
         r"""
          Sets the role of the user, such as a host or an audience (default), before joining a channel in the interactive live streaming.
 
@@ -7450,7 +7488,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setClientRole(self, role)
 
-    def setRemoteUserPriority(self, uid, userPriority):
+    def setRemoteUserPriority(self, uid: "agora::rtc::uid_t", userPriority: "agora::rtc::PRIORITY_TYPE") -> "int":
         r"""
          Prioritizes a remote user's stream.
 
@@ -7471,7 +7509,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setRemoteUserPriority(self, uid, userPriority)
 
-    def setRemoteVoicePosition(self, uid, pan, gain):
+    def setRemoteVoicePosition(self, uid: "agora::rtc::uid_t", pan: "double", gain: "double") -> "int":
         r"""
          Sets the sound position and gain of a remote user.
 
@@ -7501,7 +7539,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setRemoteVoicePosition(self, uid, pan, gain)
 
-    def setRemoteRenderMode(self, userId, renderMode, mirrorMode):
+    def setRemoteRenderMode(self, userId: "agora::rtc::uid_t", renderMode: "agora::rtc::RENDER_MODE_TYPE", mirrorMode: "agora::rtc::VIDEO_MIRROR_MODE_TYPE") -> "int":
         r"""
          Updates the display mode of the video view of a remote user.
 
@@ -7528,7 +7566,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setRemoteRenderMode(self, userId, renderMode, mirrorMode)
 
-    def setDefaultMuteAllRemoteAudioStreams(self, mute):
+    def setDefaultMuteAllRemoteAudioStreams(self, mute: "bool") -> "int":
         r"""
          Sets whether to receive all remote audio streams by default.
 
@@ -7551,7 +7589,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setDefaultMuteAllRemoteAudioStreams(self, mute)
 
-    def setDefaultMuteAllRemoteVideoStreams(self, mute):
+    def setDefaultMuteAllRemoteVideoStreams(self, mute: "bool") -> "int":
         r"""
          Sets whether to receive all remote video streams by default.
 
@@ -7578,7 +7616,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setDefaultMuteAllRemoteVideoStreams(self, mute)
 
-    def muteAllRemoteAudioStreams(self, mute):
+    def muteAllRemoteAudioStreams(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving all remote users' audio streams.
 
@@ -7594,7 +7632,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_muteAllRemoteAudioStreams(self, mute)
 
-    def adjustUserPlaybackSignalVolume(self, userId, volume):
+    def adjustUserPlaybackSignalVolume(self, userId: "agora::rtc::uid_t", volume: "int") -> "int":
         r"""
          Adjust the playback volume of the specified remote user.
 
@@ -7621,7 +7659,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_adjustUserPlaybackSignalVolume(self, userId, volume)
 
-    def muteRemoteAudioStream(self, userId, mute):
+    def muteRemoteAudioStream(self, userId: "agora::rtc::uid_t", mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving a specified remote user's audio stream.
 
@@ -7643,7 +7681,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_muteRemoteAudioStream(self, userId, mute)
 
-    def muteAllRemoteVideoStreams(self, mute):
+    def muteAllRemoteVideoStreams(self, mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving all video stream from a specified remote user.
 
@@ -7659,7 +7697,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_muteAllRemoteVideoStreams(self, mute)
 
-    def muteRemoteVideoStream(self, userId, mute):
+    def muteRemoteVideoStream(self, userId: "agora::rtc::uid_t", mute: "bool") -> "int":
         r"""
          Stops/Resumes receiving the video stream from a specified remote user.
 
@@ -7681,7 +7719,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_muteRemoteVideoStream(self, userId, mute)
 
-    def setRemoteVideoStreamType(self, userId, streamType):
+    def setRemoteVideoStreamType(self, userId: "agora::rtc::uid_t", streamType: "agora::rtc::REMOTE_VIDEO_STREAM_TYPE") -> "int":
         r"""
          Sets the stream type of the remote video.
 
@@ -7710,7 +7748,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setRemoteVideoStreamType(self, userId, streamType)
 
-    def setRemoteDefaultVideoStreamType(self, streamType):
+    def setRemoteDefaultVideoStreamType(self, streamType: "agora::rtc::REMOTE_VIDEO_STREAM_TYPE") -> "int":
         r"""
          Sets the default stream type of remote videos.
 
@@ -7737,7 +7775,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setRemoteDefaultVideoStreamType(self, streamType)
 
-    def addPublishStreamUrl(self, url, transcodingEnabled):
+    def addPublishStreamUrl(self, url: "char const *", transcodingEnabled: "bool") -> "int":
         r"""
          Publishes the local stream to a specified CDN live RTMP address.  (CDN live only.)
 
@@ -7768,7 +7806,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_addPublishStreamUrl(self, url, transcodingEnabled)
 
-    def removePublishStreamUrl(self, url):
+    def removePublishStreamUrl(self, url: "char const *") -> "int":
         r"""
          Removes an RTMP stream from the CDN.
 
@@ -7793,7 +7831,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_removePublishStreamUrl(self, url)
 
-    def setLiveTranscoding(self, transcoding):
+    def setLiveTranscoding(self, transcoding: "LiveTranscoding") -> "int":
         r"""
          Sets the video layout and audio settings for CDN live. (CDN live only.)
 
@@ -7814,7 +7852,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_setLiveTranscoding(self, transcoding)
 
-    def addInjectStreamUrl(self, url, config):
+    def addInjectStreamUrl(self, url: "char const *", config: "InjectStreamConfig") -> "int":
         r"""
          Adds a voice or video stream URL address to the interactive live streaming.
 
@@ -7853,7 +7891,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_addInjectStreamUrl(self, url, config)
 
-    def removeInjectStreamUrl(self, url):
+    def removeInjectStreamUrl(self, url: "char const *") -> "int":
         r"""
          Removes the voice or video stream URL address from a live streaming.
 
@@ -7871,7 +7909,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_removeInjectStreamUrl(self, url)
 
-    def startChannelMediaRelay(self, configuration):
+    def startChannelMediaRelay(self, configuration: "ChannelMediaRelayConfiguration") -> "int":
         r"""
          Starts to relay media streams across channels.
 
@@ -7917,7 +7955,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_startChannelMediaRelay(self, configuration)
 
-    def updateChannelMediaRelay(self, configuration):
+    def updateChannelMediaRelay(self, configuration: "ChannelMediaRelayConfiguration") -> "int":
         r"""
          Updates the channels for media stream relay.
 
@@ -7948,7 +7986,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_updateChannelMediaRelay(self, configuration)
 
-    def stopChannelMediaRelay(self):
+    def stopChannelMediaRelay(self) -> "int":
         r"""
          Stops the media stream relay.
 
@@ -7977,7 +8015,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_stopChannelMediaRelay(self)
 
-    def createDataStream(self, streamId, reliable, ordered):
+    def createDataStream(self, streamId: "int *", reliable: "bool", ordered: "bool") -> "int":
         r"""
          Creates a data stream.
 
@@ -8005,7 +8043,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_createDataStream(self, streamId, reliable, ordered)
 
-    def sendStreamMessage(self, streamId, data, length):
+    def sendStreamMessage(self, streamId: "int", data: "char const *", length: "size_t") -> "int":
         r"""
          Sends data stream messages to all users in a channel.
 
@@ -8038,7 +8076,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_sendStreamMessage(self, streamId, data, length)
 
-    def getConnectionState(self):
+    def getConnectionState(self) -> "agora::rtc::CONNECTION_STATE_TYPE":
         r"""
          Gets the current connection state of the SDK.
 
@@ -8047,7 +8085,7 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_getConnectionState(self)
 
-    def registerMediaMetadataObserver(self, observer, type, useSdkDefault=True):
+    def registerMediaMetadataObserver(self, observer: "agora::rtc::IMetadataObserver *", type: "agora::rtc::IMetadataObserver::METADATA_TYPE", useSdkDefault: "bool"=True) -> "int":
         r"""
          Registers the metadata observer.
 
@@ -8070,13 +8108,13 @@ class RtcChannelBridge(object):
         """
         return _agorartc.RtcChannelBridge_registerMediaMetadataObserver(self, observer, type, useSdkDefault)
 
-    def sendMetadata(self, metadata):
+    def sendMetadata(self, metadata: "agora::rtc::IMetadataObserver::Metadata *") -> "int":
         return _agorartc.RtcChannelBridge_sendMetadata(self, metadata)
 
-    def setMaxMetadataSize(self, size):
+    def setMaxMetadataSize(self, size: "int") -> "int":
         return _agorartc.RtcChannelBridge_setMaxMetadataSize(self, size)
 
-    def getChannel(self):
+    def getChannel(self) -> "agora::rtc::IChannel *":
         return _agorartc.RtcChannelBridge_getChannel(self)
     __swig_destroy__ = _agorartc.delete_RtcChannelBridge
 
@@ -8090,25 +8128,25 @@ class VideoDeviceManager(object):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
 
-    def startDeviceTest(self, hwnd):
+    def startDeviceTest(self, hwnd: "uint64_t") -> "int":
         return _agorartc.VideoDeviceManager_startDeviceTest(self, hwnd)
 
-    def stopDeviceTest(self):
+    def stopDeviceTest(self) -> "int":
         return _agorartc.VideoDeviceManager_stopDeviceTest(self)
 
-    def getDeviceCount(self):
+    def getDeviceCount(self) -> "int":
         return _agorartc.VideoDeviceManager_getDeviceCount(self)
 
-    def setDevice(self, deviceId):
+    def setDevice(self, deviceId: "char const [512]") -> "int":
         return _agorartc.VideoDeviceManager_setDevice(self, deviceId)
 
-    def getCurrentDevice(self, deviceId_output):
+    def getCurrentDevice(self, deviceId_output: "char [512]") -> "int":
         return _agorartc.VideoDeviceManager_getCurrentDevice(self, deviceId_output)
 
-    def getDevice(self, index, deviceName_output, deviceId_output):
+    def getDevice(self, index: "int", deviceName_output: "char [512]", deviceId_output: "char [512]") -> "int":
         return _agorartc.VideoDeviceManager_getDevice(self, index, deviceName_output, deviceId_output)
 
-    def release(self):
+    def release(self) -> "void":
         return _agorartc.VideoDeviceManager_release(self)
     __swig_destroy__ = _agorartc.delete_VideoDeviceManager
 
@@ -8122,46 +8160,46 @@ class AudioPlaybackDeviceManager(object):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
 
-    def release(self):
+    def release(self) -> "void":
         return _agorartc.AudioPlaybackDeviceManager_release(self)
 
-    def getCount(self):
+    def getCount(self) -> "int":
         return _agorartc.AudioPlaybackDeviceManager_getCount(self)
 
-    def getDevice(self, index, deviceName_output, deviceId_output):
+    def getDevice(self, index: "int", deviceName_output: "char [512]", deviceId_output: "char [512]") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_getDevice(self, index, deviceName_output, deviceId_output)
 
-    def getCurrentDevice(self, deviceId_output):
+    def getCurrentDevice(self, deviceId_output: "char [512]") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_getCurrentDevice(self, deviceId_output)
 
-    def getCurrentDeviceInfo(self, deviceId_output, deviceName_output):
+    def getCurrentDeviceInfo(self, deviceId_output: "char [512]", deviceName_output: "char [512]") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_getCurrentDeviceInfo(self, deviceId_output, deviceName_output)
 
-    def setDevice(self, deviceId_output):
+    def setDevice(self, deviceId_output: "char const [512]") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_setDevice(self, deviceId_output)
 
-    def setDeviceVolume(self, volume):
+    def setDeviceVolume(self, volume: "int") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_setDeviceVolume(self, volume)
 
-    def getDeviceVolume(self):
+    def getDeviceVolume(self) -> "int":
         return _agorartc.AudioPlaybackDeviceManager_getDeviceVolume(self)
 
-    def setDeviceMute(self, mute):
+    def setDeviceMute(self, mute: "bool") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_setDeviceMute(self, mute)
 
-    def getDeviceMute(self):
+    def getDeviceMute(self) -> "int":
         return _agorartc.AudioPlaybackDeviceManager_getDeviceMute(self)
 
-    def startDeviceTest(self, testAudioFilePath):
+    def startDeviceTest(self, testAudioFilePath: "char const *") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_startDeviceTest(self, testAudioFilePath)
 
-    def stopDeviceTest(self):
+    def stopDeviceTest(self) -> "int":
         return _agorartc.AudioPlaybackDeviceManager_stopDeviceTest(self)
 
-    def startAudioDeviceLoopbackTest(self, indicationInterval):
+    def startAudioDeviceLoopbackTest(self, indicationInterval: "int") -> "int":
         return _agorartc.AudioPlaybackDeviceManager_startAudioDeviceLoopbackTest(self, indicationInterval)
 
-    def stopAudioDeviceLoopbackTest(self):
+    def stopAudioDeviceLoopbackTest(self) -> "int":
         return _agorartc.AudioPlaybackDeviceManager_stopAudioDeviceLoopbackTest(self)
     __swig_destroy__ = _agorartc.delete_AudioPlaybackDeviceManager
 
@@ -8175,46 +8213,46 @@ class AudioRecordingDeviceManager(object):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
 
-    def release(self):
+    def release(self) -> "void":
         return _agorartc.AudioRecordingDeviceManager_release(self)
 
-    def getCount(self):
+    def getCount(self) -> "int":
         return _agorartc.AudioRecordingDeviceManager_getCount(self)
 
-    def getDevice(self, index, deviceName_output, deviceId_output):
+    def getDevice(self, index: "int", deviceName_output: "char [512]", deviceId_output: "char [512]") -> "int":
         return _agorartc.AudioRecordingDeviceManager_getDevice(self, index, deviceName_output, deviceId_output)
 
-    def getCurrentDevice(self, deviceId_output):
+    def getCurrentDevice(self, deviceId_output: "char [512]") -> "int":
         return _agorartc.AudioRecordingDeviceManager_getCurrentDevice(self, deviceId_output)
 
-    def getCurrentDeviceInfo(self, deviceId_output, deviceName_output):
+    def getCurrentDeviceInfo(self, deviceId_output: "char [512]", deviceName_output: "char [512]") -> "int":
         return _agorartc.AudioRecordingDeviceManager_getCurrentDeviceInfo(self, deviceId_output, deviceName_output)
 
-    def setDevice(self, deviceId_output):
+    def setDevice(self, deviceId_output: "char const [512]") -> "int":
         return _agorartc.AudioRecordingDeviceManager_setDevice(self, deviceId_output)
 
-    def setDeviceVolume(self, volume):
+    def setDeviceVolume(self, volume: "int") -> "int":
         return _agorartc.AudioRecordingDeviceManager_setDeviceVolume(self, volume)
 
-    def getDeviceVolume(self):
+    def getDeviceVolume(self) -> "int":
         return _agorartc.AudioRecordingDeviceManager_getDeviceVolume(self)
 
-    def setDeviceMute(self, mute):
+    def setDeviceMute(self, mute: "bool") -> "int":
         return _agorartc.AudioRecordingDeviceManager_setDeviceMute(self, mute)
 
-    def getDeviceMute(self):
+    def getDeviceMute(self) -> "int":
         return _agorartc.AudioRecordingDeviceManager_getDeviceMute(self)
 
-    def startDeviceTest(self, indicationInterval):
+    def startDeviceTest(self, indicationInterval: "int") -> "int":
         return _agorartc.AudioRecordingDeviceManager_startDeviceTest(self, indicationInterval)
 
-    def stopDeviceTest(self):
+    def stopDeviceTest(self) -> "int":
         return _agorartc.AudioRecordingDeviceManager_stopDeviceTest(self)
 
-    def startAudioDeviceLoopbackTest(self, indicationInterval):
+    def startAudioDeviceLoopbackTest(self, indicationInterval: "int") -> "int":
         return _agorartc.AudioRecordingDeviceManager_startAudioDeviceLoopbackTest(self, indicationInterval)
 
-    def stopAudioDeviceLoopbackTest(self):
+    def stopAudioDeviceLoopbackTest(self) -> "int":
         return _agorartc.AudioRecordingDeviceManager_stopAudioDeviceLoopbackTest(self)
     __swig_destroy__ = _agorartc.delete_AudioRecordingDeviceManager
 

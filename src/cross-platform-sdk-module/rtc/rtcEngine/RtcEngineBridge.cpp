@@ -1851,6 +1851,11 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters,
         reinterpret_cast<media::IVideoFrameObserver *>(ptr));
   } break;
 
+  case REGISTER_AUDIO_FRAME_OBSERVER: {
+    ret = registerAudioFrameObserver(
+        reinterpret_cast<media::IAudioFrameObserver *>(ptr));
+  } break;
+
   default:
     ret = ERROR_CODE::ERROR_INVALID_API_TYPE;
     break;
@@ -2887,6 +2892,16 @@ int RtcEngineBridge::registerVideoFrameObserver(
   mediaEngine.queryInterface(mRtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
   if (mediaEngine)
     return mediaEngine->registerVideoFrameObserver(videoFrameObserver);
+
+  return ERROR_CODE::ERROR_NO_ENGINE;
+}
+
+int RtcEngineBridge::registerAudioFrameObserver(
+    media::IAudioFrameObserver *audioFrameObserver) {
+  agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
+  mediaEngine.queryInterface(mRtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
+  if (mediaEngine)
+    return mediaEngine->registerAudioFrameObserver(audioFrameObserver);
 
   return ERROR_CODE::ERROR_NO_ENGINE;
 }
