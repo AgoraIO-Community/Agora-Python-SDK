@@ -100,6 +100,7 @@ pip3 install agora-python-sdk
    0 （成功）
    >>> rtc.leaveChannel()  # 离开频道
    0 （成功）
+   >>> rtc.release()
    ```
 
 ## 帮助

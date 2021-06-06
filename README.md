@@ -99,6 +99,7 @@ You can also write a simple demo yourself by the following instructins.
    0 (Success)
    >>> rtc.leaveChannel()  # Leave channel
    0 (Success)
+   >>> rtc.release()
    ```
 
 ## Help
