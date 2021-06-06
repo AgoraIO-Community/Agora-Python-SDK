@@ -5811,36 +5811,6 @@ void SwigDirector_RtcEngineEventHandlerBase::onConnectionStateChanged(agora::rtc
 }
 
 
-void SwigDirector_RtcEngineEventHandlerBase::onAudioMixingStateChanged(agora::rtc::AUDIO_MIXING_STATE_TYPE state, agora::rtc::AUDIO_MIXING_ERROR_TYPE errorCode) {
-  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-  {
-    swig::SwigVar_PyObject obj0;
-    obj0 = SWIG_From_int(static_cast< int >(state));
-    swig::SwigVar_PyObject obj1;
-    obj1 = SWIG_From_int(static_cast< int >(errorCode));
-    if (!swig_get_self()) {
-      Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
-    }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 61;
-    const char *const swig_method_name = "onAudioMixingStateChanged";
-    PyObject *method = swig_get_method(swig_method_index, swig_method_name);
-    swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1, NULL);
-#else
-    swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("onAudioMixingStateChanged");
-    swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0,(PyObject *)obj1, NULL);
-#endif
-    if (!result) {
-      PyObject *error = PyErr_Occurred();
-      if (error) {
-        Swig::DirectorMethodException::raise("Error detected when calling 'RtcEngineEventHandlerBase.onAudioMixingStateChanged'");
-      }
-    }
-  }
-  SWIG_PYTHON_THREAD_END_BLOCK;
-}
-
-
 void SwigDirector_RtcEngineEventHandlerBase::onFirstRemoteAudioDecoded(agora::rtc::uid_t uid, int elapsed) {
   SWIG_PYTHON_THREAD_BEGIN_BLOCK;
   {
@@ -5852,7 +5822,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onFirstRemoteAudioDecoded(agora::rt
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 62;
+    const size_t swig_method_index = 61;
     const char *const swig_method_name = "onFirstRemoteAudioDecoded";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1, NULL);
@@ -5882,7 +5852,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onLocalVideoStateChanged(agora::rtc
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 63;
+    const size_t swig_method_index = 62;
     const char *const swig_method_name = "onLocalVideoStateChanged";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1, NULL);
@@ -5914,7 +5884,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onRtmpStreamingStateChanged(char co
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 64;
+    const size_t swig_method_index = 63;
     const char *const swig_method_name = "onRtmpStreamingStateChanged";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2, NULL);
@@ -5942,7 +5912,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onNetworkTypeChanged(agora::rtc::NE
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 65;
+    const size_t swig_method_index = 64;
     const char *const swig_method_name = "onNetworkTypeChanged";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0, NULL);
@@ -5970,7 +5940,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onLastmileProbeResult(agora::rtc::L
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 66;
+    const size_t swig_method_index = 65;
     const char *const swig_method_name = "onLastmileProbeResult";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0, NULL);
@@ -6000,7 +5970,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onLocalUserRegistered(agora::rtc::u
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 67;
+    const size_t swig_method_index = 66;
     const char *const swig_method_name = "onLocalUserRegistered";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1, NULL);
@@ -6030,7 +6000,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onUserInfoUpdated(agora::rtc::uid_t
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 68;
+    const size_t swig_method_index = 67;
     const char *const swig_method_name = "onUserInfoUpdated";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1, NULL);
@@ -6060,7 +6030,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onLocalAudioStateChanged(agora::rtc
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 69;
+    const size_t swig_method_index = 68;
     const char *const swig_method_name = "onLocalAudioStateChanged";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1, NULL);
@@ -6094,7 +6064,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onRemoteAudioStateChanged(agora::rt
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 70;
+    const size_t swig_method_index = 69;
     const char *const swig_method_name = "onRemoteAudioStateChanged";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2,(PyObject *)obj3, NULL);
@@ -6124,7 +6094,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onChannelMediaRelayStateChanged(ago
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 71;
+    const size_t swig_method_index = 70;
     const char *const swig_method_name = "onChannelMediaRelayStateChanged";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0,(PyObject *)obj1, NULL);
@@ -6152,7 +6122,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onChannelMediaRelayEvent(agora::rtc
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 72;
+    const size_t swig_method_index = 71;
     const char *const swig_method_name = "onChannelMediaRelayEvent";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0, NULL);
@@ -6178,7 +6148,7 @@ void SwigDirector_RtcEngineEventHandlerBase::onTestEnd() {
       Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call RtcEngineEventHandlerBase.__init__.");
     }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-    const size_t swig_method_index = 73;
+    const size_t swig_method_index = 72;
     const char *const swig_method_name = "onTestEnd";
     PyObject *method = swig_get_method(swig_method_index, swig_method_name);
     swig::SwigVar_PyObject args = PyTuple_New(0);
@@ -30080,55 +30050,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_RtcEngineEventHandlerBase_onAudioMixingStateChanged(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  agora::common::RtcEngineEventHandlerBase *arg1 = (agora::common::RtcEngineEventHandlerBase *) 0 ;
-  agora::rtc::AUDIO_MIXING_STATE_TYPE arg2 ;
-  agora::rtc::AUDIO_MIXING_ERROR_TYPE arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject *swig_obj[3] ;
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  if (!SWIG_Python_UnpackTuple(args, "RtcEngineEventHandlerBase_onAudioMixingStateChanged", 3, 3, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_agora__common__RtcEngineEventHandlerBase, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RtcEngineEventHandlerBase_onAudioMixingStateChanged" "', argument " "1"" of type '" "agora::common::RtcEngineEventHandlerBase *""'"); 
-  }
-  arg1 = reinterpret_cast< agora::common::RtcEngineEventHandlerBase * >(argp1);
-  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RtcEngineEventHandlerBase_onAudioMixingStateChanged" "', argument " "2"" of type '" "agora::rtc::AUDIO_MIXING_STATE_TYPE""'");
-  } 
-  arg2 = static_cast< agora::rtc::AUDIO_MIXING_STATE_TYPE >(val2);
-  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "RtcEngineEventHandlerBase_onAudioMixingStateChanged" "', argument " "3"" of type '" "agora::rtc::AUDIO_MIXING_ERROR_TYPE""'");
-  } 
-  arg3 = static_cast< agora::rtc::AUDIO_MIXING_ERROR_TYPE >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  upcall = (director && (director->swig_get_self()==swig_obj[0]));
-  try {
-    if (upcall) {
-      (arg1)->agora::common::RtcEngineEventHandlerBase::onAudioMixingStateChanged(arg2,arg3);
-    } else {
-      (arg1)->onAudioMixingStateChanged(arg2,arg3);
-    }
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_RtcEngineEventHandlerBase_onFirstRemoteAudioDecoded(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   agora::common::RtcEngineEventHandlerBase *arg1 = (agora::common::RtcEngineEventHandlerBase *) 0 ;
@@ -41853,19 +41774,6 @@ static PyMethodDef SwigMethods[] = {
 		"    :type reason: int\n"
 		"    :param reason: See #CONNECTION_CHANGED_REASON_TYPE.\n"
 		""},
-	 { "RtcEngineEventHandlerBase_onAudioMixingStateChanged", _wrap_RtcEngineEventHandlerBase_onAudioMixingStateChanged, METH_VARARGS, "\n"
-		"Occurs when the state of the local user's audio mixing file changes.\n"
-		"\n"
-		"    When you call the 'startAudioMixing' method and the state of audio mixing file changes, the SDK triggers this callback.\n"
-		"    - When the audio mixing file plays, pauses playing, or stops playing, this callback returns 710, 711, or 713 in ``state``, and 0 in ``errorCode``.\n"
-		"    - When exceptions occur during playback, this callback returns 714 in ``state`` and an error in ``errorCode``.\n"
-		"    - If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns WARN_AUDIO_MIXING_OPEN_ERROR = 701.\n"
-		"\n"
-		"    :type state: int\n"
-		"    :param state: The state code. See #AUDIO_MIXING_STATE_TYPE.\n"
-		"    :type errorCode: int\n"
-		"    :param errorCode: The error code. See #AUDIO_MIXING_ERROR_TYPE.\n"
-		""},
 	 { "RtcEngineEventHandlerBase_onFirstRemoteAudioDecoded", _wrap_RtcEngineEventHandlerBase_onFirstRemoteAudioDecoded, METH_VARARGS, "\n"
 		"Occurs when the SDK decodes the first remote audio frame for playback.\n"
 		"\n"
@@ -44559,11 +44467,6 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_ADM_SPECIAL_RESTART",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_ADM_SPECIAL_RESTART)));
   SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_ADM_USING_COMM_PARAMS",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_ADM_USING_COMM_PARAMS)));
   SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_ADM_USING_NORM_PARAMS",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_ADM_USING_NORM_PARAMS)));
-  SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY)));
-  SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED)));
-  SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_EVENT_MIXING_RESTART",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_EVENT_MIXING_RESTART)));
-  SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED)));
-  SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR)));
   SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_ERROR_MIXING_OPEN",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_ERROR_MIXING_OPEN)));
   SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_ERROR_MIXING_TOO_FREQUENT",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_ERROR_MIXING_TOO_FREQUENT)));
   SWIG_Python_SetConstant(d, "MEDIA_ENGINE_AUDIO_ERROR_MIXING_INTERRUPTED_EOF",SWIG_From_int(static_cast< int >(agora::rtc::MEDIA_ENGINE_AUDIO_ERROR_MIXING_INTERRUPTED_EOF)));

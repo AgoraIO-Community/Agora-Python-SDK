@@ -359,9 +359,9 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
           (CONNECTION_STATE_TYPE)param["state"].GetInt(),
           (CONNECTION_CHANGED_REASON_TYPE)param["reason"].GetInt());
     } else if (type == "onAudioMixingStateChanged") {
-      eventHandler->onAudioMixingStateChanged(
-          (AUDIO_MIXING_STATE_TYPE)param["state"].GetInt(),
-          (AUDIO_MIXING_ERROR_TYPE)param["errorCode"].GetInt());
+      // eventHandler->onAudioMixingStateChanged(
+      //     (AUDIO_MIXING_STATE_TYPE)param["state"].GetInt(),
+      //     (AUDIO_MIXING_ERROR_TYPE)param["errorCode"].GetInt());
     } else if (type == "onFirstRemoteAudioDecoded") {
       eventHandler->onFirstRemoteAudioDecoded(param["uid"].GetUint(),
                                               param["elapsed"].GetInt());

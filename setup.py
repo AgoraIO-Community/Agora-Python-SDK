@@ -41,7 +41,7 @@ agorartc_module = Extension('_agorartc',
                            )
 
 setup (name = 'agora-python-sdk',
-       version = '3.1.2.10',
+       version = '3.4.2.1',
        author      = "Agora.io",
        description = "Agora RTC Python SDK",
        long_description = long_description,
@@ -63,7 +63,3 @@ setup (name = 'agora-python-sdk',
        ],
        python_requires='>=3.6',
 )
-
-
-
-

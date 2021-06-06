@@ -81,7 +81,6 @@ public:
     virtual void onLocalPublishFallbackToAudioOnly(bool isFallbackOrRecover);
     virtual void onRemoteSubscribeFallbackToAudioOnly(agora::rtc::uid_t uid, bool isFallbackOrRecover);
     virtual void onConnectionStateChanged(agora::rtc::CONNECTION_STATE_TYPE state, agora::rtc::CONNECTION_CHANGED_REASON_TYPE reason);
-    virtual void onAudioMixingStateChanged(agora::rtc::AUDIO_MIXING_STATE_TYPE state, agora::rtc::AUDIO_MIXING_ERROR_TYPE errorCode);
     virtual void onFirstRemoteAudioDecoded(agora::rtc::uid_t uid, int elapsed);
     virtual void onLocalVideoStateChanged(agora::rtc::LOCAL_VIDEO_STREAM_STATE localVideoState, agora::rtc::LOCAL_VIDEO_STREAM_ERROR error);
     virtual void onRtmpStreamingStateChanged(char const *url, agora::rtc::RTMP_STREAM_PUBLISH_STATE state, agora::rtc::RTMP_STREAM_PUBLISH_ERROR errCode);
@@ -124,7 +123,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[74];
+    mutable swig::SwigVar_PyObject vtable[73];
 #endif
 
 };

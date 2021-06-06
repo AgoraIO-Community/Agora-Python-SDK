@@ -697,16 +697,6 @@ MEDIA_ENGINE_AUDIO_ADM_USING_COMM_PARAMS = _agorartc.MEDIA_ENGINE_AUDIO_ADM_USIN
 r""" 112: For internal use only."""
 MEDIA_ENGINE_AUDIO_ADM_USING_NORM_PARAMS = _agorartc.MEDIA_ENGINE_AUDIO_ADM_USING_NORM_PARAMS
 r""" 113: For internal use only."""
-MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY = _agorartc.MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY
-r""" 710: For internal use only."""
-MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED = _agorartc.MEDIA_ENGINE_AUDIO_EVENT_MIXING_PAUSED
-r""" 711: For internal use only."""
-MEDIA_ENGINE_AUDIO_EVENT_MIXING_RESTART = _agorartc.MEDIA_ENGINE_AUDIO_EVENT_MIXING_RESTART
-r""" 712: For internal use only."""
-MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED = _agorartc.MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED
-r""" 713: For internal use only."""
-MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR = _agorartc.MEDIA_ENGINE_AUDIO_EVENT_MIXING_ERROR
-r""" 714: For internal use only."""
 MEDIA_ENGINE_AUDIO_ERROR_MIXING_OPEN = _agorartc.MEDIA_ENGINE_AUDIO_ERROR_MIXING_OPEN
 r""" 701: For internal use only."""
 MEDIA_ENGINE_AUDIO_ERROR_MIXING_TOO_FREQUENT = _agorartc.MEDIA_ENGINE_AUDIO_ERROR_MIXING_TOO_FREQUENT
@@ -6295,22 +6285,6 @@ class RtcEngineEventHandlerBase(IRtcEngineEventHandler):
             :param reason: See #CONNECTION_CHANGED_REASON_TYPE.
         """
         return _agorartc.RtcEngineEventHandlerBase_onConnectionStateChanged(self, state, reason)
-
-    def onAudioMixingStateChanged(self, state: "agora::rtc::AUDIO_MIXING_STATE_TYPE", errorCode: "agora::rtc::AUDIO_MIXING_ERROR_TYPE") -> "void":
-        r"""
-        Occurs when the state of the local user's audio mixing file changes.
-
-            When you call the 'startAudioMixing' method and the state of audio mixing file changes, the SDK triggers this callback.
-            - When the audio mixing file plays, pauses playing, or stops playing, this callback returns 710, 711, or 713 in ``state``, and 0 in ``errorCode``.
-            - When exceptions occur during playback, this callback returns 714 in ``state`` and an error in ``errorCode``.
-            - If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns WARN_AUDIO_MIXING_OPEN_ERROR = 701.
-
-            :type state: int
-            :param state: The state code. See #AUDIO_MIXING_STATE_TYPE.
-            :type errorCode: int
-            :param errorCode: The error code. See #AUDIO_MIXING_ERROR_TYPE.
-        """
-        return _agorartc.RtcEngineEventHandlerBase_onAudioMixingStateChanged(self, state, errorCode)
 
     def onFirstRemoteAudioDecoded(self, uid: "agora::rtc::uid_t", elapsed: "int") -> "void":
         r"""

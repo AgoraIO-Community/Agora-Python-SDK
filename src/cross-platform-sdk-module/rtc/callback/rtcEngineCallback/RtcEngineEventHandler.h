@@ -833,9 +833,9 @@ public:
   onConnectionStateChanged(rtc::CONNECTION_STATE_TYPE state,
                            rtc::CONNECTION_CHANGED_REASON_TYPE reason) override;
 
-  void
-  onAudioMixingStateChanged(rtc::AUDIO_MIXING_STATE_TYPE state,
-                            rtc::AUDIO_MIXING_ERROR_TYPE errorCode) override;
+//   void
+//   onAudioMixingStateChanged(rtc::AUDIO_MIXING_STATE_TYPE state,
+//                             rtc::AUDIO_MIXING_ERROR_TYPE errorCode) override;
 
   void onFirstRemoteAudioDecoded(rtc::uid_t uid, int elapsed) override;
 

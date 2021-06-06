@@ -197,8 +197,8 @@ void add_C_EventHandler(IRtcEngineBridge_ptr apiBridge,
       handler->onMediaEngineStartCallSuccess;
   _engineEventHandler.onMediaEngineLoadSuccess =
       handler->onMediaEngineLoadSuccess;
-  _engineEventHandler.onAudioMixingStateChanged =
-      handler->onAudioMixingStateChanged;
+  // _engineEventHandler.onAudioMixingStateChanged =
+  //     handler->onAudioMixingStateChanged;
   _engineEventHandler.onFirstRemoteAudioDecoded =
       handler->onFirstRemoteAudioDecoded;
   _engineEventHandler.onLocalVideoStateChanged =

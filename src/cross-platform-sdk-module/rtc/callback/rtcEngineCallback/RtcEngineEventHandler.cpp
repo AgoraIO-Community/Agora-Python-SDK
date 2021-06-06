@@ -127,8 +127,8 @@ void RtcEngineEventHandler::initCallbackEvent(
       engineEventHandler->onMediaEngineStartCallSuccess;
   cEngineEventHandler->onMediaEngineLoadSuccess =
       engineEventHandler->onMediaEngineLoadSuccess;
-  cEngineEventHandler->onAudioMixingStateChanged =
-      engineEventHandler->onAudioMixingStateChanged;
+  // cEngineEventHandler->onAudioMixingStateChanged =
+  //     engineEventHandler->onAudioMixingStateChanged;
   cEngineEventHandler->onFirstRemoteAudioDecoded =
       engineEventHandler->onFirstRemoteAudioDecoded;
   cEngineEventHandler->onLocalVideoStateChanged =
@@ -933,17 +933,17 @@ void RtcEngineEventHandler::onConnectionStateChanged(
                                         reason);
 }
 
-void RtcEngineEventHandler::onAudioMixingStateChanged(
-    AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_ERROR_TYPE errorCode) {
-  if (cEngineEventHandler && cEngineEventHandler->onAudioMixingStateChanged)
-    cEngineEventHandler->onAudioMixingStateChanged(int(state), int(errorCode));
+// void RtcEngineEventHandler::onAudioMixingStateChanged(
+//     AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_ERROR_TYPE errorCode) {
+//   if (cEngineEventHandler && cEngineEventHandler->onAudioMixingStateChanged)
+//     cEngineEventHandler->onAudioMixingStateChanged(int(state), int(errorCode));
 
-  if (!mEventHandler)
-    return;
+//   if (!mEventHandler)
+//     return;
 
-  mEventHandler->functionCall<int, int>("onAudioMixingStateChanged", state,
-                                        errorCode);
-}
+//   mEventHandler->functionCall<int, int>("onAudioMixingStateChanged", state,
+//                                         errorCode);
+// }
 
 void RtcEngineEventHandler::onFirstRemoteAudioDecoded(rtc::uid_t uid,
                                                       int elapsed) {

@@ -1,6 +1,5 @@
 #include "RtcEngineBridge.h"
 #include "../test/ApiTester.h"
-#include "../include/IAgoraRtcEngine2.h"
 
 namespace agora {
 namespace common {
@@ -1905,10 +1904,7 @@ int RtcEngineBridge::initialize(const char *appId, void *context,
   rtcEngineContext.eventHandler = mRtcEngineEventHandler;
 
   LOG_JSON(INITIALIZE, "appId", appId, "areaCode", areaCode);
-  int ret = mRtcEngine->initialize(rtcEngineContext);
-  IRtcEngine3* rtcEngine3 = static_cast<IRtcEngine3*>(mRtcEngine);
-  rtcEngine3->setAppType((AppType)9);
-  return ret;
+  return mRtcEngine->initialize(rtcEngineContext);
 }
 
 const char *RtcEngineBridge::getVersion() {
